@@ -57,21 +57,17 @@ class ProfileMain extends Component {
   }
 
   onPressNickName(){
-    this.props.navigator.push({name: 'SettingGorm', field:'nickName', title:'Nickname', validLength:20});
+    this.props.navigator.push({name: 'SettingForm', field:'nickName', title:'Nickname', validLength:20});
   }
 
   onPressStatusMessage(){
-    this.props.navigator.push({name: 'SettingGorm', field:'statusMessage', title:'Status message'});
+    this.props.navigator.push({name: 'SettingForm', field:'statusMessage', title:'Status message'});
   }
 
   render() {
 
     return (
       <View style={styles.container}>
-        <S5Header
-          title="Sample"
-          style={{backgroundColor: '#224488'}}
-        />
 
         <View style={styles.profileImage}>
           <S5ProfilePicture

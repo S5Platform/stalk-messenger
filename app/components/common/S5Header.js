@@ -65,7 +65,7 @@ class NavBarButton extends Component {
     actions: PropTypes.arrayOf(PropTypes.shape({
       icon: PropTypes.string.isRequired,
     })),
-    onPress: PropTypes.func.isRequired,
+    onPress: PropTypes.func,
     size: PropTypes.number,
     color: PropTypes.string,
     style: PropTypes.any,
@@ -78,7 +78,7 @@ class NavBarButton extends Component {
   };
 
   _updateIconSources = (props) => {
-    
+
     Promise.all((props.actions || []).map((action) => {
       if (action.icon) {
         return (

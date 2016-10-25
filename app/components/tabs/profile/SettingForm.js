@@ -41,46 +41,36 @@ class SettingForm extends Component {
       }
     }
 
-    this.saveSetting = this.saveSetting.bind(this);
-    this.renderIcon = this.renderIcon.bind(this);
-    this.onPressRemoveButton = this.onPressRemoveButton.bind(this);
-    this.renderValidation = this.renderValidation.bind(this);
   }
 
-  onPressRemoveButton(){
-    this.setState({value: ''});
-  }
-
-  onChangeText(text){
+  _onChangeText = (text) => {
     if( this.props.validLength && text.length > this.props.validLength ){
       return;
     }
     this.setState({value: text});
   }
 
-  renderIcon(){
+  _renderIcon = () => {
     return (
-      <TouchableHighlight onPress={this.onPressRemoveButton}
-        style={{marginRight:10}} underlayColor="transparent">
         <S5Icon
           name={'close-circle'}
-          size={18}
-          color={'#808080'}  />
-      </TouchableHighlight>
+          size={20}
+          color={'#808080'}
+          onPress={ () => this.setState({value: ''}) }  />
     )
   }
 
-  renderValidation(){
+  _renderValidation = () => {
     if( this.props.validLength && this.props.validLength > 0 ){
       return(
         <Text style={styles.helper}>
-        {this.state.value.length}/{this.props.validLength}
+          {this.state.value.length}/{this.props.validLength}
         </Text>
       )
     }
   }
 
-  saveSetting() {
+  saveSetting = () => {
     this.props.dispatch(updateUser(this.state.key, this.state.value));
     this.props.navigator.pop();
   }
@@ -88,18 +78,15 @@ class SettingForm extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <S5Header
           title={this.state.title}
           style={{backgroundColor: '#224488'}}
-          leftItem={{
-            icon: 'arrow-back',
-            title: 'Back',
-            layout: 'icon',
-            onPress: () => this.props.navigator.pop(),
-          }}
-          rightItem={{
-            title: 'Save',
-            onPress: this.saveSetting.bind(this),
+          leftItem={[ {icon: 'arrow-back'} ]}
+          rightItem={[ {icon: 'checkmark-outline'} ]}
+          onPress={ (name) => {
+            if( name == 'checkmark-outline') return this.saveSetting();
+            return this.props.navigator.pop();
           }}
         />
 
@@ -108,9 +95,9 @@ class SettingForm extends Component {
           style={styles.textinput}
           placeholder={this.state.placeholder}
           value={this.state.value}
-          onChangeText={(text) => this.onChangeText(text) }
-          renderContainerIcon={this.renderIcon}
-          renderRightLabel={this.renderValidation}
+          onChangeText={ this._onChangeText }
+          renderContainerIcon={ this._renderIcon }
+          renderRightLabel={ this._renderValidation }
         />
       </View>
     )

@@ -61,31 +61,9 @@ class ChatView extends Component {
       menuOpened:   false,
     };
 
-    this.onSend             = this.onSend.bind(this);
-    this.renderBubble       = this.renderBubble.bind(this);
-    this.renderFooter       = this.renderFooter.bind(this);
-    this.renderComposer     = this.renderComposer.bind(this);
-    this.renderSend         = this.renderSend.bind(this);
-    this.onLoadEarlier      = this.onLoadEarlier.bind(this);
-
-    this.openControlPanel   = this.openControlPanel.bind(this);
-    this.closeControlPanel  = this.closeControlPanel.bind(this);
-    this.openMenu           = this.openMenu.bind(this);
-    this.closeMenu          = this.closeMenu.bind(this);
-    this.selectImage        = this.selectImage.bind(this);
-    this.sendMesage         = this.sendMesage.bind(this);
-
-    this.initChannelNodeServer = this.initChannelNodeServer.bind(this);
-    this._addUserCallback = this._addUserCallback.bind(this);
-
-
-    this._createChat = this._createChat.bind(this);
-    this._leaveChat = this._leaveChat.bind(this);
-
   }
 
   componentWillMount() {  // or componentDidMount ?
-
 
     var chat = {};
 
@@ -106,6 +84,8 @@ class ChatView extends Component {
     }
 
     this.setState({ chat });
+
+    console.log('******** CHAT DATA *********** \n',chat);
 
     if(chat.channelId) {
 
@@ -143,7 +123,7 @@ class ChatView extends Component {
 
   }
 
-  initChannelNodeServer(node, channelId, callback) {
+  initChannelNodeServer = (node, channelId, callback) => {
 
     this.setState({
       node: node
@@ -163,11 +143,18 @@ class ChatView extends Component {
 
     if(this.socket) { this.socket = null; }
 
+    console.log('** Connect Channel Server ** \n', node.url, socketConfig, {
+      A: node.app,
+      S: node.name,
+      C: channelId,
+      U: this.props.user.id,
+      // D: Device ID !! ???
+    });
+
     this.socket = new SocketIO(node.url, socketConfig);
 
     this.socket.on('connect', () => { // SOCKET CONNECTION EVENT
       this.setState({ connected: true }, () => {
-
         if(callback) callback();
       });
     });
@@ -213,25 +200,23 @@ class ChatView extends Component {
   }
 
   componentWillUnmount() {
-    if(this.socket) {
-      this.socket.disconnect();
-    }
+    if(this.socket) this.socket.disconnect();
   }
 
-  closeControlPanel(action) {
+  _closeControlPanel = (action) => {
     var self = this;
     this._drawer.close();
     if( action ){
       if( action.openSelectUserView){
         this.props.navigator.push({name: 'SelectUserView', chat:this.state.chat, callback:this._addUserCallback});
-        
+
       } else if( action.leaveChat && self.state.chat && self.state.chat.id ){
 
         Alert.alert(
           'Alert Title',
           'Do you want leave?',
           [
-            {text: 'Leave', onPress: () => self._leaveChat(self.state.chat.id)},
+            {text: 'Leave', onPress: () => self.leaveChat(self.state.chat.id)},
             {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
           ]
         )
@@ -239,7 +224,7 @@ class ChatView extends Component {
     }
   }
 
-  _createChat(callback){
+  createChat = (callback) => {
     if( this.socket ){
       callback();
       return;
@@ -263,13 +248,13 @@ class ChatView extends Component {
       });
   }
 
-  _leaveChat(chatId){
+  leaveChat = (chatId) => {
     this.props.leaveChat(chatId).then(() => {
       this.props.navigator.pop();
     });
   }
 
-  _addUserCallback(type, data){
+  _addUserCallback = (type, data) => {
     if( type =='A' ){
       this.setState( {chat:data} );
       this.props.navigator.pop();
@@ -280,16 +265,16 @@ class ChatView extends Component {
     }
   }
 
-  openMenu(){
+  _openMenu = () => {
     this.setState({ menuOpened: true });
-    this.selectImage();
+    this._selectImage();
   }
 
-  closeMenu(){
+  _closeMenu = () => {
     this.setState({ menuOpened: false });
   }
 
-  selectImage(){
+  _selectImage = () => {
 
     var self = this;
     ImagePicker.showImagePicker(imagePickerOptions, (response) => {
@@ -303,7 +288,7 @@ class ChatView extends Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
 
-        self._createChat(function(){
+        self.createChat(function(){
           var data = {
             C : self.state.chat.channelId,
             U : self.props.user.id,
@@ -331,7 +316,7 @@ class ChatView extends Component {
     });
   }
 
-  onLoadEarlier() {
+  _onLoadEarlier() {
 
     // Load Message earlier messages from session-server.
     this.props.loadMessages(this.state.chat, this.state.lastLoadedAt).then( (result) => {
@@ -350,16 +335,14 @@ class ChatView extends Component {
     });
   }
 
-  onSend(messages = []) {
-
+  _onSend = (messages = []) => {
     if ( (this.socket && this.state.connected) || !this.state.chat.channelId ){
       this.sendMesage(messages[0]);
     }
-
   }
 
-  sendMesage(message){
-    console.log(message);
+  sendMesage = (message) => {
+    console.log(message, this.socket);
 
     message.createdAt = Date.now();
 
@@ -367,17 +350,16 @@ class ChatView extends Component {
       this.socket.emit('send', {NM:'message', DT: message});
     } else {
       var self = this;
-      this._createChat(function(){
+      this.createChat(function(){
        self.socket.emit('send', {NM:'message', DT: message });
       });
     }
 
   }
 
-  renderBubble(props) {
+  _renderBubble = (props) => {
     return (
-      <Bubble
-        {...props}
+      <Bubble {...props}
         wrapperStyle={{
           left: {
             backgroundColor: '#f0f0f0',
@@ -387,12 +369,12 @@ class ChatView extends Component {
     );
   }
 
-  renderFooter(props) {
+  _renderFooter = (props) => {
     if (this.socket && this.socket.isConnected && !this.state.connected) {
       return (
         <View style={styles.footerContainer}>
           <Text style={styles.footerText}>
-            Connection was failed. Reconnecting...
+            {'Connection was failed. Reconnecting...'}
           </Text>
         </View>
       );
@@ -401,7 +383,7 @@ class ChatView extends Component {
   }
 
 
-  renderComposer(props){
+  _renderComposer = (props) => {
     return (
       <View style={styles.composer}>
         {this.renderMenu()}
@@ -410,15 +392,15 @@ class ChatView extends Component {
     );
   }
 
-  renderMenu(props){
+  renderMenu = () => {
     if( this.state.connected || !this.state.chat.channelId ) {
       if( this.state.menuOpened ){
         return (
-          <S5Icon name={'close'} color={'gray'} onPress={this.closeMenu} style={styles.menuIcon}/>
+          <S5Icon name={'close'} color={'gray'} onPress={this._closeMenu} style={styles.menuIcon}/>
         );
       } else {
         return (
-          <S5Icon name={'add'} color={'gray'} onPress={this.openMenu} style={styles.menuIcon}/>
+          <S5Icon name={'add'} color={'gray'} onPress={this._openMenu} style={styles.menuIcon}/>
         );
       }
     } else {
@@ -426,7 +408,7 @@ class ChatView extends Component {
     }
   }
 
-  renderSend(props) {
+  _renderSend = (props) => {
     if ( this.state.connected || !this.state.chat.channelId ) {
       return (
         <Send {...props}/>
@@ -440,7 +422,7 @@ class ChatView extends Component {
       <View style={styles.container}>
       <S5Drawer
         type="overlay"
-        content={<ControlPanel closeDrawer={this.closeControlPanel} users={this.state.chat.users} navigator={this.props.navigator} />}
+        content={<ControlPanel closeDrawer={this._closeControlPanel} users={this.state.chat.users} navigator={this.props.navigator} />}
         ref={(ref) => this._drawer = ref}
         tapToClose={true}
         openDrawerOffset={0.2} // 20% gap on the right side of drawer
@@ -465,27 +447,20 @@ class ChatView extends Component {
             }}
           />
 
-          <S5Header
-            title="Chats"
-            style={{backgroundColor: '#224488'}}
-            leftItem={{...leftItem, layout: 'icon'}}
-            rightItem={{...rightItem, layout: 'icon'}}
-          />
-
           <GiftedChat
             messages={this.state.messages}
-            onSend={this.onSend}
+            onSend={this._onSend}
             loadEarlier={this.state.loadEarlier}
-            onLoadEarlier={this.onLoadEarlier}
+            onLoadEarlier={this._onLoadEarlier}
 
             user={{
               _id: this.props.user.id, // sent messages should have same user._id
             }}
 
-            renderBubble={this.renderBubble}
-            renderFooter={this.renderFooter}
-            renderSend={this.renderSend}
-            renderComposer={this.renderComposer}
+            renderBubble={this._renderBubble}
+            renderFooter={this._renderFooter}
+            renderSend={this._renderSend}
+            renderComposer={this._renderComposer}
 
             textInputProps={{
               editable: ( this.state.connected || !this.state.chat.channelId ),
