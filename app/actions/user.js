@@ -32,11 +32,7 @@ export function signup(data, callback) {
       success: function(user) {
         dispatch({
           type: SIGNED_UP,
-          data: {
-            username: user.username,
-            email: user.email,
-            nickName: data.username,
-          },
+          data: user,
         });
       },
       error: function(user, error) {

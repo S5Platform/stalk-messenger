@@ -30,12 +30,37 @@
 		2FEEBDF3CAB642C7BC49970E /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5E39399DA6C4E52BCC367B0 /* Entypo.ttf */; };
 		468010A1B16D4CA18EE7F083 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37CCA56CFF214CD5BFCD3E4E /* libRNImagePicker.a */; };
 		5274F29D1DBE372E00F9A4F2 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5274F29C1DBE370B00F9A4F2 /* libRCTPushNotification.a */; };
-		5274F29F1DBE69A500F9A4F2 /* RNSwiftSocketIO in Resources */ = {isa = PBXBuildFile; fileRef = 5274F29E1DBE69A500F9A4F2 /* RNSwiftSocketIO */; };
 		570A86FB392B4774B93D0EA0 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FC6962E81C47D49D45C64A /* libRNVectorIcons.a */; };
 		5AC5FA089E9E42509478227A /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA93506F794431BAB4EC228 /* libBVLinearGradient.a */; };
 		616AF81652184AAC91B707ED /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49A76CB2B43D4D80B5C6040D /* Octicons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		C4E5676422124321920B82FB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97590B6BC179418D810C7FDB /* Ionicons.ttf */; };
+		E16848901DBF0F1E00400E57 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848741DBF0F1E00400E57 /* Socket.swift */; };
+		E16848911DBF0F1E00400E57 /* SocketBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E16848761DBF0F1E00400E57 /* SocketBridge.m */; };
+		E16848921DBF0F1E00400E57 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848781DBF0F1E00400E57 /* SocketAckEmitter.swift */; };
+		E16848931DBF0F1E00400E57 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848791DBF0F1E00400E57 /* SocketAckManager.swift */; };
+		E16848941DBF0F1E00400E57 /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168487A1DBF0F1E00400E57 /* SocketAnyEvent.swift */; };
+		E16848951DBF0F1E00400E57 /* SocketClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168487B1DBF0F1E00400E57 /* SocketClientManager.swift */; };
+		E16848961DBF0F1E00400E57 /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168487C1DBF0F1E00400E57 /* SocketEngine.swift */; };
+		E16848971DBF0F1E00400E57 /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168487D1DBF0F1E00400E57 /* SocketEngineClient.swift */; };
+		E16848981DBF0F1E00400E57 /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168487E1DBF0F1E00400E57 /* SocketEnginePacketType.swift */; };
+		E16848991DBF0F1E00400E57 /* SocketEnginePollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168487F1DBF0F1E00400E57 /* SocketEnginePollable.swift */; };
+		E168489A1DBF0F1E00400E57 /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848801DBF0F1E00400E57 /* SocketEngineSpec.swift */; };
+		E168489B1DBF0F1E00400E57 /* SocketEngineWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848811DBF0F1E00400E57 /* SocketEngineWebsocket.swift */; };
+		E168489C1DBF0F1E00400E57 /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848821DBF0F1E00400E57 /* SocketEventHandler.swift */; };
+		E168489D1DBF0F1E00400E57 /* SocketExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848831DBF0F1E00400E57 /* SocketExtensions.swift */; };
+		E168489E1DBF0F1E00400E57 /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848841DBF0F1E00400E57 /* SocketIOClient.swift */; };
+		E168489F1DBF0F1E00400E57 /* SocketIOClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848851DBF0F1E00400E57 /* SocketIOClientConfiguration.swift */; };
+		E16848A01DBF0F1E00400E57 /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848861DBF0F1E00400E57 /* SocketIOClientOption.swift */; };
+		E16848A11DBF0F1E00400E57 /* SocketIOClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848871DBF0F1E00400E57 /* SocketIOClientSpec.swift */; };
+		E16848A21DBF0F1E00400E57 /* SocketIOClientStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848881DBF0F1E00400E57 /* SocketIOClientStatus.swift */; };
+		E16848A31DBF0F1E00400E57 /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16848891DBF0F1E00400E57 /* SocketLogger.swift */; };
+		E16848A41DBF0F1E00400E57 /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168488A1DBF0F1E00400E57 /* SocketPacket.swift */; };
+		E16848A51DBF0F1E00400E57 /* SocketParsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168488B1DBF0F1E00400E57 /* SocketParsable.swift */; };
+		E16848A61DBF0F1E00400E57 /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168488C1DBF0F1E00400E57 /* SocketStringReader.swift */; };
+		E16848A71DBF0F1E00400E57 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168488D1DBF0F1E00400E57 /* SocketTypes.swift */; };
+		E16848A81DBF0F1E00400E57 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168488E1DBF0F1E00400E57 /* SSLSecurity.swift */; };
+		E16848A91DBF0F1E00400E57 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168488F1DBF0F1E00400E57 /* WebSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,7 +198,6 @@
 		49A76CB2B43D4D80B5C6040D /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4BA93506F794431BAB4EC228 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		5274F2971DBE370B00F9A4F2 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
-		5274F29E1DBE69A500F9A4F2 /* RNSwiftSocketIO */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNSwiftSocketIO; path = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		86142120E3E540A4995D2B08 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -183,6 +207,33 @@
 		97FC6962E81C47D49D45C64A /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		B62D36943357420D812D74E3 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		CF1CC5C7150640CE8AAF2DCF /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		E16848741DBF0F1E00400E57 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		E16848751DBF0F1E00400E57 /* SocketBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketBridge.h; sourceTree = "<group>"; };
+		E16848761DBF0F1E00400E57 /* SocketBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketBridge.m; sourceTree = "<group>"; };
+		E16848781DBF0F1E00400E57 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
+		E16848791DBF0F1E00400E57 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
+		E168487A1DBF0F1E00400E57 /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
+		E168487B1DBF0F1E00400E57 /* SocketClientManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClientManager.swift; sourceTree = "<group>"; };
+		E168487C1DBF0F1E00400E57 /* SocketEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngine.swift; sourceTree = "<group>"; };
+		E168487D1DBF0F1E00400E57 /* SocketEngineClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineClient.swift; sourceTree = "<group>"; };
+		E168487E1DBF0F1E00400E57 /* SocketEnginePacketType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEnginePacketType.swift; sourceTree = "<group>"; };
+		E168487F1DBF0F1E00400E57 /* SocketEnginePollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEnginePollable.swift; sourceTree = "<group>"; };
+		E16848801DBF0F1E00400E57 /* SocketEngineSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineSpec.swift; sourceTree = "<group>"; };
+		E16848811DBF0F1E00400E57 /* SocketEngineWebsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineWebsocket.swift; sourceTree = "<group>"; };
+		E16848821DBF0F1E00400E57 /* SocketEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventHandler.swift; sourceTree = "<group>"; };
+		E16848831DBF0F1E00400E57 /* SocketExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketExtensions.swift; sourceTree = "<group>"; };
+		E16848841DBF0F1E00400E57 /* SocketIOClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClient.swift; sourceTree = "<group>"; };
+		E16848851DBF0F1E00400E57 /* SocketIOClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientConfiguration.swift; sourceTree = "<group>"; };
+		E16848861DBF0F1E00400E57 /* SocketIOClientOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientOption.swift; sourceTree = "<group>"; };
+		E16848871DBF0F1E00400E57 /* SocketIOClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientSpec.swift; sourceTree = "<group>"; };
+		E16848881DBF0F1E00400E57 /* SocketIOClientStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientStatus.swift; sourceTree = "<group>"; };
+		E16848891DBF0F1E00400E57 /* SocketLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketLogger.swift; sourceTree = "<group>"; };
+		E168488A1DBF0F1E00400E57 /* SocketPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketPacket.swift; sourceTree = "<group>"; };
+		E168488B1DBF0F1E00400E57 /* SocketParsable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketParsable.swift; sourceTree = "<group>"; };
+		E168488C1DBF0F1E00400E57 /* SocketStringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStringReader.swift; sourceTree = "<group>"; };
+		E168488D1DBF0F1E00400E57 /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTypes.swift; sourceTree = "<group>"; };
+		E168488E1DBF0F1E00400E57 /* SSLSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSLSecurity.swift; sourceTree = "<group>"; };
+		E168488F1DBF0F1E00400E57 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		F5E39399DA6C4E52BCC367B0 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -362,7 +413,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				5274F29E1DBE69A500F9A4F2 /* RNSwiftSocketIO */,
+				E16848731DBF0F1E00400E57 /* RNSwiftSocketIO */,
 				13B07FAE1A68108700A75B9A /* s5messenger */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* s5messengerTests */,
@@ -395,6 +446,49 @@
 				8C75C0D512724BDB8DBB4CAA /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E16848731DBF0F1E00400E57 /* RNSwiftSocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				E16848741DBF0F1E00400E57 /* Socket.swift */,
+				E16848751DBF0F1E00400E57 /* SocketBridge.h */,
+				E16848761DBF0F1E00400E57 /* SocketBridge.m */,
+				E16848771DBF0F1E00400E57 /* SocketIOClient */,
+			);
+			name = RNSwiftSocketIO;
+			path = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO";
+			sourceTree = "<group>";
+		};
+		E16848771DBF0F1E00400E57 /* SocketIOClient */ = {
+			isa = PBXGroup;
+			children = (
+				E16848781DBF0F1E00400E57 /* SocketAckEmitter.swift */,
+				E16848791DBF0F1E00400E57 /* SocketAckManager.swift */,
+				E168487A1DBF0F1E00400E57 /* SocketAnyEvent.swift */,
+				E168487B1DBF0F1E00400E57 /* SocketClientManager.swift */,
+				E168487C1DBF0F1E00400E57 /* SocketEngine.swift */,
+				E168487D1DBF0F1E00400E57 /* SocketEngineClient.swift */,
+				E168487E1DBF0F1E00400E57 /* SocketEnginePacketType.swift */,
+				E168487F1DBF0F1E00400E57 /* SocketEnginePollable.swift */,
+				E16848801DBF0F1E00400E57 /* SocketEngineSpec.swift */,
+				E16848811DBF0F1E00400E57 /* SocketEngineWebsocket.swift */,
+				E16848821DBF0F1E00400E57 /* SocketEventHandler.swift */,
+				E16848831DBF0F1E00400E57 /* SocketExtensions.swift */,
+				E16848841DBF0F1E00400E57 /* SocketIOClient.swift */,
+				E16848851DBF0F1E00400E57 /* SocketIOClientConfiguration.swift */,
+				E16848861DBF0F1E00400E57 /* SocketIOClientOption.swift */,
+				E16848871DBF0F1E00400E57 /* SocketIOClientSpec.swift */,
+				E16848881DBF0F1E00400E57 /* SocketIOClientStatus.swift */,
+				E16848891DBF0F1E00400E57 /* SocketLogger.swift */,
+				E168488A1DBF0F1E00400E57 /* SocketPacket.swift */,
+				E168488B1DBF0F1E00400E57 /* SocketParsable.swift */,
+				E168488C1DBF0F1E00400E57 /* SocketStringReader.swift */,
+				E168488D1DBF0F1E00400E57 /* SocketTypes.swift */,
+				E168488E1DBF0F1E00400E57 /* SSLSecurity.swift */,
+				E168488F1DBF0F1E00400E57 /* WebSocket.swift */,
+			);
+			path = SocketIOClient;
 			sourceTree = "<group>";
 		};
 		E19B65C31DBDF7C900A269B3 /* Products */ = {
@@ -471,7 +565,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -666,7 +764,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				5274F29F1DBE69A500F9A4F2 /* RNSwiftSocketIO in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				2FEEBDF3CAB642C7BC49970E /* Entypo.ttf in Resources */,
 				14533AFE5FA44F0C8DEA2D1E /* EvilIcons.ttf in Resources */,
@@ -711,8 +808,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E16848981DBF0F1E00400E57 /* SocketEnginePacketType.swift in Sources */,
+				E16848931DBF0F1E00400E57 /* SocketAckManager.swift in Sources */,
+				E16848A51DBF0F1E00400E57 /* SocketParsable.swift in Sources */,
+				E168489F1DBF0F1E00400E57 /* SocketIOClientConfiguration.swift in Sources */,
+				E168489B1DBF0F1E00400E57 /* SocketEngineWebsocket.swift in Sources */,
+				E168489A1DBF0F1E00400E57 /* SocketEngineSpec.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				E16848921DBF0F1E00400E57 /* SocketAckEmitter.swift in Sources */,
+				E16848971DBF0F1E00400E57 /* SocketEngineClient.swift in Sources */,
+				E16848941DBF0F1E00400E57 /* SocketAnyEvent.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				E16848A11DBF0F1E00400E57 /* SocketIOClientSpec.swift in Sources */,
+				E168489E1DBF0F1E00400E57 /* SocketIOClient.swift in Sources */,
+				E16848A91DBF0F1E00400E57 /* WebSocket.swift in Sources */,
+				E16848991DBF0F1E00400E57 /* SocketEnginePollable.swift in Sources */,
+				E16848A41DBF0F1E00400E57 /* SocketPacket.swift in Sources */,
+				E168489D1DBF0F1E00400E57 /* SocketExtensions.swift in Sources */,
+				E16848A01DBF0F1E00400E57 /* SocketIOClientOption.swift in Sources */,
+				E16848901DBF0F1E00400E57 /* Socket.swift in Sources */,
+				E16848A21DBF0F1E00400E57 /* SocketIOClientStatus.swift in Sources */,
+				E16848961DBF0F1E00400E57 /* SocketEngine.swift in Sources */,
+				E168489C1DBF0F1E00400E57 /* SocketEventHandler.swift in Sources */,
+				E16848A61DBF0F1E00400E57 /* SocketStringReader.swift in Sources */,
+				E16848A81DBF0F1E00400E57 /* SSLSecurity.swift in Sources */,
+				E16848A71DBF0F1E00400E57 /* SocketTypes.swift in Sources */,
+				E16848911DBF0F1E00400E57 /* SocketBridge.m in Sources */,
+				E16848A31DBF0F1E00400E57 /* SocketLogger.swift in Sources */,
+				E16848951DBF0F1E00400E57 /* SocketClientManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +865,7 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -758,6 +882,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/s5messenger.app/s5messenger";
 			};
 			name = Debug;
@@ -765,6 +890,7 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = s5messengerTests/Info.plist;
@@ -778,6 +904,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/s5messenger.app/s5messenger";
 			};
 			name = Release;
@@ -796,6 +923,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
+					"$(SRCROOT)/../node_modules/react-native-socketio/ios/RNSwiftSocketIO",
 				);
 				INFOPLIST_FILE = s5messenger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -806,6 +934,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.stalk.s5messenger;
 				PRODUCT_NAME = s5messenger;
+				SWIFT_OBJC_BRIDGING_HEADER = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO/SocketBridge.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -823,6 +953,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
+					"$(SRCROOT)/../node_modules/react-native-socketio/ios/RNSwiftSocketIO",
 				);
 				INFOPLIST_FILE = s5messenger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -833,6 +964,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.stalk.s5messenger;
 				PRODUCT_NAME = s5messenger;
+				SWIFT_OBJC_BRIDGING_HEADER = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO/SocketBridge.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

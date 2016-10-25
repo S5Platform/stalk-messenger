@@ -78,9 +78,7 @@ class NavBarButton extends Component {
   };
 
   _updateIconSources = (props) => {
-
-    console.log(props);
-
+    
     Promise.all((props.actions || []).map((action) => {
       if (action.icon) {
         return (
