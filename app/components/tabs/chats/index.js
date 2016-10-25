@@ -14,7 +14,7 @@ import {
 import ChatCell from './ChatCell';
 
 import { loadChats, leaveChat } from 's5-action';
-import { S5Header, S5SwipeListView } from 's5-components';
+import { S5Icon, S5Colors, S5Header, S5SwipeListView } from 's5-components';
 import { connect } from 'react-redux';
 
 class ChatsMain extends Component {
@@ -67,6 +67,19 @@ class ChatsMain extends Component {
   render() {
     return (
       <View style={styles.container}>
+
+      {this.state.listViewData.length == 0 ? (
+
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
+          <Text style={{ color:'#000000', fontSize: 20, textAlign: 'center', margin: 10 }}>
+            {'To begin a new chat, simple tap on the '}
+            <S5Icon name={'add'} size={25} color={'#000000'} />
+            {' icon in the top right corner.'}
+          </Text>
+        </View>
+
+      ) : (
+
         <S5SwipeListView
           ref="listView"
           data={this.state.listViewData}
@@ -83,10 +96,12 @@ class ChatsMain extends Component {
           ) }
           enableEmptySections={true}
           rightOpenValue={-150}
-          removeClippedSubviews={false}
-          />
+          removeClippedSubviews={false} />
+
+      )}
+
       </View>
-	 );
+	  );
   }
 
 }
@@ -165,7 +180,7 @@ const styles = StyleSheet.create({
 		borderColor: 'black',
 		paddingVertical: 10,
 		width: 100,
-	}
+	},
 });
 
 function select(store) {

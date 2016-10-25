@@ -14,7 +14,7 @@ import {
 import FollowCell from './FollowCell';
 
 import { loadFollows, removeFollow } from 's5-action';
-import { S5Header, S5SwipeListView, S5TextInput } from 's5-components';
+import { S5Icon, S5Header, S5SwipeListView, S5TextInput } from 's5-components';
 import { connect } from 'react-redux';
 
 class FollowsMain extends Component {
@@ -26,7 +26,7 @@ class FollowsMain extends Component {
   };
 
   state = {
-    listViewData: this.props.follows.list,
+    listViewData: this.props.follows.list || [],
     filter: '',
   };
 
@@ -70,9 +70,8 @@ class FollowsMain extends Component {
     const filterRegex = new RegExp(String(filterText), 'i');
     const filter = (user) => filterRegex.test(user.nickName);
 
-		return (
+    return (
       <View style={styles.container}>
-
         <S5TextInput
           placeholder={' Search...'}
           value={this.state.filter}
@@ -82,6 +81,18 @@ class FollowsMain extends Component {
             paddingLeft: 10
           }}
         />
+
+        {this.state.listViewData.filter(filter).length == 0 ? (
+
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
+            <Text style={{ color:'#000000', fontSize: 20, textAlign: 'center', margin: 10 }}>
+              {'You can search your friends, simple tap on the '}
+              <S5Icon name={'search'} size={25} color={'#000000'} />
+              {' icon in the top right corner.'}
+            </Text>
+          </View>
+
+        ) : (
 
         <S5SwipeListView
           ref="listView"
@@ -106,9 +117,64 @@ class FollowsMain extends Component {
           removeClippedSubviews={false}
         />
 
-      </View>
+        )}
 
-		);
+      </View>
+    );
+
+
+
+/*
+    if( this.state.listViewData.filter(filter).length == 0 ) {
+      return (
+        <View style={styles.container}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
+            <Text style={{ color:'#000000', fontSize: 20, textAlign: 'center', margin: 10 }}>
+              {'You can search your friends, simple tap on the '}
+              <S5Icon name={'search'} size={25} color={'#000000'} />
+              {' icon in the top right corner.'}
+            </Text>
+          </View>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <S5TextInput
+            placeholder={' Search...'}
+            value={this.state.filter}
+            autoCapitalize="none"
+            onChangeText={ text => this.setState({filter: text}) }
+            inputStyle={{
+              paddingLeft: 10
+            }}
+          />
+          <S5SwipeListView
+            ref="listView"
+            data={ this.state.listViewData.filter(filter) }
+            renderRow={ this._renderRow }
+            renderHiddenRow={ (data, secId, rowId, rowMap) => (
+              <View style={styles.rowBack}>
+                <Text>Left</Text>
+                <View style={[styles.backRightBtn, styles.backRightBtnLeft]}>
+                  <Text style={styles.backTextWhite}>Right</Text>
+                </View>
+                <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this._deleteRow(secId, rowId, rowMap) }>
+                  <Text style={styles.backTextWhite}>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            enableEmptySections={true}
+            sectionKey="nickName"
+            autoSection={true}
+            leftOpenValue={75}
+            rightOpenValue={-150}
+            removeClippedSubviews={false}
+          />
+        </View>
+      );
+    } */
+
   }
 
 }

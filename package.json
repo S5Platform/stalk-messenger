@@ -1,11 +1,21 @@
 {
-  "name": "s5messenger",
+  "name": "stalk-messenger",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
+  "contributors": [
+    {
+      "name": "John Kim",
+      "email": "yohany@gmail.com"
+    },
+    {
+      "name": "James Jung",
+      "email": "0nlyoung7@gmail.com"
+    }
+  ],
   "dependencies": {
     "moment": "^2.15.2",
     "parse": "github:s5platform/Parse-SDK-JS",

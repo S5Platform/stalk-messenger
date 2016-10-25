@@ -27,7 +27,7 @@ class TabsView extends Component {
     index: 0,
     routes: [
       { key: 'follows', title: 'Friends', actions: [{ key: 'SearchUserView', icon: 'search' }] },
-      { key: 'chats',   title: 'Chats'  , actions: [{ key: 'ChatView', icon: 'add' }] },
+      { key: 'chats',   title: 'Chats'  , actions: [{ key: 'SelectUserView', icon: 'add' }] },
       { key: 'profile', title: 'Profile' },
     ],
     actions: [],
@@ -98,10 +98,8 @@ class TabsView extends Component {
   };
 
   _renderPager = (props) => {
-    return <TabViewPagerPan {...props} swipeEnabled={true} />;
+    return <TabViewPagerPan {...props} swipeEnabled={(Platform.OS == 'android'?true:false)} />;
   };
-
-  _configureTransition = () => null;
 
   _onPressHeader = (name) => {
     this.props.navigator.push({name});
@@ -124,7 +122,7 @@ class TabsView extends Component {
           <TabViewAnimated
             style={styles.container}
             navigationState={this.state}
-            configureTransition={this._configureTransition}
+            configureTransition={() => null}
             renderPager={this._renderPager}
             renderScene={this._renderScene}
             renderHeader={this._renderHeader}
@@ -136,7 +134,7 @@ class TabsView extends Component {
           <TabViewAnimated
             style={styles.container}
             navigationState={this.state}
-            configureTransition={this._configureTransition}
+            configureTransition={() => null}
             renderPager={this._renderPager}
             renderScene={this._renderScene}
             renderFooter={this._renderFooter}

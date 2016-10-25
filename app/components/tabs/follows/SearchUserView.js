@@ -94,7 +94,6 @@ class SearchUserView  extends Component {
   render() {
     return (
       <View style={styles.container}>
-
         <S5Header
           title="Search User"
           style={{backgroundColor: '#224488'}}
@@ -103,7 +102,6 @@ class SearchUserView  extends Component {
             return this.props.navigator.pop()
           }}
         />
-
         <S5TextInput
           placeholder={' Search...'}
           value={this.state.filter}
@@ -112,7 +110,6 @@ class SearchUserView  extends Component {
           onChangeText={ this._onChangeFilterText }
           inputStyle={{ paddingLeft: 10 }}
         />
-
         <S5ListView
           ref="listView"
           rowView={this._renderRowView}

@@ -43,6 +43,11 @@ class SettingForm extends Component {
 
   }
 
+  componentDidMount() {
+    this.refs['textinput'].focus();
+  }
+
+
   _onChangeText = (text) => {
     if( this.props.validLength && text.length > this.props.validLength ){
       return;
@@ -52,11 +57,11 @@ class SettingForm extends Component {
 
   _renderIcon = () => {
     return (
-        <S5Icon
-          name={'close-circle'}
-          size={20}
-          color={'#808080'}
-          onPress={ () => this.setState({value: ''}) }  />
+      <S5Icon
+        name={'close-circle'}
+        size={20}
+        color={'#808080'}
+        onPress={ () => this.setState({value: ''}) }  />
     )
   }
 
@@ -83,7 +88,7 @@ class SettingForm extends Component {
           title={this.state.title}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
-          rightItem={[ {icon: 'checkmark-outline'} ]}
+          rightItem={[ {icon: 'checkmark-circle-outline'} ]}
           onPress={ (name) => {
             if( name == 'checkmark-outline') return this.saveSetting();
             return this.props.navigator.pop();
@@ -91,6 +96,7 @@ class SettingForm extends Component {
         />
 
         <S5TextInput
+          ref="textinput"
           label={this.state.placeholder}
           style={styles.textinput}
           placeholder={this.state.placeholder}
