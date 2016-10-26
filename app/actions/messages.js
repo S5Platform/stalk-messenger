@@ -72,6 +72,7 @@ export  function loadMessages(chat, datetime) {
 
       if(isFirstLoading){
 
+        console.log(SERVER_URL + '/node/' + APP_ID + '/' + chat.channelId);
         fetch( SERVER_URL + '/node/' + APP_ID + '/' + chat.channelId )
           .then((response) => response.json())
           .then((responseJson) => {
@@ -82,13 +83,12 @@ export  function loadMessages(chat, datetime) {
                 url: responseJson.result.server.url
               });
             }else{
-              console.warn(responseJson);
               reject(responseJson);
             }
 
           })
           .catch((error) => {
-            console.warn(error);
+            console.warn('RN fetch exception', error);
             reject(error);
           });
 

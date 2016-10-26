@@ -132,6 +132,7 @@ class ChatView extends Component {
     var socketConfig = {
       nsp: '/channel',
       forceWebsockets: true,
+      forceNew: true,
       connectParams: {
         A: node.app,
         S: node.name,
@@ -200,7 +201,10 @@ class ChatView extends Component {
   }
 
   componentWillUnmount() {
-    if(this.socket) this.socket.disconnect();
+    if(this.socket) {
+      console.log('DISCONNECT');
+      this.socket.disconnect();
+    }
   }
 
   _closeControlPanel = (action) => {
@@ -280,7 +284,7 @@ class ChatView extends Component {
     ImagePicker.showImagePicker(imagePickerOptions, (response) => {
 
       if (response.didCancel) {
-        this.closeMenu();
+        this._closeMenu();
         console.log('User cancelled photo picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
@@ -309,7 +313,7 @@ class ChatView extends Component {
 
             }
 
-            self.closeMenu();
+            self._closeMenu();
           });
         });
       }

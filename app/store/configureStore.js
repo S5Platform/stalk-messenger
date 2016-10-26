@@ -17,7 +17,7 @@ import array        from './middleware/array';
 
 import reducers     from '../reducers';
 
-import devTools     from 'remote-redux-devtools'; // (http://remotedev.io/local/)
+import { composeWithDevTools }     from 'remote-redux-devtools'; // (http://remotedev.io/local/)
 
 var isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
@@ -36,19 +36,11 @@ function configureStore(onComplete) {
       array,
       logger
     ),
-    autoRehydrate(),
-    devTools({
-      name: Platform.OS,
-      hostname: 'localhost'
-    })
+    autoRehydrate()
   );
 
-  const store = createStore(reducers, undefined, enhancer);
+  const store = createStore(reducers, /* preloadedState, */ composeWithDevTools(enhancer) );
   persistStore(store, {storage: AsyncStorage}, onComplete);
-
-  // If you have other enhancers & middlewares
-  // update the store after creating / changing to allow devTools to use them
-  devTools.updateStore(store);
 
 
   if (isDebuggingInChrome) {
