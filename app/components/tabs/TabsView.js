@@ -47,6 +47,7 @@ class TabsView extends Component {
     this.setState({
       index,
       actions: this.state.routes[index].actions,
+      title: this.state.routes[index].title,
     });
   };
 
@@ -111,7 +112,7 @@ class TabsView extends Component {
       <View style={{ flex: 1, backgroundColor: S5Colors.background, }}>
 
       <S5Header
-        title="STALK"
+        title={this.state.title}
         rightItem={ this.state.actions }
         onPress={ this._onPressHeader }
       />

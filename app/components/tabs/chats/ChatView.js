@@ -342,7 +342,6 @@ class ChatView extends Component {
   }
 
   sendMesage = (message) => {
-    console.log(message, this.socket);
 
     message.createdAt = Date.now();
 
@@ -436,7 +435,7 @@ class ChatView extends Component {
         >
 
           <S5Header
-            title="Search User"
+            title="Chat"
             style={{backgroundColor: '#224488'}}
             leftItem={[ {icon: 'arrow-back'} ]}
             rightItem={[ {icon: 'menu'} ]}
