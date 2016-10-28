@@ -1,0 +1,77 @@
+#!/usr/bin/env ../node_modules/babel-cli/bin/babel-node.js
+
+import faker    from 'faker';
+import Parse    from 'parse/node';
+
+import User     from './lib/user';
+import Follows  from './lib/follows';
+import Chats    from './lib/chats';
+import Messages from './lib/messages';
+
+var argv = process.argv;
+
+if(argv.length < 3) {
+  throwError('   USAGE : babel-node dataGenerator [COMMAND] [Additional Options]');
+}
+
+var {SERVER_URL, APP_ID} = require('../env');
+
+Parse.initialize(APP_ID);
+Parse.serverURL = `${SERVER_URL}/parse`;
+
+switch (argv[2]) {
+
+  case "user:create":
+    if(!argv[3]) { User.create(); } else{ User.create(argv[3]); }
+    break;
+
+  case "users:create":
+    var count = !argv[4] ? Number(argv[3] | 10) : argv[4];
+    for (var i = 0; i < count; i++) {
+      if(!argv[3]) { User.create(); } else{ User.create(argv[3]+i); }
+    }
+    break;
+
+  case "user:search":
+    if(!argv[3]) throwError(' USAGE : dataGenerator user:search [keyword] ');
+    User.search({ keyword: argv[3] });
+    break;
+
+  case "follows:create":
+    if(!argv[3] || !argv[4]) throwError(' USAGE : dataGenerator follow:create [username] [firend\'s username]');
+    Follows.create(argv[3], argv[4]);
+    break;
+
+  case "follows:remove":
+    if(!argv[3] || !argv[4]) throwError(' USAGE : dataGenerator follow:remove [username] [firend\'s username]');
+    Follows.remove(argv[3], argv[4]);
+    break;
+
+  case "follows:list":
+    if(!argv[3]) throwError(' USAGE : dataGenerator follow:list [username] ');
+    Follows.load(argv[3]);
+    break;
+
+  case "chats:create":
+    if(!argv[3] || !argv[4]) throwError(' USAGE : dataGenerator chat:create [username] [firend\'s username]');
+    Chats.create(argv[3], argv[4]);
+    break;
+
+  case "chats:list":
+    if(!argv[3]) throwError(' USAGE : dataGenerator chat:list [username] ');
+    Chats.load(argv[3]);
+    break;
+
+  case "messages:create":
+    if(!argv[3]) throwError(' USAGE : dataGenerator messages:create [chatId]');
+    Messages.create(argv[3], argv[4]);
+    break;
+
+  default:
+    console.log("Sorry, we are out of " + argv[2] + ".");
+}
+
+function throwError(msg) {
+  console.info('\n', msg || 'ERROR !! ', '\n');
+  process.exit(0);
+}
