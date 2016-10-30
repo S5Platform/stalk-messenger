@@ -22,7 +22,7 @@ export default class ChatCell extends Component {
     onPress: React.PropTypes.func,
   };
 
-  renderProfilePictures = () => {
+  _renderProfilePictures = () => {
 
     let profiles = [];
     let alts = [];
@@ -38,7 +38,7 @@ export default class ChatCell extends Component {
     )
   }
 
-  renderLatestMessage = () => {
+  _renderLatestMessage = () => {
     if( this.props.message == '@image' ){
       return(
         <View style={{'flexDirection':'row'}}>
@@ -72,12 +72,12 @@ export default class ChatCell extends Component {
     return (
       <TouchableHighlight onPress={this.props.onPress} >
         <View style={styles.container}>
-          {this.renderProfilePictures()}
+          {this._renderProfilePictures()}
           <View style={styles.detailContainer}>
             <Text numberOfLines={1} style={styles.nickName}>
               {userCount} {names.join(", ")}
             </Text>
-            {this.renderLatestMessage()}
+            {this._renderLatestMessage()}
           </View>
         </View>
       </TouchableHighlight>

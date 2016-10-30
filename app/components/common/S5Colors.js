@@ -12,7 +12,7 @@ const COLORS = {
   'PRIMARY': '#3E50B4',
   'PRIMARY_DARK': '#303F9F',
   'ACCENT': '#FF3F80',
-  'BACKGROUND': '#FFFFFF',
+  'BACKGROUND': '#F5FCFF',
 };
 
 function colorForProfile(str, count = 1) {

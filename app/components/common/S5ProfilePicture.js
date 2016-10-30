@@ -10,8 +10,10 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native';
+
 import S5Colors from './S5Colors';
-import S5Icon from './S5Icon';
+import S5Icon   from './S5Icon';
+import S5Image  from './S5Image';
 
 export default class S5ProfilePicture extends Component {
 
@@ -73,13 +75,15 @@ export default class S5ProfilePicture extends Component {
 
     if( uri ){
       return (
-        <S5Icon
-          name={'contact'}
-          size={size}
-          color={'#808080'}
-          style={this.props.style} />
+        <S5Image
+          source={{uri}}
+          style={[{
+            width: size,
+            height: size,
+            borderRadius: size / 2,
+          },this.props.style]}
+        />
       );
-
     }else{
 
       let name = '';

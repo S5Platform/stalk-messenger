@@ -90,7 +90,7 @@ class SettingForm extends Component {
           leftItem={[ {icon: 'arrow-back'} ]}
           rightItem={[ {icon: 'checkmark-circle-outline'} ]}
           onPress={ (name) => {
-            if( name == 'checkmark-outline') return this.saveSetting();
+            if( name == 'checkmark-circle-outline') return this.saveSetting();
             return this.props.navigator.pop();
           }}
         />

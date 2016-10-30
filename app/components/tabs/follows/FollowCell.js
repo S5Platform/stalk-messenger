@@ -29,16 +29,7 @@ export default class FollowCell extends Component {
     prefix: React.PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.renderCheckbox = this.renderCheckbox.bind(this);
-    this.renderPrefix = this.renderPrefix.bind(this);
-    this._onPress = this._onPress.bind(this);
-    this._onProfilePress = this._onProfilePress.bind(this);
-  }
-
-  renderCheckbox() {
+  _renderCheckbox = () => {
     if( this.props.selectable ){
       if( this.props.disabled ) {
         if( this.state.checked ){
@@ -71,14 +62,14 @@ export default class FollowCell extends Component {
     return null;
   }
 
-  renderPrefix() {
+  _renderPrefix = () => {
     if( this.props.prefix ){
       return <Text style={styles.prefix}>{this.props.prefix}  </Text>
     }
     return null;
   }
 
-  _onPress(){
+  _onPress = () => {
     if( this.props.onPress && !this.props.disabled ){
       if( this.props.selectable ){
         this.props.onPress(!this.state.checked);
@@ -93,7 +84,7 @@ export default class FollowCell extends Component {
     }
   }
 
-  _onProfilePress(){
+  _onProfilePress = () => {
     if( this.props.onProfilePress ){
       this.props.onProfilePress();
     } else {
@@ -111,7 +102,7 @@ export default class FollowCell extends Component {
     return (
       <TouchableHighlight onPress={this._onPress} >
         <View style={[styles.container,bgColorStyle]}>
-          {this.renderCheckbox()}
+          {this._renderCheckbox()}
           <S5ProfilePicture
             key={this.props.user.id}
             name={this.props.user.nickName}
@@ -124,7 +115,7 @@ export default class FollowCell extends Component {
           />
           <View style={styles.detailContainer}>
             <Text style={styles.nickName}>
-              {this.renderPrefix()}{this.props.user.nickName} <Text style={styles.username}> {this.props.user.username} </Text>
+              {this._renderPrefix()}{this.props.user.nickName} <Text style={styles.username}> {this.props.user.username} </Text>
             </Text>
             <Text numberOfLines={1} style={styles.statusMessage}>
               {this.props.user.statusMessage}

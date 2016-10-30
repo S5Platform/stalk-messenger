@@ -67,7 +67,7 @@ class SelectUserView extends Component {
       } else {
         // 신규생성
         this.props.navigator.replace({
-          chatView: true,
+          name: 'ChatView',
           users,
         });
       }
