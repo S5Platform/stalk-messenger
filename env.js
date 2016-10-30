@@ -4,14 +4,16 @@
  * @flow
  */
 
-
-import { Platform } from 'react-native';
-
 // for local test !
 // HAVE TO MODIFY YOUR ENV.
 var stalk_session_server_url = 'http://127.0.0.1:8080';
-if ( Platform.OS === 'android' ) {
-  stalk_session_server_url = 'http://10.0.3.2:8080';
+try {
+  var RN = require('react-native');
+  if ( RN.Platform.OS === 'android' ) {
+    stalk_session_server_url = 'http://10.0.3.2:8080';
+  }
+} catch(err) {
+  // do nothing..
 }
 
 module.exports = {

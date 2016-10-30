@@ -51,6 +51,11 @@ export default class S5ListView extends Component {
     }
   }
 
+  scrollTo(obj) {
+    this.s5ListView._listView.scrollTo({y:0});
+  }
+
+
   paginationWaitingView = (paginateCallback) => {
     if (this.props.paginationWaitingView) {
       return this.props.paginationWaitingView(paginateCallback);

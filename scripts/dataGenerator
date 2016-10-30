@@ -10,14 +10,30 @@ import Messages from './lib/messages';
 
 var argv = process.argv;
 
+var help = [
+  "USAGE : babel-node dataGenerator [COMMAND] [Additional Options] ",
+  "",
+  "COMMAND :",
+  "  user:create  ",
+  "  users:create ",
+  "  user:search [keyword]",
+  "  follow:create [username] [firend\'s username] ",
+  "  follow:remove [username] [firend\'s username] ",
+  "  follow:list [username]",
+  "  chat:create [username] [firend\'s username]",
+  "  chat:create [username] [firend\'s username]",
+  "  chat:list [username] ",
+  "  messages:create [chatId] ",
+  ""
+].join('\n');
+
 if(argv.length < 3) {
-  throwError('   USAGE : babel-node dataGenerator [COMMAND] [Additional Options]');
+  throwError(help);
 }
 
-var {SERVER_URL, APP_ID} = require('../env');
-
-Parse.initialize(APP_ID);
-Parse.serverURL = `${SERVER_URL}/parse`;
+var ENV = require('../env');
+Parse.initialize(ENV.APP_ID);
+Parse.serverURL = `${ENV.SERVER_URL}/parse`;
 
 switch (argv[2]) {
 
@@ -68,7 +84,7 @@ switch (argv[2]) {
     break;
 
   default:
-    console.log("Sorry, we are out of " + argv[2] + ".");
+    console.log("Sorry, we are out of " + argv[2] + ".\n" + help);
 }
 
 function throwError(msg) {

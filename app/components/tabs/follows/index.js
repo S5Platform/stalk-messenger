@@ -42,7 +42,6 @@ class FollowsMain extends Component {
 
       setTimeout(function(){
         self.setState({ filter: '' });
-        self.refs['listView']._listView.scrollTo({y:0});
       }, 100 );
     }
 
