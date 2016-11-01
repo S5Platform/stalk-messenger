@@ -55,6 +55,7 @@ export  function loadMessages(chat, datetime) {
         .lessThan("createdAt", datetime ? new Date(datetime) : new Date())
         .greaterThan("createdAt", new Date(chat.createdAt))
         .descending("createdAt")
+        .include("user") // TODO check performance issues ?
         .limit(MESSAGE_SIZE)
         .find()
         .then(
@@ -72,7 +73,7 @@ export  function loadMessages(chat, datetime) {
 
       if(isFirstLoading){
 
-        console.log(SERVER_URL + '/node/' + APP_ID + '/' + chat.channelId);
+        //console.log(SERVER_URL + '/node/' + APP_ID + '/' + chat.channelId);
         fetch( SERVER_URL + '/node/' + APP_ID + '/' + chat.channelId )
           .then((response) => response.json())
           .then((responseJson) => {
@@ -141,12 +142,18 @@ export function uploadImage(data, callback) {
 
 function fromParseObject(obj){
 
+  var user = obj.get("user");
+  var profileFileUrl = user.get('profileFile') ? user.get('profileFile').url() : null;
+
   return {
     _id: obj.id,
     text: obj.get("message"),
     createdAt: obj.createdAt,
     user: {
-      _id: obj.get("user").id
+      _id: user.id,
+      username: user.get('username'),
+      name: user.get('nickName'),
+      avatar: profileFileUrl
     },
     image: obj.get("image")
   };

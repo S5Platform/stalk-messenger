@@ -9,7 +9,6 @@ export const SIGNED_UP  = 'SIGNED_UP';
 export const LOGGED_IN  = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
 export const UPDATE_USER = 'UPDATE_USER';
-export const UPLOAD_PROFILE_IMAGE = 'UPLOAD_PROFILE_IMAGE';
 
 const InteractionManager  = require('InteractionManager');
 const constants           = require('./_constants');

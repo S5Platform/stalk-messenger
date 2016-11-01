@@ -3,15 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import {
-  Platform,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Image,
-  ToolbarAndroid,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import GiftedListView from 'react-native-gifted-listview';
 import S5Button from './S5Button';

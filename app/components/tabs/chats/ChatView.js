@@ -14,25 +14,13 @@ import {
 
 import { connect } from 'react-redux';
 import { switchTab, loadMessages, setLatestMessage, uploadImage, createChat, MESSAGE_SIZE } from 's5-action';
-import { S5Header, S5Alert, S5Drawer, S5Icon } from 's5-components';
+import { S5Header, S5Alert, S5Drawer, S5Icon, S5ChatBox } from 's5-components';
 
 import ControlPanel from './ControlPanel';
-
-import { GiftedChat, Bubble, Send, Composer } from 'react-native-gifted-chat';
 
 import SocketIO from 'react-native-socketio';
 
 import { leaveChat } from 's5-action';
-
-var ImagePicker = require('react-native-image-picker');
-var imagePickerOptions = {
-  title: 'Select Image',
-  quality: 0.5,
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
-};
 
 class ChatView extends Component {
 
@@ -58,7 +46,6 @@ class ChatView extends Component {
       isTyping:     null,
       connected:    false,
       node:         {},
-      menuOpened:   false,
     };
 
   }
@@ -184,7 +171,7 @@ class ChatView extends Component {
         }
         self.props.setLatestMessage(self.state.chat.channelId, latest);
 
-        return { messages: GiftedChat.append(previousState.messages, message) };
+        return { messages: this.refs.ChatBox.append(previousState.messages, message) };
       });
     });
 
@@ -269,57 +256,6 @@ class ChatView extends Component {
     }
   }
 
-  _openMenu = () => {
-    this.setState({ menuOpened: true });
-    this._selectImage();
-  }
-
-  _closeMenu = () => {
-    this.setState({ menuOpened: false });
-  }
-
-  _selectImage = () => {
-
-    var self = this;
-    ImagePicker.showImagePicker(imagePickerOptions, (response) => {
-
-      if (response.didCancel) {
-        this._closeMenu();
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-
-        self.createChat(function(){
-          var data = {
-            C : self.state.chat.channelId,
-            U : self.props.user.id,
-            imgBase64 : response.data
-          };
-
-          uploadImage(data, function(err, result){
-
-            if( self.state.connected ) {
-              var message = {
-                image: result,
-                user: { _id: self.props.user.id },
-                createdAt: new Date(),
-                _id: 'temp-id-' + Math.round(Math.random() * 1000000)
-              };
-
-              self.sendMesage(message);
-
-            }
-
-            self._closeMenu();
-          });
-        });
-      }
-    });
-  }
-
   _onLoadEarlier() {
 
     // Load Message earlier messages from session-server.
@@ -329,7 +265,7 @@ class ChatView extends Component {
         this.setState((previousState) => {
 
           return {
-            messages: GiftedChat.prepend(previousState.messages, result.messages),
+            messages: this.refs.ChatBox.prepend(previousState.messages, result.messages),
             loadEarlier: result.messages.length == MESSAGE_SIZE ? true : false,
             lastLoadedAt: result.messages[ result.messages.length - 1 ].createdAt,
           };
@@ -360,64 +296,34 @@ class ChatView extends Component {
 
   }
 
-  _renderBubble = (props) => {
-    return (
-      <Bubble {...props}
-        wrapperStyle={{
-          left: {
-            backgroundColor: '#f0f0f0',
-          }
-        }}
-      />
-    );
-  }
+  _onSelectImage = (response) => {
 
-  _renderFooter = (props) => {
-    if (this.socket && this.socket.isConnected && !this.state.connected) {
-      return (
-        <View style={styles.footerContainer}>
-          <Text style={styles.footerText}>
-            {'Connection was failed. Reconnecting...'}
-          </Text>
-        </View>
-      );
-    }
-    return null;
-  }
+    var self = this;
 
+    self.createChat(function(){
+      var data = {
+        C : self.state.chat.channelId,
+        U : self.props.user.id,
+        imgBase64 : response.data
+      };
 
-  _renderComposer = (props) => {
-    return (
-      <View style={styles.composer}>
-        {this.renderMenu()}
-        <Composer {...props}/>
-      </View>
-    );
-  }
+      uploadImage(data, function(err, result){
 
-  renderMenu = () => {
-    if( this.state.connected || !this.state.chat.channelId ) {
-      if( this.state.menuOpened ){
-        return (
-          <S5Icon name={'close'} color={'gray'} onPress={this._closeMenu} style={styles.menuIcon}/>
-        );
-      } else {
-        return (
-          <S5Icon name={'add'} color={'gray'} onPress={this._openMenu} style={styles.menuIcon}/>
-        );
-      }
-    } else {
-      return null;
-    }
-  }
+        if( self.state.connected ) {
+          var message = {
+            image: result,
+            user: { _id: self.props.user.id },
+            createdAt: new Date(),
+            _id: 'temp-id-' + Math.round(Math.random() * 1000000)
+          };
 
-  _renderSend = (props) => {
-    if ( this.state.connected || !this.state.chat.channelId ) {
-      return (
-        <Send {...props}/>
-      );
-    }
-    return null;
+          self.sendMesage(message);
+
+        }
+
+      });
+    });
+
   }
 
   render() {
@@ -450,24 +356,17 @@ class ChatView extends Component {
             }}
           />
 
-          <GiftedChat
-            messages={this.state.messages}
-            onSend={this._onSend}
-            loadEarlier={this.state.loadEarlier}
-            onLoadEarlier={this._onLoadEarlier}
+          <S5ChatBox
+            ref={ 'ChatBox' }
+            user={ this.props.user }
+            messages={ this.state.messages }
+            onSend={ this._onSend }
+            loadEarlier={ this.state.loadEarlier }
+            onLoadEarlier={ this._onLoadEarlier }
+            onSelectImage={ this._onSelectImage }
 
-            user={{
-              _id: this.props.user.id, // sent messages should have same user._id
-            }}
-
-            renderBubble={this._renderBubble}
-            renderFooter={this._renderFooter}
-            renderSend={this._renderSend}
-            renderComposer={this._renderComposer}
-
-            textInputProps={{
-              editable: ( this.state.connected || !this.state.chat.channelId ),
-            }}
+            enabled={ this.state.connected || !this.state.chat.channelId }
+            reconnecting={ this.socket && this.socket.isConnected && !this.state.connected }
           />
         </S5Drawer>
 
