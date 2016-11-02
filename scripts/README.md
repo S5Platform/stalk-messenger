@@ -1,9 +1,20 @@
-### 샘플 데이터 생성 프로그램
+### dataGenerator
 
-테스트용 데이터를 생성할 수 있습니다.
+**Insert test datas into stalk-messenger back-end system**
 
+Before run scripts, you need to start back-end servers. See [S5Platform/stalk-messenger-server](https://github.com/S5Platform/stalk-messenger-server)
 
-#### 개발할 때 참조해야 할 것
+```
+# Check out list of commands
+./dataGenerator
 
-에러코드는 이 링크가 기본이 되고, 추가 되는 것은 별도로 정의 한다.
-https://github.com/ParsePlatform/Parse-SDK-JS/blob/master/src/ParseError.js
+# examples
+./dataGenerator user:create john # create user, named 'john'
+./dataGenerator users:create ally 100 # create 100 users start with 'ally' (ally1, ally2 ...)
+```
+
+#### optimizeImages.sh
+
+> Before run this script. you have to install [pngcrush](http://pngcrush.com/).
+
+Optimizing png image files with [pngcrush](http://pngcrush.com/)

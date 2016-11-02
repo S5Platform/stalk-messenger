@@ -12,4 +12,4 @@
 # Check !
 # > pngcrush -version
 
-find ./app -name '*.png' -exec pngcrush -ow {} \;
+find ../app -name '*.png' -exec pngcrush -ow {} \;
