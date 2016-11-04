@@ -135,8 +135,7 @@ class ChatView extends Component {
       A: node.app,
       S: node.name,
       C: channelId,
-      U: this.props.user.id,
-      // D: Device ID !! ???
+      U: this.props.user.id
     });
 
     this.socket = new SocketIO(node.url, socketConfig);
