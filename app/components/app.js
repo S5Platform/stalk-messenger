@@ -21,6 +21,7 @@ import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 import AppNavigator from './navigator';
 import PushController from './PushController';
 
+import PushNotification from 'react-native-push-notification';
 import SocketIO from 'react-native-socketio';
 
 class App extends Component {
@@ -38,16 +39,13 @@ class App extends Component {
     updateInstallation({VERSION});
 
     if(this.props.user.isLoggedIn) {
-      this.initBackgroundSocketConnection();
+      this.connectBGSocket();
     }
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
-    if(this.socket) {
-      console.log('[BACKGROUND] DISCONNECT');
-      this.socket.disconnect();
-    }
+    this.disconnectBGSocket();
   }
 
   handleAppStateChange(currentAppState) {
@@ -58,14 +56,23 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
 
-    if ( !this.props.user.isLoggedIn && nextProps.user.isLoggedIn ) {
-      this.initBackgroundSocketConnection();
+    if ( !this.props.user.isLoggedIn && nextProps.user.isLoggedIn ) { // Logined
+      this.connectBGSocket();
+    } else if ( this.props.user.isLoggedIn && !nextProps.user.isLoggedIn ) { // Logouted
+      this.disconnectBGSocket();
     }
   }
 
-  initBackgroundSocketConnection = () => {
+  disconnectBGSocket = () => {
+    if(this.socket) {
+      console.log('[BACKGROUND] DISCONNECT');
+      this.socket.disconnect();
+    }
+  }
 
-    if(this.socket) { this.socket = null; }
+  connectBGSocket = () => {
+
+    disconnectBGSocket();
 
     let self = this;
 
@@ -100,6 +107,11 @@ class App extends Component {
 
           self.socket.on('message', (message) => { // MESSAGED RECEIVED
             console.log('[BACKGROUND] MESSAGE', message);
+
+            PushNotification.localNotification({
+              message: "The message displayed in the notification alert.",
+            });
+
           });
 
           self.socket.connect();
@@ -110,15 +122,13 @@ class App extends Component {
 
       })
       .catch((error) => {
-        console.warn('RN fetch exception', error);
+        console.warn('RN fetch exception', SERVER_URL + '/node/' + APP_ID + '-BG/' + this.props.user.id , error);
       });
 
 
   }
 
   render() {
-
-    console.log("this.props.user.isLoggedIn : ",this.props.user.isLoggedIn);
 
     return (
       <View style={styles.container}>

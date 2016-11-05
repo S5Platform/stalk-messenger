@@ -24,4 +24,5 @@ module.exports = {
   VERSION: 1,
   APP_IDENTIFIER_IOS: 'io.stalk.s5messenger',
   APP_IDENTIFIER_ANDROID: 'io.stalk.s5messenger',
+  ANDROID_GCM_SENDER_ID: 'xxxxxxxxxx'
 };

@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import Parse from 'parse/react-native';
+import { ANDROID_GCM_SENDER_ID } from '../../env.js';
 
 import PushNotification from 'react-native-push-notification';
 
@@ -17,7 +18,7 @@ export default class PushController extends Component {
 
     PushNotification.configure({
 
-      // (optional) Called when Token is generated (iOS and Android)
+      // Called when Token is generated (iOS and Android)
       onRegister: function(token) {
 
         console.log('TOKEN for push notification => ', token);
@@ -57,7 +58,7 @@ export default class PushController extends Component {
       },
 
       // ANDROID ONLY: (optional) GCM Sender ID.
-      senderID: "YOUR GCM SENDER ID",
+      senderID: ANDROID_GCM_SENDER_ID,
 
       // IOS ONLY (optional): default: all - Permissions to register.
       permissions: {
@@ -67,14 +68,11 @@ export default class PushController extends Component {
       },
 
       // Should the initial notification be popped automatically
-      // default: true
-      popInitialNotification: true,
+      popInitialNotification: true, // default: true
 
-
-      // (optional) default: true
       // - Specified if permissions (ios) and token (android and ios) will requested or not,
       // - if not, you must call PushNotificationsHandler.requestPermissions() later
-      requestPermissions: true,
+      requestPermissions: true, // default: true
     });
 
     PushNotification.checkPermissions((result) => {
