@@ -1,4 +1,5 @@
 /**
+ *
  * @flow
  */
 
@@ -12,7 +13,7 @@ import {
 import { GiftedChat, Bubble, Send, Composer } from 'react-native-gifted-chat';
 import S5Icon from './S5Icon';
 
-var ImagePicker = require('react-native-image-picker');
+import ImagePicker from 'react-native-image-picker';
 var imagePickerOptions = {
   title: 'Select Image',
   quality: 0.5,
@@ -49,6 +50,9 @@ export default class S5ChatBox extends Component {
   };
 
   append = (beforeMessages, messages) => {
+
+    console.log(messages);
+    
     return GiftedChat.append(beforeMessages, messages);
   }
 
@@ -102,7 +106,7 @@ export default class S5ChatBox extends Component {
   renderComposerMenu = () => {
 
     if( this.props.enabled && !this.props.reconnecting ) {
-      
+
       if( this.state.composerMenuOpened ){
         return (
           <S5Icon

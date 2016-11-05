@@ -187,10 +187,14 @@ class ChatView extends Component {
   }
 
   componentWillUnmount() {
-    if(this.socket) {
-      console.log('DISCONNECT');
-      this.socket.disconnect();
-    }
+    this.disconnect();
+  }
+
+  disconnect = () => {
+      if(this.socket) {
+        console.log('DISCONNECT');
+        this.socket.disconnect();
+      }
   }
 
   _closeControlPanel = (action) => {
@@ -255,7 +259,7 @@ class ChatView extends Component {
     }
   }
 
-  _onLoadEarlier() {
+  _onLoadEarlier = () => {
 
     // Load Message earlier messages from session-server.
     this.props.loadMessages(this.state.chat, this.state.lastLoadedAt).then( (result) => {
@@ -281,6 +285,8 @@ class ChatView extends Component {
   }
 
   sendMesage = (message) => {
+
+    console.log(message);
 
     message.createdAt = Date.now();
 
@@ -381,27 +387,6 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		flex: 1
 	},
-  footerContainer: {
-    marginTop: 5,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
-  },
-  footerText: {
-    fontSize: 14,
-    color: '#aaa',
-  },
-  composer: {
-    flex:1,
-    flexDirection: 'row'
-  },
-  menuIcon: {
-    width: 30,
-    height: 30,
-    opacity:0.8,
-    paddingTop: 5,
-    paddingLeft: 10,
-  },
 });
 
 function select(store) {

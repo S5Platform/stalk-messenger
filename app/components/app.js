@@ -49,8 +49,11 @@ class App extends Component {
   }
 
   handleAppStateChange(currentAppState) {
+    console.log('currentAppState', currentAppState);
     if (currentAppState === 'active') { // ( active, background, inactive )
+
       // TODO : HANDING STATUS OF APP WITH currentAppState
+
     }
   }
 
@@ -72,7 +75,7 @@ class App extends Component {
 
   connectBGSocket = () => {
 
-    disconnectBGSocket();
+    this.disconnectBGSocket();
 
     let self = this;
 
