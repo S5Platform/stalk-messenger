@@ -40,19 +40,27 @@ export default class S5Header extends Component {
     return (
       <NavigationBar
         style={styles.toolbar}
-        title={{ title: this.props.title || 'STALK', style: {color: S5Colors.primaryText}}}
+        title={{
+          title: this.props.title.toUpperCase() || 'STALK',
+          style: styles.title
+        }}
         leftButton={
           <NavBarButton
-            style={{ marginLeft: 10 }}
+            style={{ marginLeft: 15 }}
             onPress={ this.props.onPress }
             actions={ this.props.leftItem } />
         }
         rightButton={
           <NavBarButton
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 15 }}
             onPress={ this.props.onPress }
             actions={ this.props.rightItem } />
         }
+        statusBar={ {
+          style: 'light-content',
+          tintColor: S5Colors.primaryDark,
+          hidden: false,
+        } }
       />
     );
   }
@@ -122,6 +130,11 @@ const styles = StyleSheet.create({
   },
   toolbar: {
     backgroundColor: S5Colors.primary,
-    height: 52,
-  }
+    height: 50,
+  },
+  title: {
+    letterSpacing: 2,
+    fontSize: 14,
+    color: S5Colors.primaryText
+  },
 });

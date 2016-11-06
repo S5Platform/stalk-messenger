@@ -98,7 +98,7 @@ class ChatView extends Component {
 
           }
 
-          this.initChannelNodeServer(result.node, chat.channelId);
+          this.connectChannelSocket(result.node, chat.channelId);
 
         },
         (error) => {
@@ -110,13 +110,15 @@ class ChatView extends Component {
 
   }
 
-  initChannelNodeServer = (node, channelId, callback) => {
+  connectChannelSocket = (node, channelId, callback) => {
 
     this.setState({
       node: node
     });
 
-    var socketConfig = {
+    this.disconnectChannelSocket();
+
+    console.log('** Connect Channel Server ** \n', node.url, {
       nsp: '/channel',
       forceWebsockets: true,
       forceNew: true,
@@ -127,18 +129,20 @@ class ChatView extends Component {
         U: this.props.user.id,
         // D: Device ID !! ???
       }
-    };
-
-    if(this.socket) { this.socket = null; }
-
-    console.log('** Connect Channel Server ** \n', node.url, socketConfig, {
-      A: node.app,
-      S: node.name,
-      C: channelId,
-      U: this.props.user.id
     });
 
-    this.socket = new SocketIO(node.url, socketConfig);
+    this.socket = new SocketIO(node.url, {
+      nsp: '/channel',
+      forceWebsockets: true,
+      forceNew: true,
+      connectParams: {
+        A: node.app,
+        S: node.name,
+        C: channelId,
+        U: this.props.user.id,
+        // D: Device ID !! ???
+      }
+    });
 
     this.socket.on('connect', () => { // SOCKET CONNECTION EVENT
       this.setState({ connected: true }, () => {
@@ -187,10 +191,10 @@ class ChatView extends Component {
   }
 
   componentWillUnmount() {
-    this.disconnect();
+    this.disconnectChannelSocket();
   }
 
-  disconnect = () => {
+  disconnectChannelSocket = () => {
       if(this.socket) {
         console.log('DISCONNECT');
         this.socket.disconnect();
@@ -231,7 +235,7 @@ class ChatView extends Component {
 
         this.setState({ chat: result.chat });
         var self = this;
-        this.initChannelNodeServer(result.node, result.chat.channelId, () => {
+        this.connectChannelSocket(result.node, result.chat.channelId, () => {
           callback();
         });
       },

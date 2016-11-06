@@ -9,7 +9,7 @@ import { TabViewAnimated, TabViewPagerPan, TabBar, TabBarTop } from 'react-nativ
 
 import { connect }    from 'react-redux';
 import { switchTab }  from 's5-action';
-import { S5Colors, S5Header } from 's5-components';
+import { S5Colors, S5Header, S5Icon } from 's5-components';
 
 import FollowsView    from './follows';
 import ChatsView      from './chats';
@@ -26,9 +26,9 @@ class TabsView extends Component {
   state = {
     index: 0,
     routes: [
-      { key: 'follows', title: 'Friends', actions: [{ key: 'SearchUserView', icon: 'search' }] },
-      { key: 'chats',   title: 'Chats'  , actions: [{ key: 'SelectUserView', icon: 'add' }] },
-      { key: 'profile', title: 'Profile' },
+      { key: 'follows', icon: 'people',       title: 'Friends', actions: [{ key: 'SearchUserView', icon: 'person-add' }] },
+      { key: 'chats',   icon: 'chatbubbles',  title: 'Chats'  , actions: [{ key: 'SelectUserView', icon: 'add' }] },
+      { key: 'profile', icon: 'person',       title: 'Profile' },
     ],
     actions: [],
   };
@@ -52,14 +52,25 @@ class TabsView extends Component {
   };
 
   _renderLabel = ({ navigationState }: any) => ({ route, index }) => {
-    return (
-      <Text style={[ styles.label, {
-        color:      navigationState.index === index ? S5Colors.primaryText : S5Colors.secondaryText,
-        fontWeight: navigationState.index === index ? 'bold' : 'normal',
-      } ]}>
-        {route.title}
-      </Text>
-    );
+    if (Platform.OS == 'android' /* FOR ANDROID */ ) {
+      return (
+        <Text style={[ styles.label, {
+          color:      navigationState.index === index ? S5Colors.primaryText : S5Colors.secondaryText,
+          //fontWeight: navigationState.index === index ? 'bold' : 'normal',
+        } ]}>
+          {route.title}
+        </Text>
+      );
+
+    }else{
+      return (
+        <S5Icon
+          name={route.icon}
+          color={navigationState.index === index ? S5Colors.primaryText : S5Colors.secondaryText}
+        />
+      );
+    }
+
   };
 
   /* FOR ANDROID */
@@ -111,12 +122,11 @@ class TabsView extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: S5Colors.background, }}>
 
-      <S5Header
-        title={this.state.title}
-        rightItem={ this.state.actions }
-        onPress={ this._onPressHeader }
-      />
-
+        <S5Header
+          title={this.state.title}
+          rightItem={ this.state.actions }
+          onPress={ this._onPressHeader }
+        />
 
         {Platform.OS == 'android' ? /* FOR ANDROID */ (
 

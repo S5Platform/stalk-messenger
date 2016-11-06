@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { loadConfig, updateInstallation } from 's5-action';
+import { S5Colors } from 's5-components';
 import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 
 import AppNavigator from './navigator';
@@ -84,7 +85,7 @@ class App extends Component {
       .then((responseJson) => {
         if( responseJson.status == 'ok' ) {
 
-          console.log('** Connect Channel Server ** \n', responseJson.result.server.url, {
+          console.log('** Connect Bacground Server ** \n', responseJson.result.server.url, {
             nsp: '/background',
             forceWebsockets: true,
             forceNew: true,
@@ -109,12 +110,12 @@ class App extends Component {
           });
 
           self.socket.on('message', (message) => { // MESSAGED RECEIVED
-            console.log('[BACKGROUND] MESSAGE', message);
-
-            PushNotification.localNotification({
-              message: "The message displayed in the notification alert.",
-            });
-
+            if(message && message.length > 0) {
+              console.log('[BACKGROUND] MESSAGE', message[0]);
+              PushNotification.localNotification({
+                message: message[0].user.name + ' : ' + message[0].text
+              });
+            }
           });
 
           self.socket.connect();
@@ -131,19 +132,41 @@ class App extends Component {
 
   }
 
+  _renderStatusBar = () => {
+
+    if(this.props.user.isLoggedIn) {
+      return (
+        <StatusBar
+          translucent={true}
+          backgroundColor= {S5Colors.primaryDark}
+          animated={true}
+          barStyle={'light-content'}
+          hidden={false}
+          />
+      );
+
+    }else{
+      return (
+        <StatusBar
+          translucent={true}
+          backgroundColor= {S5Colors.primaryDark}
+          animated={true}
+          hidden={true}
+          />
+      );
+    }
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
-        <StatusBar
-          translucent={true}
-          backgroundColor="rgba(0, 0, 0, 0.2)"
-          barStyle="light-content"
-          hidden={!this.props.user.isLoggedIn}
-          />
-          <AppNavigator />
 
-          { this.props.user.isLoggedIn ? <PushController /> : null }
+        { this._renderStatusBar() }
+
+        <AppNavigator />
+
+        { this.props.user.isLoggedIn ? <PushController /> : null }
 
       </View>
     );
