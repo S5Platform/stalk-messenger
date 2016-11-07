@@ -68,9 +68,9 @@ class App extends Component {
   }
 
   disconnectBGSocket = () => {
-    if(this.socket) {
+    if(this.bg_socket) {
       console.log('[BACKGROUND] DISCONNECT');
-      this.socket.disconnect();
+      this.bg_socket.disconnect();
     }
   }
 
@@ -94,7 +94,7 @@ class App extends Component {
             }
           });
 
-          self.socket = new SocketIO(responseJson.result.server.url, {
+          self.bg_socket = new SocketIO(responseJson.result.server.url, {
             nsp: '/background',
             forceWebsockets: true,
             forceNew: true,
@@ -103,22 +103,30 @@ class App extends Component {
             }
           });
 
-          self.socket.on('connect', () => { // SOCKET CONNECTION EVENT
+          self.bg_socket.on('connect', () => { // SOCKET CONNECTION EVENT
             self.setState({ connected: true }, () => {
               console.log('[BACKGROUND] CONNECTED');
             });
           });
 
-          self.socket.on('backgound-message', (message) => { // MESSAGED RECEIVED
+          self.bg_socket.on('error', () => { // SOCKET CONNECTION EVENT
+            this.setState({ connected: false });
+          });
+
+          self.bg_socket.on('connect_error', (err) => { // XPUSH CONNECT ERROR EVENT
+            console.warn(err);
+          });
+
+          self.bg_socket.on('backgound-message', (message) => { // MESSAGED RECEIVED
             if(message && message.length > 0) {
               console.log('[BACKGROUND] MESSAGE', message[0]);
               PushNotification.localNotification({
-                message: message[0].user.name + ' : ' + message[0].text
+                message: message[0].DT.user.name + ' : ' + message[0].DT.text
               });
             }
           });
 
-          self.socket.connect();
+          self.bg_socket.connect();
 
         }else{
           console.console.warn(responseJson);
@@ -137,7 +145,6 @@ class App extends Component {
     if(this.props.user.isLoggedIn) {
       return (
         <StatusBar
-          translucent={true}
           backgroundColor= {S5Colors.primaryDark}
           animated={true}
           barStyle={'light-content'}

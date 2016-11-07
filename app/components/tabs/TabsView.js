@@ -26,9 +26,9 @@ class TabsView extends Component {
   state = {
     index: 0,
     routes: [
-      { key: 'follows', icon: 'people',       title: 'Friends', actions: [{ key: 'SearchUserView', icon: 'person-add' }] },
-      { key: 'chats',   icon: 'chatbubbles',  title: 'Chats'  , actions: [{ key: 'SelectUserView', icon: 'add' }] },
-      { key: 'profile', icon: 'person',       title: 'Profile' },
+      { key: 'follows', icon: 'people',       title: 'FRIENDS', actions: [{ key: 'SearchUserView', icon: 'person-add' }] },
+      { key: 'chats',   icon: 'chatbubbles',  title: 'CHAT'  , actions: [{ key: 'SelectUserView', icon: 'add' }] },
+      { key: 'profile', icon: 'person',       title: 'PROFILE' },
     ],
     actions: [],
   };
@@ -123,7 +123,7 @@ class TabsView extends Component {
       <View style={{ flex: 1, backgroundColor: S5Colors.background, }}>
 
         <S5Header
-          title={this.state.title}
+          title={Platform.OS == 'android'? 'STALK' : this.state.title}
           rightItem={ this.state.actions }
           onPress={ this._onPressHeader }
         />
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: S5Colors.primaryDark,
   },
   label: {
-    fontSize: 14,
+    fontSize: 12,
     margin: 5,
   },
   indicator: {

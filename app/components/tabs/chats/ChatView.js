@@ -122,6 +122,8 @@ class ChatView extends Component {
 
     this.disconnectChannelSocket();
 
+    let self = this;
+
     console.log('** Connect Channel Server ** \n', node.url, {
       nsp: '/channel',
       forceWebsockets: true,
@@ -163,13 +165,18 @@ class ChatView extends Component {
     });
 
     this.socket.on('_event', (data) => { // XPUSH EVENT
-      console.log('[_EVENT]', data);
+      if(data[0].event == 'DISCONNECT') {
+        console.log('[EVENT] "'+ data[0].U +'" was disconnected // @ TODO must implement ! ', data[0]);
+      } else if(data[0].event == 'CONNECTION') {
+        if( data[0].U != self.props.user.id) {
+          console.log('[EVENT] "'+ data[0].U +'" was connected // @ TODO must implement !  ', data[0]);
+        }
+      }
     });
 
-    let self = this;
     this.socket.on('message', (message) => { // MESSAGED RECEIVED
-      console.log('------ 받음 - ', message);
-      this.setState((previousState) => {
+      console.log('[MESSAGE] ', message);
+      self.setState((previousState) => {
 
         // set latest message !
         var latest = message[0].text;
@@ -182,12 +189,12 @@ class ChatView extends Component {
       });
     });
 
-    this.socket.onAny((event) => {
-      console.log('[LOGGING]', event);
-    });
+    //this.socket.onAny((event) => {
+    //  console.log('[LOGGING]', event);
+    //});
 
     this.socket.on('sent', (data) => { // after sent a messeage.
-      console.log('[SENT]', data);
+      console.log('[SENT] // @ TODO must implement !! ', data);
     });
 
     this.socket.connect();
