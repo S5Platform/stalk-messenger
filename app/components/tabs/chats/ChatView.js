@@ -47,10 +47,9 @@ class ChatView extends Component {
       connected:    false,
       node:         {},
     };
-
   }
 
-  componentWillMount() {  // or componentDidMount ?
+  componentWillMount() {
 
     var chat = {};
 
@@ -71,13 +70,18 @@ class ChatView extends Component {
     }
 
     this.setState({ chat });
+  }
 
-    console.log('******** CHAT DATA *********** \n',chat);
+  componentDidMount() {
 
-    if(chat.channelId) {
+    let channelId = this.state.chat.channelId;
+
+    console.log('******** CHAT DATA *********** \n',this.state.chat);
+
+    if(channelId) {
 
       // Load Messages from session-server
-      this.props.loadMessages(chat).then(
+      this.props.loadMessages(this.state.chat).then(
         (result) => {
 
           if(result.messages.length > 0) {
@@ -94,11 +98,11 @@ class ChatView extends Component {
             }
 
             // set latest message !
-            this.props.setLatestMessage(chat.channelId, latest);
+            this.props.setLatestMessage(channelId, latest);
 
           }
 
-          this.connectChannelSocket(result.node, chat.channelId);
+          this.connectChannelSocket(result.node, channelId);
 
         },
         (error) => {

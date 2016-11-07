@@ -109,7 +109,7 @@ class App extends Component {
             });
           });
 
-          self.socket.on('message', (message) => { // MESSAGED RECEIVED
+          self.socket.on('backgound-message', (message) => { // MESSAGED RECEIVED
             if(message && message.length > 0) {
               console.log('[BACKGROUND] MESSAGE', message[0]);
               PushNotification.localNotification({

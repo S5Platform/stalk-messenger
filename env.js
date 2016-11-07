@@ -9,7 +9,8 @@
 var stalk_session_server_url = 'http://127.0.0.1:8080';
 try {
   var RN = require('react-native');
-  if ( RN.Platform.OS === 'android' ) {
+  var DeviceInfo = require('react-native-device-info');
+  if ( RN.Platform.OS === 'android' && DeviceInfo.isEmulator() ) {
     stalk_session_server_url = 'http://10.0.3.2:8080';
   }
 } catch(err) {
