@@ -24,7 +24,12 @@ import ChatView       from './tabs/chats/ChatView';
 import SearchUserView from './tabs/follows/SearchUserView';
 import SelectUserView from './tabs/follows/SelectUserView';
 import UserView       from './tabs/follows/UserView';
-import SettingForm    from './tabs/profile/SettingForm';
+import ProfileForm    from './tabs/profile/ProfileForm';
+
+import SettingView    from './tabs/profile/setting/SettingView';
+import LicenseView    from './tabs/profile/setting/LicenseView';
+import PrivacyPolicyView from './tabs/profile/setting/PrivacyPolicyView';
+
 
 class AppNavigator extends Component {
 
@@ -98,13 +103,19 @@ class AppNavigator extends Component {
       case 'SearchUserView':
         return <SearchUserView  navigator={navigator} />;
       case 'SelectUserView':
-        return <SelectUserView navigator={navigator} chat={route.chat} callback={route.callback}/>;
+        return <SelectUserView  navigator={navigator} chat={route.chat} callback={route.callback}/>;
       case 'UserView':
         return <UserView        navigator={navigator} user={route.user}/>;
       case 'ChatView':
         return <ChatView        navigator={navigator} chat={route.chat} users={route.users} />;
-      case 'SettingForm':
-        return <SettingForm     navigator={navigator} field={route.field} title={route.title} validLength={route.validLength} />;
+      case 'ProfileForm':
+        return <ProfileForm     navigator={navigator} field={route.field} title={route.title} validLength={route.validLength} />;
+      case 'SettingView':
+        return <SettingView     navigator={navigator} />;
+      case 'LicenseView':
+        return <LicenseView     navigator={navigator} />;
+      case 'PrivacyPolicyView':
+        return <PrivacyPolicyView     navigator={navigator} />;
       default:
         return <TabsView        navigator={navigator} />;
     }
@@ -122,12 +133,17 @@ class AppNavigator extends Component {
             return Navigator.SceneConfigs.FloatFromBottomAndroid;
           }
 
-          if (route.settingForm || route.selectUserView || route.searchUserView ) {
-            return Navigator.SceneConfigs.FloatFromBottom;
-          } if (route.userView) {
-            return Navigator.SceneConfigs.FloatFromLeft;
-          } else {
-            return Navigator.SceneConfigs.FloatFromRight;
+          switch (route.name) {
+            case 'SearchUserView':
+            case 'SelectUserView':
+            case 'ProfileForm':
+              return Navigator.SceneConfigs.FloatFromBottom;
+            case 'UserView':
+              return Navigator.SceneConfigs.FloatFromLeft;
+            case 'ChatView':
+              return Navigator.SceneConfigs.FloatFromRight;
+            default:
+              return Navigator.SceneConfigs.FloatFromRight;
           }
 
         }}

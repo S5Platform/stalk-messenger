@@ -3,7 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import GiftedListView from 'react-native-gifted-listview';
 import S5Button from './S5Button';
@@ -73,6 +73,16 @@ export default class S5ListView extends Component {
     );
   }
 
+  _renderEmptyView = (refreshCallback) => {
+    return (
+      <View style={styles.defaultView}>
+        <Text style={styles.emptyRowTitle}>
+          Sorry, there is no content to display
+        </Text>
+      </View>
+    );
+  }
+
   render() {
     return (
         <GiftedListView
@@ -84,6 +94,7 @@ export default class S5ListView extends Component {
           refreshable={this.props.refreshable}
           withSections={this.props.withSections}
           enableEmptySections={this.props.enableEmptySections}
+          emptyView={this._renderEmptyView}
           refreshableTintColor="blue"
           paginationWaitingView={this.paginationWaitingView}
           paginationAllLoadedView={ () => null }
@@ -92,3 +103,16 @@ export default class S5ListView extends Component {
   }
 
 }
+
+const styles = StyleSheet.create({
+  defaultView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  emptyRowTitle: {
+    fontSize: 14,
+    fontWeight: 'normal',
+    marginBottom: 15,
+  },
+});

@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { S5Header, S5TextInput, S5Icon } from 's5-components';
 import { updateUser } from 's5-action';
 
-class SettingForm extends Component {
+class ProfileForm extends Component {
 
   static propTypes = {
     navigator: React.PropTypes.object.isRequired,
@@ -75,7 +75,7 @@ class SettingForm extends Component {
     }
   }
 
-  saveSetting = () => {
+  saveProfile = () => {
     this.props.dispatch(updateUser(this.state.key, this.state.value));
     this.props.navigator.pop();
   }
@@ -90,7 +90,7 @@ class SettingForm extends Component {
           leftItem={[ {icon: 'arrow-back'} ]}
           rightItem={[ {icon: 'checkmark-circle-outline'} ]}
           onPress={ (name) => {
-            if( name == 'checkmark-circle-outline') return this.saveSetting();
+            if( name == 'checkmark-circle-outline') return this.saveProfile();
             return this.props.navigator.pop();
           }}
         />
@@ -131,4 +131,4 @@ function select(store) {
   };
 }
 
-module.exports = connect(select)(SettingForm);
+module.exports = connect(select)(ProfileForm);

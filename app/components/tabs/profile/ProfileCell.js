@@ -11,7 +11,7 @@ import {
 
 import { S5Icon } from 's5-components';
 
-export default class SettingCell extends Component {
+export default class ProfileCell extends Component {
 
   static propTypes = {
     onPress: React.PropTypes.func.isRequired,

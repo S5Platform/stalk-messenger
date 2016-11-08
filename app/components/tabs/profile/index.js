@@ -11,11 +11,11 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { logOut, updateUser } from 's5-action';
+import { updateUser } from 's5-action';
 
-import { S5Header, S5Button, S5ProfilePicture } from 's5-components';
+import { S5Header, S5ProfilePicture } from 's5-components';
 
-import SettingCell from './SettingCell';
+import ProfileCell from './ProfileCell';
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -57,11 +57,11 @@ class ProfileMain extends Component {
   }
 
   onPressNickName(){
-    this.props.navigator.push({name: 'SettingForm', field:'nickName', title:'Nickname', validLength:20});
+    this.props.navigator.push({name: 'ProfileForm', field:'nickName', title:'Nickname', validLength:20});
   }
 
   onPressStatusMessage(){
-    this.props.navigator.push({name: 'SettingForm', field:'statusMessage', title:'Status message'});
+    this.props.navigator.push({name: 'ProfileForm', field:'statusMessage', title:'Status message'});
   }
 
   render() {
@@ -83,22 +83,16 @@ class ProfileMain extends Component {
           </Text>
         </View>
 
-        <SettingCell
+        <ProfileCell
           label="Nickname"
           text={this.props.user.nickName}
           onPress={() => this.onPressNickName()}
         />
 
-        <SettingCell
+        <ProfileCell
           label="Status Message"
           text={this.props.user.statusMessage}
           onPress={() => this.onPressStatusMessage()}
-        />
-
-        <S5Button
-          style={styles.button}
-          caption="Log out !!"
-          onPress={() => this.props.dispatch(logOut())}
         />
 
       </View>

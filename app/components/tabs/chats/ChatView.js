@@ -222,8 +222,8 @@ class ChatView extends Component {
       } else if( action.leaveChat && self.state.chat && self.state.chat.id ){
 
         Alert.alert(
-          'Alert Title',
-          'Do you want leave?',
+          'Alert',
+          'Do you want to leave?',
           [
             {text: 'Leave', onPress: () => self.leaveChat(self.state.chat.id)},
             {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},

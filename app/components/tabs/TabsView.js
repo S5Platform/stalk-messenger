@@ -26,9 +26,9 @@ class TabsView extends Component {
   state = {
     index: 0,
     routes: [
-      { key: 'follows', icon: 'people',       title: 'FRIENDS', actions: [{ key: 'SearchUserView', icon: 'person-add' }] },
-      { key: 'chats',   icon: 'chatbubbles',  title: 'CHAT'  , actions: [{ key: 'SelectUserView', icon: 'add' }] },
-      { key: 'profile', icon: 'person',       title: 'PROFILE' },
+      { key: 'follows', icon: 'people',       title: 'FRIENDS', actions: [{ key: 'SearchUserView',  icon: 'person-add' }] },
+      { key: 'chats',   icon: 'chatbubbles',  title: 'CHAT'  ,  actions: [{ key: 'SelectUserView',  icon: 'add' }] },
+      { key: 'profile', icon: 'person',       title: 'PROFILE', actions: [{ key: 'SettingView',     icon: 'settings'}] },
     ],
     actions: [],
   };
