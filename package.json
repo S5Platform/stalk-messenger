@@ -1,41 +1,31 @@
 {
-  "name": "stalk-messenger",
+  "name": "s5messenger",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
-  "contributors": [
-    {
-      "name": "John Kim",
-      "email": "yohany@gmail.com"
-    },
-    {
-      "name": "James Jung",
-      "email": "0nlyoung7@gmail.com"
-    }
-  ],
   "dependencies": {
     "moment": "^2.15.2",
     "parse": "github:s5platform/Parse-SDK-JS",
     "react": "15.3.2",
     "react-addons-shallow-compare": "^15.3.2",
-    "react-native": "0.35.0",
+    "react-native": "0.37.0",
     "react-native-device-info": "^0.9.6",
     "react-native-gifted-chat": "0.0.10",
     "react-native-gifted-listview": "github:s5platform/react-native-gifted-listview",
-    "react-native-image-picker": "^0.22.10",
-    "react-native-linear-gradient": "^1.5.13",
+    "react-native-image-picker": "^0.22.13",
+    "react-native-linear-gradient": "^1.5.14",
     "react-native-navbar": "^1.5.4",
-    "react-native-push-notification": "^2.1.1",
+    "react-native-push-notification": "^2.2.0",
     "react-native-socketio": "github:s5platform/react-native-socketio",
-    "react-native-tab-view": "0.0.37",
-    "react-native-vector-icons": "^2.1.0",
+    "react-native-tab-view": "0.0.38",
+    "react-native-vector-icons": "^3.0.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "redux-logger": "^2.7.0",
-    "redux-persist": "^4.0.0-alpha6",
+    "redux-logger": "^2.7.4",
+    "redux-persist": "^4.0.0-alpha7",
     "redux-thunk": "^2.1.0",
     "tween-functions": "^1.2.0"
   },
@@ -44,12 +34,12 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-jest": "16.0.0",
+    "babel-jest": "17.0.0",
     "babel-preset-react-native": "1.9.0",
     "faker": "^3.1.0",
-    "jest": "16.0.2",
-    "jest-react-native": "16.0.0",
+    "jest": "17.0.0",
+    "jest-react-native": "17.0.0",
     "react-test-renderer": "15.3.2",
-    "remote-redux-devtools": "^0.5.0"
+    "remote-redux-devtools": "^0.5.3"
   }
 }
