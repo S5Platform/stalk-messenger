@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { loadConfig, updateInstallation } from 's5-action';
-import { S5Colors } from 's5-components';
+import { S5Colors, S5Alert } from 's5-components';
 import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 
 import AppNavigator from './navigator';
@@ -49,11 +49,14 @@ class App extends Component {
     this.disconnectBGSocket();
   }
 
-  handleAppStateChange(currentAppState) {
+  handleAppStateChange = (currentAppState) => {
     console.log('currentAppState', currentAppState);
     if (currentAppState === 'active') { // ( active, background, inactive )
 
-      // TODO : HANDING STATUS OF APP WITH currentAppState
+      if( this.bg_socket && this.bg_socket.isConnected ) {
+      } else {
+        this.connectBGSocket();
+      }
 
     }
   }
@@ -135,8 +138,8 @@ class App extends Component {
       })
       .catch((error) => {
         console.warn('RN fetch exception', SERVER_URL + '/node/' + APP_ID + '-BG/' + this.props.user.id , error);
+        this.refs['alert'].alert('error', 'Error', 'an error occured, please try again late');
       });
-
 
   }
 
@@ -174,6 +177,8 @@ class App extends Component {
         <AppNavigator />
 
         { this.props.user.isLoggedIn ? <PushController /> : null }
+
+        <S5Alert ref={'alert'} />
 
       </View>
     );
