@@ -9,6 +9,7 @@ export const LOADED_CHATS     = 'LOADED_CHATS';
 export const ADDED_CHAT       = 'ADDED_CHAT';
 export const REMOVED_CHATS    = 'REMOVED_CHATS';
 export const ADDED_USERS_IN_CHAT = 'ADDED_USERS_IN_CHAT';
+export const UPDATED_LOADEDAT = 'UPDATED_LOADEDAT';
 
 const InteractionManager = require('InteractionManager');
 
@@ -79,6 +80,25 @@ function loadChatByIdAsync (id) {
       });
   });
 
+}
+
+function updateLoadedAtAsync (id) {
+  return new Promise( (resolve, reject) => {
+
+    var chats = new Chats();
+    chats.id = id;
+    chats.set("loadedAt", new Date());
+    chats.save(null, {
+      success: function(chat) {
+        resolve(chat);
+      },
+      error: function(chat, error) {
+        console.error(error);
+        reject(error);
+      }
+    });
+
+  });
 }
 
 function createChatAsync (users) {
@@ -238,6 +258,23 @@ export function addUsers(chatId, channelId, ids) {
     });
 
     return Promise.resolve(chat);
+ };
+
+}
+
+export function updateLoadedAt(chatId) {
+
+ return async (dispatch, getState) => {
+
+    var result = await updateLoadedAtAsync(chatId);
+
+    dispatch({
+      type: UPDATED_LOADEDAT,
+      chat: result,
+      chatId
+    });
+
+    return Promise.resolve(result.loadedAt);
  };
 
 }

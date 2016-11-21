@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { switchTab, loadMessages, setLatestMessage, uploadImage, createChat, MESSAGE_SIZE } from 's5-action';
+import { switchTab, loadMessages, setLatestMessage, uploadImage, createChat, updateLoadedAt, MESSAGE_SIZE } from 's5-action';
 import { S5Header, S5Alert, S5Drawer, S5Icon, S5ChatBox } from 's5-components';
 
 import ControlPanel from './ControlPanel';
@@ -99,6 +99,9 @@ class ChatView extends Component {
 
             // set latest message !
             this.props.setLatestMessage(channelId, latest);
+
+            // UPDATE LOADEDAT AT CHATS
+            this.props.updateLoadedAt(this.state.chat.id);
 
           }
 
@@ -187,6 +190,10 @@ class ChatView extends Component {
 
         return { messages: this.refs.ChatBox.append(previousState.messages, message) };
       });
+
+      // UPDATE LOADEDAT AT CHATS
+      self.props.updateLoadedAt(self.state.chat.id);
+
     });
 
     //this.socket.onAny((event) => {
@@ -417,7 +424,8 @@ function actions(dispatch) {
     loadMessages: (chat, date) => dispatch(loadMessages(chat, date)),
     setLatestMessage: (channelId, text) =>  dispatch(setLatestMessage(channelId, text)),
     createChat: (users) => dispatch(createChat(users)),
-    leaveChat: (chatId) => dispatch(leaveChat(chatId))
+    leaveChat: (chatId) => dispatch(leaveChat(chatId)),
+    updateLoadedAt: (chatId) => dispatch(updateLoadedAt(chatId))
   };
 }
 

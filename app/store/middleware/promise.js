@@ -1,6 +1,9 @@
 
-function warn(error) {
+function warn(error, next) {
   console.warn(error.message || error);
+  if( error.code == 100 ) { // XMLHttpRequest failed: "Unable to connect to the Parse API"
+    // TODO !!!!!
+  }
   throw error; // To let the caller handle the rejection
 }
 
