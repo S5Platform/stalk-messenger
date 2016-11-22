@@ -14,7 +14,7 @@ import {
 import FollowCell from './FollowCell';
 
 import { loadFollows, removeFollow } from 's5-action';
-import { S5Icon, S5Header, S5SwipeListView, S5TextInput } from 's5-components';
+import { S5Icon, S5Header, S5SwipeListView, S5TextInput, S5Colors } from 's5-components';
 import { connect } from 'react-redux';
 
 class FollowsMain extends Component {
@@ -68,7 +68,7 @@ class FollowsMain extends Component {
     const filterText = this.state.filter || '';
     const filterRegex = new RegExp(String(filterText), 'i');
     const filter = (user) => filterRegex.test(user.nickName);
-
+console.log(S5Colors.primaryText);
     return (
       <View style={styles.container}>
         <S5TextInput
@@ -84,9 +84,9 @@ class FollowsMain extends Component {
         {this.state.listViewData.filter(filter).length == 0 ? (
 
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
-            <Text style={{ color:'#000000', fontSize: 20, textAlign: 'center', margin: 10 }}>
+            <Text style={{ color: S5Colors.accent, fontSize: 17, textAlign: 'center', margin: 10 }}>
               {'You can search your friends, simple tap on the '}
-              <S5Icon name={'search'} size={25} color={'#000000'} />
+              <S5Icon name={'search'} size={20} color={S5Colors.accent} />
               {' icon in the top right corner.'}
             </Text>
           </View>
@@ -121,59 +121,6 @@ class FollowsMain extends Component {
       </View>
     );
 
-
-
-/*
-    if( this.state.listViewData.filter(filter).length == 0 ) {
-      return (
-        <View style={styles.container}>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
-            <Text style={{ color:'#000000', fontSize: 20, textAlign: 'center', margin: 10 }}>
-              {'You can search your friends, simple tap on the '}
-              <S5Icon name={'search'} size={25} color={'#000000'} />
-              {' icon in the top right corner.'}
-            </Text>
-          </View>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          <S5TextInput
-            placeholder={' Search...'}
-            value={this.state.filter}
-            autoCapitalize="none"
-            onChangeText={ text => this.setState({filter: text}) }
-            inputStyle={{
-              paddingLeft: 10
-            }}
-          />
-          <S5SwipeListView
-            ref="listView"
-            data={ this.state.listViewData.filter(filter) }
-            renderRow={ this._renderRow }
-            renderHiddenRow={ (data, secId, rowId, rowMap) => (
-              <View style={styles.rowBack}>
-                <Text>Left</Text>
-                <View style={[styles.backRightBtn, styles.backRightBtnLeft]}>
-                  <Text style={styles.backTextWhite}>Right</Text>
-                </View>
-                <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this._deleteRow(secId, rowId, rowMap) }>
-                  <Text style={styles.backTextWhite}>Delete</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-            enableEmptySections={true}
-            sectionKey="nickName"
-            autoSection={true}
-            leftOpenValue={75}
-            rightOpenValue={-150}
-            removeClippedSubviews={false}
-          />
-        </View>
-      );
-    } */
-
   }
 
 }
@@ -186,11 +133,11 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	backTextWhite: {
-		color: '#FFF'
+		color: S5Colors.background
 	},
 	rowBack: {
 		alignItems: 'center',
-		backgroundColor: '#DDD',
+		backgroundColor: S5Colors.background,
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',

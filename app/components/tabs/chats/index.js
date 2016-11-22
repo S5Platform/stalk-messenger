@@ -71,9 +71,9 @@ class ChatsMain extends Component {
       {this.state.listViewData.length == 0 ? (
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
-          <Text style={{ color:'#000000', fontSize: 20, textAlign: 'center', margin: 10 }}>
+          <Text style={{ color: S5Colors.accent, fontSize: 17, textAlign: 'center', margin: 10 }}>
             {'To begin a new chat, simple tap on the '}
-            <S5Icon name={'add'} size={25} color={'#000000'} />
+            <S5Icon name={'add'} size={20} color={S5Colors.accent} />
             {' icon in the top right corner.'}
           </Text>
         </View>

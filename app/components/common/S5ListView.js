@@ -7,6 +7,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import GiftedListView from 'react-native-gifted-listview';
 import S5Button from './S5Button';
+import S5Colors from './S5Colors';
 
 export default class S5ListView extends Component {
 
@@ -114,5 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'normal',
     marginBottom: 15,
+    color: S5Colors.accent,
   },
 });
