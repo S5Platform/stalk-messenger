@@ -10,14 +10,14 @@ const initialState = {
   username: null,
   email: null,
   nickName: null,
-  profileFileUrl: null,
+  avatar: null,
   statusMessage:null
 };
 
 function user(state = initialState, action) {
 
   if (action.type === LOGGED_IN || action.type === SIGNED_UP) {
-    let {id, username, email, nickName, profileFileUrl, statusMessage} = fromParseObject(action.data);
+    let {id, username, email, nickName, avatar, statusMessage} = fromParseObject(action.data);
 
     return {
       isLoggedIn: true,
@@ -25,7 +25,7 @@ function user(state = initialState, action) {
       username,
       email,
       nickName,
-      profileFileUrl,
+      avatar,
       statusMessage
     };
   }
@@ -49,9 +49,9 @@ function user(state = initialState, action) {
 
 function fromParseObject(user){
 
-  var profileFileUrl = "";
+  var avatar = "";
   if( user && user.get('profileFile') != null && user.get('profileFile') != undefined ){
-    profileFileUrl = user.get('profileFile').url();
+    avatar = user.get('profileFile').url();
   }
 
   return {
@@ -59,7 +59,7 @@ function fromParseObject(user){
     username: user.get('username'),
     email: user.get('email'),
     nickName: user.get('nickName'),
-    profileFileUrl: profileFileUrl,
+    avatar: avatar,
     statusMessage: user.get('statusMessage'),
   };
 }

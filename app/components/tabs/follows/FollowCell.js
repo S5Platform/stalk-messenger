@@ -106,7 +106,7 @@ export default class FollowCell extends Component {
           <S5ProfilePicture
             key={this.props.user.id}
             name={this.props.user.nickName}
-            profileFileUrl={this.props.user.profileFileUrl}
+            avatar={this.props.user.avatar}
             onPress={this._onProfilePress}
             size={48}
             style={{

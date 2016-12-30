@@ -72,7 +72,7 @@ class ProfileMain extends Component {
         <View style={styles.profileImage}>
           <S5ProfilePicture
             name={this.props.user.nickName}
-            profileFileUrl={this.props.user.profileFileUrl}
+            avatar={this.props.user.avatar}
             onPress={() => this.selectImage()}
             editable={true}
             size={100}

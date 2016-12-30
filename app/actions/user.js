@@ -110,7 +110,7 @@ export async function updateUser(key, value) {
 
   var result =''
   if( key == 'profileFile' ){
-    key = 'profileFileUrl';
+    key = 'avatar';
     result = user.get('profileFile').url();
   } else {
     result = user.get(key);

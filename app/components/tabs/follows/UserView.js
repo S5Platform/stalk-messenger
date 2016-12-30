@@ -39,7 +39,7 @@ class UserView extends Component {
           </View>
           <S5ProfilePicture
             name={this.props.user.nickName}
-            profileFileUrl={this.props.user.profileFileUrl}
+            avatar={this.props.user.avatar}
             size={100}
           />
           <Text style={styles.nickName}>

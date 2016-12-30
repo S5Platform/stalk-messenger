@@ -29,7 +29,7 @@ export default class ChatCell extends Component {
 
     this.props.chat.users.forEach( (user) => {
       //let key = `${this.props.chat.channelId}_${user.id}`;
-      profiles.push(user.profileFileUrl);
+      profiles.push(user.avatar);
       alts.push(user.nickName);
     });
 

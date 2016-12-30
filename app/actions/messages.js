@@ -143,7 +143,7 @@ export function uploadImage(data, callback) {
 function fromParseObject(obj){
 
   var user = obj.get("user");
-  var profileFileUrl = user.get('profileFile') ? user.get('profileFile').url() : null;
+  var avatar = user.get('profileFile') ? user.get('profileFile').url() : null;
 
   return {
     _id: obj.id,
@@ -153,7 +153,7 @@ function fromParseObject(obj){
       _id: user.id,
       username: user.get('username'),
       name: user.get('nickName'),
-      avatar: profileFileUrl
+      avatar: avatar
     },
     image: obj.get("image")
   };

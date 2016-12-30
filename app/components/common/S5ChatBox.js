@@ -166,7 +166,7 @@ export default class S5ChatBox extends Component {
         user={{
           _id: this.props.user.id, // sent messages should have same user._id
           name: this.props.user.nickName,
-          avatar: this.props.user.profileFileUrl
+          avatar: this.props.user.avatar
         }}
 
         renderComposer={this._renderComposer}

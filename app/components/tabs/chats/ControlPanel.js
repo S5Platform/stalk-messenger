@@ -55,7 +55,7 @@ export default class ControlPanel extends Component {
       <View key={user.username} style={styles.item}>
         <S5ProfilePicture
           name={user.nickName}
-          profileFileUrl={user.profileFileUrl}
+          avatar={user.avatar}
           size={40}
           style={styles.profileImage}
         />

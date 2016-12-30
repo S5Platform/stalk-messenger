@@ -52,7 +52,7 @@ class SearchUserView  extends Component {
             email: user.get('email'),
             nickName: user.get('nickName'),
             statusMessage: user.get('statusMessage'),
-            profileFileUrl: user.get('profileFile') ? user.get('profileFile').url() : '',
+            avatar: user.get('profileFile') ? user.get('profileFile').url() : '',
           };
         });
 
