@@ -56,6 +56,7 @@ class LoginScreen extends Component {
     }
 
     this.props.signin( this.state, (error) => {
+
       if(error.code == 101){ // Invalid username/password
         this.setState({
           message: 'Invalid username/password',

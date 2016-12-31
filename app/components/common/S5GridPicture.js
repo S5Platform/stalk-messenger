@@ -58,10 +58,11 @@ export default class S5GridPicture extends Component {
           style={{
           width: size,
           height: size,
-          flexDirection: 'row'}}>
-          <S5Image source={{uri:images[0]}} style={{width: size/2, height: size, borderRadius: size / 3.5}} alt={alts[0]}/>
+          flexDirection: 'row',
+          borderRadius: size / 2}}>
+          <S5Image source={{uri:images[0]}} style={{width: size/2, height: size, borderTopLeftRadius: size / 2, borderBottomLeftRadius: size / 2}} alt={alts[0]}/>
           <View style={{width:1,height:size,backgroundColor:'white'}} />
-          <S5Image source={{uri:images[1]}} style={{width: size/2, height: size, borderRadius: size / 3.5}} alt={alts[1]} />
+          <S5Image source={{uri:images[1]}} style={{width: size/2, height: size, borderTopRightRadius: size / 2, borderBottomRightRadius: size / 2}} alt={alts[1]} />
         </View>
       )
     } else if ( images.length == 3 ){
@@ -70,13 +71,14 @@ export default class S5GridPicture extends Component {
           style={{
           width: size,
           height: size,
-          flexDirection: 'row'}}>
-          <S5Image source={{uri:images[0]}} style={{width: size/2, height: size, borderRadius: size / 3.5}} alt={alts[0]}/>
+          flexDirection: 'row'
+        }}>
+          <S5Image source={{uri:images[0]}} style={{width: size/2, height: size, borderTopLeftRadius: size / 2, borderBottomLeftRadius: size / 2}} alt={alts[0]}/>
           <View style={{width:1,height:size,backgroundColor:'white'}} />
           <View style={{width:size/2,height:size}}>
-            <S5Image source={{uri:images[1]}} style={{width: size/2, height: size/2, borderRadius: size / 4}} alt={alts[1]}/>
+            <S5Image source={{uri:images[1]}} style={{width: size/2, height: size/2, borderTopRightRadius: size / 2}} alt={alts[1]}/>
             <View style={{width:size/2,height:1,backgroundColor:'white'}} />
-            <S5Image source={{uri:images[2]}} style={{width: size/2, height: size/2, borderRadius: size / 4}} alt={alts[2]}/>
+            <S5Image source={{uri:images[2]}} style={{width: size/2, height: size/2, borderBottomRightRadius: size / 2}} alt={alts[2]}/>
           </View>
         </View>
       )
@@ -89,15 +91,15 @@ export default class S5GridPicture extends Component {
           flexDirection: 'row',
           borderRadius: size / 2}}>
           <View style={{width:size/2,height:size}}>
-            <S5Image source={{uri:images[0]}} style={{width: size/2, height: size/2, borderRadius: size / 4}} alt={alts[0]}/>
+            <S5Image source={{uri:images[0]}} style={{width: size/2, height: size/2, borderTopLeftRadius: size / 2}} alt={alts[0]}/>
             <View style={{width:size/2,height:1,backgroundColor:'white'}} />
-            <S5Image source={{uri:images[1]}} style={{width: size/2, height: size/2, borderRadius: size / 4}} alt={alts[1]}/>
+            <S5Image source={{uri:images[1]}} style={{width: size/2, height: size/2, borderTopRightRadius: size / 2}} alt={alts[1]}/>
           </View>
           <View style={{width:1,height:size,backgroundColor:'white'}} />
           <View style={{width:size/2,height:size}}>
-            <S5Image source={{uri:images[2]}} style={{width: size/2, height: size/2, borderRadius: size / 4}} alt={alts[2]}/>
+            <S5Image source={{uri:images[2]}} style={{width: size/2, height: size/2, borderBottomLeftRadius: size / 2}} alt={alts[2]}/>
             <View style={{width:size/2,height:1,backgroundColor:'white'}} />
-            <S5Image source={{uri:images[3]}} style={{width: size/2, height: size/2, borderRadius: size / 4}} alt={alts[3]}/>
+            <S5Image source={{uri:images[3]}} style={{width: size/2, height: size/2, borderBottomRightRadius: size / 2}} alt={alts[3]}/>
           </View>
         </View>
       )

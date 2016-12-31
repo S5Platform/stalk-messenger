@@ -49,6 +49,11 @@ function user(state = initialState, action) {
 
 function fromParseObject(user){
 
+
+  console.log( '66666' );
+
+    console.log( user );
+
   var avatar = "";
   if( user && user.get('profileFile') != null && user.get('profileFile') != undefined ){
     avatar = user.get('profileFile').url();

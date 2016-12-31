@@ -106,20 +106,15 @@ function _parseObjToJSON(object){
       object.splice(index, 1);
     } else {
 
-      var avatar = "";
-      if( user && user.get('profileFile') != null && user.get('profileFile') != undefined ){
-        avatar = user.get('profileFile').url();
-      }
-
       object[index] = {
         id: user.id,
-        username: user.get('username'),
-        email: user.get('email'),
-        nickName: user.get('nickName'),
-        statusMessage: user.get('statusMessage'),
-        avatar: avatar,
+        username: user.username,
+        email: user.email,
+        nickName: user.nickName,
+        statusMessage: user.statusMessage,
+        avatar: user.avatar,
       }
-      names.push(user.get('nickName'));
+      names.push(user.nickName);
     }
   }, []);
 

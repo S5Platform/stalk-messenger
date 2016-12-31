@@ -16,9 +16,12 @@ const COLORS = {
 };
 
 function colorForProfile(str, count = 1) {
-
+  if( !str || str == '' ){
+    str = "A";
+  }
   let index = str.charCodeAt(0);
   const hue = Math.round(460 * index / (count+10));
+
   return `hsl(${hue}, 74%, 65%)`;
 }
 
