@@ -57,7 +57,22 @@ export default class ChatCell extends Component {
     )
   }
 
+  _renderUnreadCount =() => {
+    if( this.props.chat.unreadCount == 0 ){
+      return null;
+    }
+
+    return(
+      <View style={styles.unreadCountWrap}>
+        <Text style={styles.unreadCount}>
+        {this.props.chat.unreadCount}
+        </Text>
+      </View> 
+    )   
+  }
+
   render() {
+
     // this.props.chat.name : the name of this channel (defined from chats reducer).
     // this.props.chat.users.length : count for users in this chat channel.
 
@@ -79,6 +94,7 @@ export default class ChatCell extends Component {
             </Text>
             {this._renderLatestMessage()}
           </View>
+          {this._renderUnreadCount()}
         </View>
       </TouchableHighlight>
     );
@@ -111,5 +127,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 5,
     color: 'gray'
+  },
+  unreadCountWrap:{
+    backgroundColor:'#ef403b',
+    width:30,
+    height:30,
+    borderRadius:15,
+    alignSelf:'center',
+    justifyContent:'center',
+    marginRight:5
+  },
+  unreadCount : {
+    color:'white',
+    alignItems:'center',
+    textAlign:'center',
+    padding:0,
+    backgroundColor:'transparent',
   }
 })

@@ -106,14 +106,32 @@ function _parseObjToJSON(object){
       object.splice(index, 1);
     } else {
 
-      object[index] = {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        nickName: user.nickName,
-        statusMessage: user.statusMessage,
-        avatar: user.avatar,
+      var avatar = "";
+
+      if( user.get !=undefined ){
+        if( user && user.get('profileFile') != null && user.get('profileFile') != undefined ){
+          avatar = user.get('profileFile').url();
+        }
+        object[index] = {
+          id: user.id,
+          username: user.get('username'),
+          email: user.get('email'),
+          nickName: user.get('nickName'),
+          avatar: avatar,
+          statusMessage: user.get('statusMessage'),
+        };
+
+      } else {
+        object[index] = {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          nickName: user.nickName,
+          avatar: user.avatar,
+          statusMessage: user.statusMessage,
+        };        
       }
+
       names.push(user.nickName);
     }
   }, []);
@@ -125,7 +143,8 @@ function _parseObjToJSON(object){
     updatedAt: object.get("updatedAt"), // because of using javascript date objects instead of parse object 'object.createdAt',
     name: names.join(", "),
     uid: users.length == 1 ? users[0].id : null, // uid 이 Null 이면, Group Chat !
-    users,
+    users: users,
+    unreadCount:0
   };
 
 }

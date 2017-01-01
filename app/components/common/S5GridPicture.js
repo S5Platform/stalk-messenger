@@ -38,7 +38,7 @@ export default class S5GridPicture extends Component {
         alts.push( '' );
       }
     }
-
+    
     if( !images ){
       return (
         <S5Icon
