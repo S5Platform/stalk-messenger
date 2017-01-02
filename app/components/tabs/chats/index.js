@@ -59,6 +59,7 @@ class ChatsMain extends Component {
         key={chat.id}
         chat={chat}
         message={this.props.messages.latest[chat.channelId]}
+        unreadCount={this.props.messages.unreadCount[chat.channelId]}
         onPress={() => this.props.navigator.push({name: 'ChatView', chat}) }
       />
     )

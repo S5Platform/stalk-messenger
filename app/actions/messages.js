@@ -7,6 +7,7 @@ import { SERVER_URL, APP_ID } from '../../env.js';
 
 export const MESSAGE_SIZE     = 30;
 export const LATEST_MESSAGE   = "LATEST_MESSAGE";
+export const UNREAD_COUNT   = "UNREAD_COUNT";
 
 const Messages = Parse.Object.extend('Messages');
 const Channels = Parse.Object.extend('Channels');
@@ -25,6 +26,25 @@ export function setLatestMessage(channelId, text) {
       message: {
         channelId,
         text
+      }
+    });
+
+  };
+}
+
+/*
+ * add latest message
+ * @params channelId
+ * @params message
+ */
+export function setUnreadCount(channelId, count) {
+  return (dispatch) => {
+
+    return dispatch({
+      type: UNREAD_COUNT,
+      message: {
+        channelId,
+        count
       }
     });
 

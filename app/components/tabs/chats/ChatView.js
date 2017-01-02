@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { switchTab, loadMessages, setLatestMessage, uploadImage, createChat, updateLoadedAt, MESSAGE_SIZE } from 's5-action';
+import { switchTab, loadMessages, setLatestMessage, setUnreadCount, uploadImage, createChat, updateLoadedAt, MESSAGE_SIZE } from 's5-action';
 import { S5Header, S5Alert, S5Drawer, S5Icon, S5ChatBox } from 's5-components';
 
 import ControlPanel from './ControlPanel';
@@ -99,6 +99,9 @@ class ChatView extends Component {
 
             // set latest message !
             this.props.setLatestMessage(channelId, latest);
+
+            // update unread count !
+            this.props.setUnreadCount(channelId, 0);
 
             // UPDATE LOADEDAT AT CHATS
             this.props.updateLoadedAt(this.state.chat.id);
@@ -423,6 +426,7 @@ function actions(dispatch) {
     switchTab: () => dispatch(switchTab(1)), // to 'chats' tab
     loadMessages: (chat, date) => dispatch(loadMessages(chat, date)),
     setLatestMessage: (channelId, text) =>  dispatch(setLatestMessage(channelId, text)),
+    setUnreadCount: (channelId, count) =>  dispatch(setUnreadCount(channelId, count)),
     createChat: (users) => dispatch(createChat(users)),
     leaveChat: (chatId) => dispatch(leaveChat(chatId)),
     updateLoadedAt: (chatId) => dispatch(updateLoadedAt(chatId))

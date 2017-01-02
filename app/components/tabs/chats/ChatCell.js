@@ -20,6 +20,7 @@ export default class ChatCell extends Component {
     chat: React.PropTypes.object.isRequired,
     message: React.PropTypes.string,
     onPress: React.PropTypes.func,
+    unreadCount: React.PropTypes.number
   };
 
   _renderProfilePictures = () => {
@@ -58,14 +59,14 @@ export default class ChatCell extends Component {
   }
 
   _renderUnreadCount =() => {
-    if( this.props.chat.unreadCount == 0 ){
+    if( !this.props.unreadCount ){
       return null;
     }
 
     return(
       <View style={styles.unreadCountWrap}>
         <Text style={styles.unreadCount}>
-        {this.props.chat.unreadCount}
+        {this.props.unreadCount}
         </Text>
       </View> 
     )   
