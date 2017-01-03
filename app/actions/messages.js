@@ -38,6 +38,7 @@ export function setLatestMessage(channelId, text) {
  * @params message
  */
 export function setUnreadCount(channelId, count) {
+
   return (dispatch) => {
 
     return dispatch({

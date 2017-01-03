@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { loadConfig, updateInstallation } from 's5-action';
+import { loadConfig, updateInstallation, setUnreadCount } from 's5-action';
 import { S5Colors, S5Alert } from 's5-components';
 import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 
@@ -126,6 +126,8 @@ class App extends Component {
               PushNotification.localNotification({
                 message: message[0].DT.user.name + ' : ' + message[0].DT.text
               });
+
+              this.props.setUnreadCount( message[0].DT.C, 1);
             }
           });
 
@@ -202,6 +204,7 @@ function select(store) {
 function actions(dispatch) {
   return {
     loadConfig: () => dispatch(loadConfig()),
+    setUnreadCount: (channelId, count) =>  dispatch(setUnreadCount(channelId, count)),
   };
 }
 
