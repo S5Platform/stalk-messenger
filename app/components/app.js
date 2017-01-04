@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { loadConfig, updateInstallation, setUnreadCount } from 's5-action';
+import { loadConfig, updateInstallation, setUnreadCount, setLatestMessage } from 's5-action';
 import { S5Colors, S5Alert } from 's5-components';
 import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 
@@ -122,11 +122,12 @@ class App extends Component {
 
           self.bg_socket.on('backgound-message', (message) => { // MESSAGED RECEIVED
             if(message && message.length > 0) {
-              console.log('[BACKGROUND] MESSAGE', message[0]);
+
               PushNotification.localNotification({
                 message: message[0].DT.user.name + ' : ' + message[0].DT.text
               });
 
+              this.props.setLatestMessage( message[0].DT.C, message[0].DT.text );
               this.props.setUnreadCount( message[0].DT.C, 1);
             }
           });
@@ -204,6 +205,7 @@ function select(store) {
 function actions(dispatch) {
   return {
     loadConfig: () => dispatch(loadConfig()),
+    setLatestMessage: (channelId, text) =>  dispatch(setLatestMessage(channelId, text)),
     setUnreadCount: (channelId, count) =>  dispatch(setUnreadCount(channelId, count)),
   };
 }

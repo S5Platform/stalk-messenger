@@ -68,7 +68,7 @@ class FollowsMain extends Component {
     const filterText = this.state.filter || '';
     const filterRegex = new RegExp(String(filterText), 'i');
     const filter = (user) => filterRegex.test(user.nickName);
-console.log(S5Colors.primaryText);
+    
     return (
       <View style={styles.container}>
         <S5TextInput

@@ -60,9 +60,11 @@ export function createFollow(id) {
       success: (follow) => {
 
         if(follow) {
-        //  InteractionManager.runAfterInteractions(() => {
+          InteractionManager.runAfterInteractions(() => {
             dispatch(({type: ADDED_FOLLOWS, follow}));
-        //  });
+
+            return Promise.resolve();
+          });
         }
 
       },

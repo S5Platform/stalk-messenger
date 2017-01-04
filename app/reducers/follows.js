@@ -44,10 +44,18 @@ function follows(state = initialState, action) {
       };
 
   } else if (action.type === ADDED_FOLLOWS) {
-
-    let follow = _parseObjToJSON(action.follow);
+    
     let newData = [...state.list];
-    newData.unshift(follow);
+
+    if (Array.isArray(action.follow)) {
+      for( var inx in action.follow ){
+        let follow = _parseObjToJSON(action.follow[inx]);    
+        newData.unshift(follow);
+      }
+    } else {
+      let follow = _parseObjToJSON(action.follow);    
+      newData.unshift(follow);
+    }
 
     return {
       list: sortByKey(newData, 'nickName'),
@@ -65,6 +73,7 @@ function follows(state = initialState, action) {
 }
 
 export function _parseObjToJSON(object){
+
   var user = object.get('userTo');
   var avatar = "";
   if( user && user.get('profileFile') != null && user.get('profileFile') != undefined ){
