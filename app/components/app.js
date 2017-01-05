@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { loadConfig, updateInstallation, setUnreadCount, setLatestMessage } from 's5-action';
+import { loadConfig, updateInstallation, setUnreadCount, setLatestMessage, loadChats } from 's5-action';
 import { S5Colors, S5Alert } from 's5-components';
 import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 
@@ -123,12 +123,34 @@ class App extends Component {
           self.bg_socket.on('backgound-message', (message) => { // MESSAGED RECEIVED
             if(message && message.length > 0) {
 
+              var channel = message[0].DT.C;
+
               PushNotification.localNotification({
                 message: message[0].DT.user.name + ' : ' + message[0].DT.text
               });
 
-              this.props.setLatestMessage( message[0].DT.C, message[0].DT.text );
-              this.props.setUnreadCount( message[0].DT.C, 1);
+              var chat;
+              for( var inx in self.props.chats.list ){
+                var obj = self.props.chats.list[inx];
+                if( obj.channelId == channel ) {
+                  chat = obj;
+                }
+              }
+
+              if( chat ){
+                self.props.setLatestMessage( channel, message[0].DT.text );
+                self.props.setUnreadCount( channel, 1);   
+              } else {
+                this.props.loadChats().then(
+                  (result) => {
+                    self.props.setLatestMessage( channel, message[0].DT.text );
+                    self.props.setUnreadCount( channel, 1);  
+                  },
+                  (error)=> {
+                  }
+                );      
+              }
+
             }
           });
 
@@ -199,6 +221,7 @@ const styles = StyleSheet.create({
 function select(store) {
   return {
     user: store.user,
+    chats: store.chats,
   };
 }
 
@@ -207,6 +230,7 @@ function actions(dispatch) {
     loadConfig: () => dispatch(loadConfig()),
     setLatestMessage: (channelId, text) =>  dispatch(setLatestMessage(channelId, text)),
     setUnreadCount: (channelId, count) =>  dispatch(setUnreadCount(channelId, count)),
+    loadChats: () => dispatch(loadChats()), 
   };
 }
 
