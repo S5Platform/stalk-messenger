@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TouchableHighlight,
+  Switch
 } from 'react-native';
 
 import { S5Icon } from 's5-components';
@@ -20,13 +21,42 @@ export default class TouchableItem extends Component {
     showArrow: React.PropTypes.bool,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+       switchOn: false
+    }
+  }
+
   static defaultProps = {
     iconSize: 25,
     showArrow: false,
   }
 
+  _onToggle = (value) => {
+    this.setState({switchOn: value});
+  }  
+
   render() {
-    const { iconSize, onPress, text, textStyle, style, borderStyle, showArrow} = this.props;
+    const { iconSize, onPress, text, textStyle, style, borderStyle, showArrow, showToggle, value} = this.props;
+
+    if( showToggle ){
+      return (
+      <View style={{alignSelf:'stretch', height: 48}}>
+        <View style={[styles.container, style, borderStyle]}>
+          <Text style={[styles.text, textStyle]}>{text}</Text>
+          <Switch
+            onValueChange={(value) => this._onToggle(value)}
+            onTintColor="#000000"
+            style={{marginBottom: 10}}
+            thumbTintColor="#0000ff"
+            value={this.state.switchOn}
+            tintColor="#000000" />
+        </View>
+      </View>
+      )
+    }
 
     return (
       <TouchableHighlight style={{alignSelf:'stretch', height: 48}} onPress={() => onPress()}>

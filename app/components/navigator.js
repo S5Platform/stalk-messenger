@@ -28,6 +28,8 @@ import ProfileForm    from './tabs/profile/ProfileForm';
 
 import SettingView    from './tabs/profile/setting/SettingView';
 import LicenseView    from './tabs/profile/setting/LicenseView';
+
+import PushNotificationView from './tabs/profile/setting/PushNotificationView'
 import PrivacyPolicyView from './tabs/profile/setting/PrivacyPolicyView';
 
 
@@ -116,6 +118,8 @@ class AppNavigator extends Component {
         return <LicenseView     navigator={navigator} />;
       case 'PrivacyPolicyView':
         return <PrivacyPolicyView     navigator={navigator} />;
+      case 'PushNotificationView':
+        return <PushNotificationView navigator={navigator} />;
       default:
         return <TabsView        navigator={navigator} />;
     }
