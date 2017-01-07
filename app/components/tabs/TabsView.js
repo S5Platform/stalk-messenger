@@ -55,7 +55,7 @@ class TabsView extends Component {
     if (Platform.OS == 'android' /* FOR ANDROID */ ) {
       return (
         <Text style={[ styles.label, {
-          color:      navigationState.index === index ? S5Colors.primaryText : S5Colors.secondaryText,
+          color:      navigationState.index === index ? S5Colors.highlightText : S5Colors.secondaryText,
           //fontWeight: navigationState.index === index ? 'bold' : 'normal',
         } ]}>
           {route.title}
@@ -66,7 +66,7 @@ class TabsView extends Component {
       return (
         <S5Icon
           name={route.icon}
-          color={navigationState.index === index ? S5Colors.primaryText : S5Colors.secondaryText}
+          color={navigationState.index === index ? S5Colors.highlightText : S5Colors.secondaryText}
         />
       );
     }

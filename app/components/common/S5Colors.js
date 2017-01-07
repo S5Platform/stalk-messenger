@@ -7,6 +7,7 @@
 const COLORS = {
   'PRIMARY_TEXT': 'rgba(0, 0, 0, 1.0)',
   'SECONDARY_TEXT': 'rgba(0, 0, 0, 0.54)',
+  'HIGHLIGHT_TEXT': 'rgba(255, 255, 255, 0.8)',
   'DISABLE_TEXT': 'rgba(0, 0, 0, 0.38)',
   'HINT_TEXT': 'rgba(0, 0, 0, 0.38)',
   'PRIMARY': '#3E50B4',
@@ -28,6 +29,7 @@ function colorForProfile(str, count = 1) {
 module.exports = {
   primaryText: COLORS.PRIMARY_TEXT,
   secondaryText: COLORS.SECONDARY_TEXT,
+  highlightText: COLORS.HIGHLIGHT_TEXT,
   disableText: COLORS.DISABLE_TEXT,
   hintText: COLORS.HINT_TEXT,
   primary: COLORS.PRIMARY,

@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-native';
 
-import { S5Icon } from 's5-components';
+import { S5Icon, S5Colors } from 's5-components';
 
 export default class TouchableItem extends Component {
 
@@ -25,7 +25,7 @@ export default class TouchableItem extends Component {
     super(props);
 
     this.state = {
-       switchOn: false
+      switchOn: false
     }
   }
 
@@ -39,7 +39,7 @@ export default class TouchableItem extends Component {
   }  
 
   render() {
-    const { iconSize, onPress, text, textStyle, style, borderStyle, showArrow, showToggle, value} = this.props;
+    const { leftIcon, iconSize, onPress, text, textStyle, style, borderStyle, showArrow, showToggle, value} = this.props;
 
     if( showToggle ){
       return (
@@ -48,11 +48,8 @@ export default class TouchableItem extends Component {
           <Text style={[styles.text, textStyle]}>{text}</Text>
           <Switch
             onValueChange={(value) => this._onToggle(value)}
-            onTintColor="#000000"
             style={{marginBottom: 10}}
-            thumbTintColor="#0000ff"
-            value={this.state.switchOn}
-            tintColor="#000000" />
+            value={this.state.switchOn} />
         </View>
       </View>
       )
@@ -61,6 +58,7 @@ export default class TouchableItem extends Component {
     return (
       <TouchableHighlight style={{alignSelf:'stretch', height: 48}} onPress={() => onPress()}>
         <View style={[styles.container, style, borderStyle]}>
+          {leftIcon && (<S5Icon name={leftIcon} size={iconSize} style={{marginRight:iconSize/2}}/>)}
           <Text style={[styles.text, textStyle]}>{text}</Text>
           {showArrow && (<S5Icon name='arrow-forward' size={iconSize}/>)}
         </View>
@@ -80,6 +78,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: 'black'
+    color: 'black',
+    flex:1,
   }
 });

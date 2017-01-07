@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
     flex:1,
   },
   contentContainer: {
-      backgroundColor: 'whitesmoke',
-      paddingTop: 5,
-      paddingBottom: 5,
-      marginBottom: 2,
+    backgroundColor: 'whitesmoke',
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginBottom: 2,
   },
   groupStyle: {
     marginVertical: 8,
