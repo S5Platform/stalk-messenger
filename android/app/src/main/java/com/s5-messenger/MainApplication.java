@@ -1,4 +1,4 @@
-package com.s5messenger;
+package com.s5-messenger;
 
 import android.app.Application;
 import android.util.Log;

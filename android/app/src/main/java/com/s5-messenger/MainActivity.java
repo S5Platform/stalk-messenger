@@ -1,4 +1,4 @@
-package com.s5messenger;
+package com.s5-messenger;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -16,6 +16,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "s5messenger";
+        return "s5-messenger";
     }
 }

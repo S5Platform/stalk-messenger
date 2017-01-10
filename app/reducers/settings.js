@@ -6,11 +6,13 @@ const initialState = {
 
 function settings(state = initialState, action) {
 
-  if (action.type === UPDATE_SETTINGS) {
-    let newData = [...state.settings];
-    newData[action.key] = action.value;
-    return {settings:newData};
-  }
+	if (action.type === UPDATE_SETTINGS) {
+		let newData = [...state.settings];
+		newData[action.key] = action.value;
+		return {settings:newData};
+	}
+
+	return { ...state };
 
 }
 
