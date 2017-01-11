@@ -63,8 +63,8 @@ class SettingView extends Component {
          </TouchableItemGroup>
 
          <TouchableItemGroup style={styles.groupStyle} title='SUPPORT'>
-           <TouchableItem text='Help Center' showArrow onPress={() => console.log("Help Center")}/>
-           <TouchableItem text='Report a Problem' showArrow onPress={() => console.log("Report a Problem")}/>
+           <TouchableItem leftIcon={'help-circle'}  text='Help Center' showArrow onPress={() => console.log("Help Center")}/>
+           <TouchableItem leftIcon={'bug'} text='Report a Problem' showArrow onPress={() => console.log("Report a Problem")}/>
          </TouchableItemGroup>
 
           <TouchableItemGroup style={styles.groupStyle} title='ABOUT'>

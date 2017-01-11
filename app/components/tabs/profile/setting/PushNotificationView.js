@@ -8,12 +8,15 @@ import {
   Switch
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { updateSetting } from 's5-action';
+
 import { S5Header } from 's5-components';
 
 import TouchableItem from './TouchableItem';
 import TouchableItemGroup from './TouchableItemGroup';
 
-export default class PushNotificationView extends Component {
+class PushNotificationView extends Component {
 
   static propTypes = {
     navigator: React.PropTypes.object.isRequired,
@@ -24,6 +27,10 @@ export default class PushNotificationView extends Component {
 
     this.state = {
     }
+  }
+
+  _onChangeToggle = (key,value) => {
+    this.props.dispatch(updateUser(key,value));
   }
 
   render() {
@@ -40,8 +47,8 @@ export default class PushNotificationView extends Component {
           style={styles.contentContainer} >
 
          <TouchableItemGroup style={styles.groupStyle} title='Notification View'>
-           <TouchableItem text='Preview' showToggle onToggle={(value) => console.log( value )}/>
-           <TouchableItem text='Image Preview' showToggle onToggle={(value) => console.log( value ) }/>
+           <TouchableItem text='Preview' showToggle onToggle={(value) => this._onChangeToggle( 'preview',value )}/>
+           <TouchableItem text='Image Preview' showToggle onToggle={(value) => this._onChangeToggle( 'imagePreview',value )}/>
          </TouchableItemGroup>
         </ScrollView>        
       </View>
@@ -63,3 +70,12 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
 });
+
+
+function select(store) {
+  return {
+    settings: store.settings,
+  };
+}
+
+module.exports = connect(select)(PushNotificationView);
