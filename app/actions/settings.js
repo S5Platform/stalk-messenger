@@ -7,12 +7,10 @@ export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
  */
 export function updateSetting(key, value) {
   return (dispatch) => {
-
     return dispatch({
       type: UPDATE_SETTINGS,
       key: key,
       value: value
     });
-
-  };
+  }
 }

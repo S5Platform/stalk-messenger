@@ -26,11 +26,13 @@ class PushNotificationView extends Component {
     super(props);
 
     this.state = {
+      preview : this.props.settings.preview,
+      imagePreview: this.props.settings.imagePreview,
     }
   }
 
   _onChangeToggle = (key,value) => {
-    this.props.dispatch(updateUser(key,value));
+    this.props.dispatch(updateSetting(key,value));
   }
 
   render() {
@@ -47,8 +49,8 @@ class PushNotificationView extends Component {
           style={styles.contentContainer} >
 
          <TouchableItemGroup style={styles.groupStyle} title='Notification View'>
-           <TouchableItem text='Preview' showToggle onToggle={(value) => this._onChangeToggle( 'preview',value )}/>
-           <TouchableItem text='Image Preview' showToggle onToggle={(value) => this._onChangeToggle( 'imagePreview',value )}/>
+           <TouchableItem text='Preview' showToggle selected={this.state.preview} onToggle={(value) => this._onChangeToggle( 'preview',value )}/>
+           <TouchableItem text='Image Preview' selected={this.state.imagePreview} showToggle onToggle={(value) => this._onChangeToggle( 'imagePreview',value )}/>
          </TouchableItemGroup>
         </ScrollView>        
       </View>

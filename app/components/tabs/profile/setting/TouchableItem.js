@@ -25,7 +25,7 @@ export default class TouchableItem extends Component {
     super(props);
 
     this.state = {
-      switchOn: false
+      switchOn: this.props.selected || false
     }
   }
 
@@ -36,10 +36,13 @@ export default class TouchableItem extends Component {
 
   _onToggle = (value) => {
     this.setState({switchOn: value});
+    if( this.props.onToggle ){
+      this.props.onToggle( value );
+    }
   }  
 
   render() {
-    const { leftIcon, iconSize, onPress, text, textStyle, style, borderStyle, showArrow, showToggle, value} = this.props;
+    const { leftIcon, onToggle, iconSize, onPress, text, textStyle, style, borderStyle, showArrow, showToggle, value} = this.props;
 
     if( showToggle ){
       return (

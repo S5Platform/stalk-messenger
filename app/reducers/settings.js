@@ -1,18 +1,18 @@
 import { UPDATE_SETTINGS } from 's5-action';
 
 const initialState = {
-  settings: {}
+	preview:false,
+	imagePreview:false,
 };
 
 function settings(state = initialState, action) {
 
 	if (action.type === UPDATE_SETTINGS) {
-		let newData = [...state.settings];
-		newData[action.key] = action.value;
-		return {settings:newData};
+		state[action.key] = action.value;
+		return { ...state };
 	}
 
-	return { ...state };
+	return state;
 
 }
 
