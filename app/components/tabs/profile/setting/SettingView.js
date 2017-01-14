@@ -14,7 +14,7 @@ import {
 
 import { connect } from 'react-redux';
 import { S5Header } from 's5-components';
-import { logOut, updateUser } from 's5-action';
+import { logOut, resetSetting } from 's5-action';
 
 import DeviceInfo from 'react-native-device-info';
 
@@ -34,6 +34,17 @@ class SettingView extends Component {
       'Do you want to logout?',
       [
         {text: 'Logout', onPress: () => this.props.dispatch(logOut())  },
+        {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
+      ]
+    )
+  }
+
+  _resetSettings = () => {
+    Alert.alert(
+      'Alert',
+      'Do you want to set configuration to default?',
+      [
+        {text: 'Logout', onPress: () => this.props.dispatch(resetSetting())  },
         {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
       ]
     )
