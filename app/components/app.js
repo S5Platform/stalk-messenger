@@ -126,8 +126,12 @@ class App extends Component {
               var channel = message[0].DT.C;
 
               PushNotification.localNotification({
-                message: message[0].DT.user.name + ' : ' + message[0].DT.text
+                message: message[0].DT.user.nickName + ' : ' + message[0].DT.text
               });
+
+              if( message[0].DT.user.nickName && message[0].DT.text ){
+                self.refs['alert'].alert('info', message[0].DT.user.nickName,  message[0].DT.text );
+              }
 
               var chat;
               for( var inx in self.props.chats.list ){
