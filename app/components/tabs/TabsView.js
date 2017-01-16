@@ -36,6 +36,7 @@ class TabsView extends Component {
   constructor(props) {
     super(props);
     this.initialPage = props.tab;
+    this.totalUnreadCount = props.totalUnreadCount;
   }
 
   componentWillMount() {
@@ -63,11 +64,29 @@ class TabsView extends Component {
       );
 
     }else{
+      var self = this;
+      var renderBadge = function(){
+        if( route.key =='chats' && self.props.totalUnreadCount > 0 ){
+          return (
+            <View style={styles.unreadCountWrap}>
+              <Text style={styles.unreadCount}>
+              {self.props.totalUnreadCount}
+              </Text>
+            </View> 
+          );
+        } else {
+          return null;
+        }
+      };
+
       return (
+        <View>
         <S5Icon
           name={route.icon}
           color={navigationState.index === index ? S5Colors.highlightText : S5Colors.secondaryText}
         />
+        {renderBadge()}
+        </View>
       );
     }
 
@@ -181,6 +200,22 @@ const styles = StyleSheet.create({
   toolbar: {
     backgroundColor: S5Colors.primary,
     height: 52,
+  },
+  unreadCountWrap:{
+    position:'absolute',
+    right:-5,
+    backgroundColor:'#ef403b',
+    width:16,
+    height:16,
+    borderRadius:8,
+  },
+  unreadCount : {
+    color:'white',
+    alignItems:'center',
+    textAlign:'center',
+    padding:0,
+    backgroundColor:'transparent',
+    fontSize:10
   }
 });
 
@@ -188,6 +223,7 @@ const styles = StyleSheet.create({
 function select(store) {
   return {
     tab: store.navigation.tab,
+    totalUnreadCount: store.messages.totalUnreadCount
   };
 }
 
