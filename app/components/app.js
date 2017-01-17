@@ -130,7 +130,7 @@ class App extends Component {
               });
 
               if( message[0].DT.user.nickName && message[0].DT.text ){
-                self.refs['alert'].alert('info', message[0].DT.user.nickName,  message[0].DT.text );
+                self.refs['alert'].alert('custom', message[0].DT.user.nickName,  message[0].DT.text, message[0].DT.user.avatar );
               }
 
               var chat;
@@ -207,7 +207,7 @@ class App extends Component {
 
         { this.props.user.isLoggedIn ? <PushController /> : null }
 
-        <S5Alert ref={'alert'} />
+        <S5Alert ref={'alert'} imageStyle={{width:36, height:36, borderRadius:18,marginTop:10}}/>
 
       </View>
     );

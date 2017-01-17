@@ -123,8 +123,8 @@ export default class S5Alert extends Component {
     return null
   }
   renderImage(src) {
-    if (this.state.type == 'custom' && this.props.imageUri.length > 0) {
-      var uri = this.props.imageUri
+    if (this.state.type == 'custom' && ( this.props.imageUri.length > 0 || this.state.imageUri.length > 0 ) ) {
+      var uri = this.props.imageUri || this.state.imageUri;
       var style = this.props.imageStyle
       if (!style['width']) {
         style['width'] = DEFAULT_IMAGE_DIMENSIONS
@@ -235,13 +235,27 @@ export default class S5Alert extends Component {
       endDelta: actualEndDelta
     })
   }
-  alert(type, title, message) {
+  alert(type, title, message, imageUri) {
     if (this.validateType(type) == false) {
       return
     }
     if (this.state.isOpen) {
-      this.dismiss()
-      return
+      if( type !='custom'){
+        this.dismiss()
+        return
+      } else {
+        this.setState({
+          type: type,
+          message: message,
+          title: title,
+          isOpen: true,
+          imageUri:imageUri
+        });
+
+        if (closeTimeoutId ) {
+          clearTimeout(closeTimeoutId);
+        } 
+      }
     }
     if (this.state.visible == false) {
       this.setState({
@@ -249,7 +263,8 @@ export default class S5Alert extends Component {
         type: type,
         message: message,
         title: title,
-        isOpen: true
+        isOpen: true,
+        imageUri:imageUri
       })
     }
     this.animate(1)
