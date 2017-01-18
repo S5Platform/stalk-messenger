@@ -19,6 +19,7 @@ import S5SwipeRow       from './S5SwipeRow';
 import S5Paragraph      from './S5Paragraph';
 import S5TextInput      from './S5TextInput';
 import S5ChatBox        from './S5ChatBox';
+import S5Radio          from './S5Radio'
 
 export {
   S5Alert,
@@ -38,4 +39,5 @@ export {
   S5Icon,
   S5ListView,
   S5ChatBox,
+  S5Radio
 };

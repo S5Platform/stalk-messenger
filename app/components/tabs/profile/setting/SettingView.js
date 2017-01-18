@@ -71,6 +71,7 @@ class SettingView extends Component {
          <TouchableItemGroup style={styles.groupStyle} title='SETTINGS'>
            <TouchableItem text='Language' showArrow onPress={() => console.log("Edit Profile")}/>
            <TouchableItem leftIcon={'notifications'} text='Push Notification Settings' showArrow onPress={() => this._navPage('PushNotificationView')} />
+           <TouchableItem leftIcon={'image'} text='Image Quality on Sending' showArrow onPress={() => this._navPage('ImageQualityView')} />
          </TouchableItemGroup>
 
          <TouchableItemGroup style={styles.groupStyle} title='SUPPORT'>
