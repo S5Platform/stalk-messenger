@@ -16,7 +16,7 @@ import { S5Header, S5Radio, S5Colors } from 's5-components';
 import TouchableItem from './TouchableItem';
 import TouchableItemGroup from './TouchableItemGroup';
 
-const optionValues = ['S', 'L', 'O'];
+const optionValues = [0.25, 0.5, 1];
 
 class ImageQualityView extends Component {
 
@@ -33,16 +33,17 @@ class ImageQualityView extends Component {
   }
 
   _onChangeRadio = (index) => {
-    this.setState( {'imageQuality':optionValues[index]} );   
+    this.setState( {'imageQuality':optionValues[index]} );
+    this.props.dispatch(updateSetting('imageQuality',optionValues[index]));
   }
 
   render() {
 
     var self = this;
     let defaultSelect = -1;
-    if(this.state.imageQuality=='S') defaultSelect = 0;
-    if(this.state.imageQuality=='L') defaultSelect = 1;
-    if(this.state.imageQuality=='O') defaultSelect = 2;
+    if(this.state.imageQuality== 0.25) defaultSelect = 0;
+    if(this.state.imageQuality== 0.5) defaultSelect = 1;
+    if(this.state.imageQuality== 1) defaultSelect = 2;
 
     return (
       <View style={styles.container}>
@@ -64,9 +65,9 @@ class ImageQualityView extends Component {
               style={styles.itemWrap}
               optionStyle={styles.optionWrap}
               fontSize={16} >
-              <S5Radio.Option isSelected={this.state.imageQuality=='S'?true:false}>Small</S5Radio.Option>
-              <S5Radio.Option isSelected={this.state.imageQuality=='L'?true:false}>Large</S5Radio.Option>
-              <S5Radio.Option isSelected={this.state.imageQuality=='O'?true:false}>Original</S5Radio.Option>
+              <S5Radio.Option isSelected={this.state.imageQuality== 0.25? true:false}>Small</S5Radio.Option>
+              <S5Radio.Option isSelected={this.state.imageQuality== 0.5 ?true:false}>Large</S5Radio.Option>
+              <S5Radio.Option isSelected={this.state.imageQuality== 1 ?true:false}>Original</S5Radio.Option>
             </S5Radio>
         </ScrollView>        
       </View>

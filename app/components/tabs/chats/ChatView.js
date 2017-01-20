@@ -46,7 +46,9 @@ class ChatView extends Component {
       isTyping:     null,
       connected:    false,
       node:         {},
+      imageQuality: this.props.settings.imageQuality || 1
     };
+
   }
 
   componentWillMount() {
@@ -394,7 +396,7 @@ class ChatView extends Component {
             loadEarlier={ this.state.loadEarlier }
             onLoadEarlier={ this._onLoadEarlier }
             onSelectImage={ this._onSelectImage }
-
+            imageQuality={this.state.imageQuality}
             enabled={ this.state.connected || !this.state.chat.channelId }
             reconnecting={ this.socket && this.socket.isConnected && !this.state.connected }
           />
@@ -418,6 +420,7 @@ function select(store) {
   return {
     user: store.user,
     chats: store.chats,
+    settings: store.settings,
   };
 }
 

@@ -137,6 +137,10 @@ export default class S5ChatBox extends Component {
   selectImage = () => {
 
     var self = this;
+    if( this.props.imageQuality ){
+      imagePickerOptions.quality = this.props.imageQuality;
+    }
+
     ImagePicker.showImagePicker(imagePickerOptions, (response) => {
 
       if (response.didCancel) {
