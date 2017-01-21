@@ -1,8 +1,8 @@
 import { UPDATE_SETTINGS, RESET_SETTINGS, LOGGED_OUT } from 's5-action';
 
 const initialState = {
-	preview:false,
-	imagePreview:false,
+	preview:true,
+	imagePreview:true,
 	imageQuality:'O'
 };
 

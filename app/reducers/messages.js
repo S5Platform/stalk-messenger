@@ -3,7 +3,7 @@
  *
  */
 
-import { LATEST_MESSAGE, UNREAD_COUNT, LOGGED_OUT} from 's5-action';
+import { LATEST_MESSAGE, UNREAD_COUNT, LOGGED_OUT, CLEAR_CHATS} from 's5-action';
 
 const initialState = {
   latest: {},
@@ -44,7 +44,7 @@ function messages(state = initialState, action) {
     };
   }
 
-  if (action.type === LOGGED_OUT) {
+  if (action.type === LOGGED_OUT || CLEAR_CHATS ) {
     return initialState;
   }
   return state;

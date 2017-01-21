@@ -99,10 +99,6 @@ class FollowsMain extends Component {
           renderRow={ this._renderRow }
           renderHiddenRow={ (data, secId, rowId, rowMap) => (
             <View style={styles.rowBack}>
-              <Text>Left</Text>
-              <View style={[styles.backRightBtn, styles.backRightBtnLeft]}>
-                <Text style={styles.backTextWhite}>Right</Text>
-              </View>
               <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this._deleteRow(secId, rowId, rowMap) }>
                 <Text style={styles.backTextWhite}>Delete</Text>
               </TouchableOpacity>

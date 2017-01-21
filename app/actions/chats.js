@@ -10,6 +10,7 @@ export const ADDED_CHAT       = 'ADDED_CHAT';
 export const REMOVED_CHATS    = 'REMOVED_CHATS';
 export const ADDED_USERS_IN_CHAT = 'ADDED_USERS_IN_CHAT';
 export const UPDATED_LOADEDAT = 'UPDATED_LOADEDAT';
+export const CLEAR_CHATS       = 'CLEAR_CHATS';
 
 const InteractionManager = require('InteractionManager');
 
@@ -235,6 +236,18 @@ export function leaveChat(chatId) {
     });
   };
 
+}
+
+export function clearChats(chatId) {
+
+  return (dispatch, getState) => {
+
+    dispatch({
+      type: CLEAR_CHATS
+    });
+
+    return Promise.resolve();
+  };
 }
 
 export function addUsers(chatId, channelId, ids) {

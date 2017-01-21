@@ -14,7 +14,7 @@ import {
 
 import { connect } from 'react-redux';
 import { S5Header } from 's5-components';
-import { logOut, resetSetting } from 's5-action';
+import { logOut, resetSetting, clearChats } from 's5-action';
 
 import DeviceInfo from 'react-native-device-info';
 
@@ -34,6 +34,17 @@ class SettingView extends Component {
       'Do you want to logout?',
       [
         {text: 'Logout', onPress: () => this.props.dispatch(logOut())  },
+        {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
+      ]
+    )
+  }
+
+  _clearData = () => {
+    Alert.alert(
+      'Alert',
+      'Do you want to clear chattings?',
+      [
+        {text: 'Clear', onPress: () => this.props.dispatch(clearChats())  },
         {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
       ]
     )
@@ -86,7 +97,7 @@ class SettingView extends Component {
           </TouchableItemGroup>
 
           <TouchableItemGroup style={styles.groupStyle}>
-            <TouchableItem text='Clear Search History' onPress={() => console.log("Edit Profile")}/>
+            <TouchableItem text='Clear Chat History' onPress={this._clearData}/>
             <TouchableItem text='Log Out' onPress={ this._logout }/>
           </TouchableItemGroup>
 

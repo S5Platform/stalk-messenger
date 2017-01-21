@@ -125,12 +125,14 @@ class App extends Component {
 
               var channel = message[0].DT.C;
 
-              PushNotification.localNotification({
-                message: message[0].DT.user.nickName + ' : ' + message[0].DT.text
-              });
+              if( this.props.settings.preview ){
+                PushNotification.localNotification({
+                  message: message[0].DT.user.nickName + ' : ' + message[0].DT.text
+                });
 
-              if( message[0].DT.user.nickName && message[0].DT.text ){
-                self.refs['alert'].alert('custom', message[0].DT.user.nickName,  message[0].DT.text, message[0].DT.user.avatar );
+                if( message[0].DT.user.nickName && message[0].DT.text ){
+                  self.refs['alert'].alert('custom', message[0].DT.user.nickName,  message[0].DT.text, message[0].DT.user.avatar );
+                }
               }
 
               var chat;
@@ -226,6 +228,7 @@ function select(store) {
   return {
     user: store.user,
     chats: store.chats,
+    settings: store.settings,
   };
 }
 
