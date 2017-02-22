@@ -21,6 +21,7 @@ import SignupView     from './login/SignupView';
 import TabsView       from './tabs/TabsView';
 
 import ChatView       from './tabs/chats/ChatView';
+import ImageViewer    from './tabs/chats/ImageViewer';
 import SearchUserView from './tabs/follows/SearchUserView';
 import SelectUserView from './tabs/follows/SelectUserView';
 import UserView       from './tabs/follows/UserView';
@@ -111,6 +112,8 @@ class AppNavigator extends Component {
         return <UserView        navigator={navigator} user={route.user}/>;
       case 'ChatView':
         return <ChatView        navigator={navigator} chat={route.chat} users={route.users} />;
+      case 'ImageViewer':
+        return <ImageViewer     navigator={navigator} images={route.images} />;
       case 'ProfileForm':
         return <ProfileForm     navigator={navigator} field={route.field} title={route.title} validLength={route.validLength} />;
       case 'SettingView':

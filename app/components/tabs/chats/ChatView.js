@@ -358,6 +358,12 @@ class ChatView extends Component {
 
   }
 
+  _onPressImage =(image) => {
+    console.log( '---555555555----' );
+    console.log( image );
+    this.props.navigator.push({name: 'ImageViewer', images:[image]});
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -396,6 +402,7 @@ class ChatView extends Component {
             loadEarlier={ this.state.loadEarlier }
             onLoadEarlier={ this._onLoadEarlier }
             onSelectImage={ this._onSelectImage }
+            onPressImage={this._onPressImage }
             imageQuality={this.state.imageQuality}
             enabled={ this.state.connected || !this.state.chat.channelId }
             reconnecting={ this.socket && this.socket.isConnected && !this.state.connected }

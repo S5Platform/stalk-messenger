@@ -8,6 +8,7 @@ import {
   Text,
   StyleSheet,
   View,
+  TouchableOpacity
 } from 'react-native';
 
 import { GiftedChat, Bubble, Send, Composer } from 'react-native-gifted-chat';
@@ -52,7 +53,7 @@ export default class S5ChatBox extends Component {
   append = (beforeMessages, messages) => {
 
     console.log(messages);
-    
+
     return GiftedChat.append(beforeMessages, messages);
   }
 
@@ -74,15 +75,33 @@ export default class S5ChatBox extends Component {
   }
 
   _renderBubble = (props) => {
-    return (
-      <Bubble {...props}
-        wrapperStyle={{
-          left: {
-            backgroundColor: '#f0f0f0',
-          }
-        }}
-      />
-    );
+
+    if( props.currentMessage.image && this.props.onPressImage ){
+
+      console.log( '---111---' );
+      console.log( props.currentMessage.image );
+      return (
+        <TouchableOpacity onPress={()=> this.props.onPressImage( props.currentMessage.image ) } style={{zIndex:30}}>
+          <Bubble {...props}
+            wrapperStyle={{
+              left: {
+                backgroundColor: '#f0f0f0',
+              }
+            }}
+          />
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <Bubble {...props}
+          wrapperStyle={{
+            left: {
+              backgroundColor: '#f0f0f0',
+            }
+          }}
+        />
+      )
+    }
   }
 
   _renderSend = (props) => {
@@ -177,6 +196,7 @@ export default class S5ChatBox extends Component {
         renderBubble={this._renderBubble}
         renderFooter={this._renderFooter}
         renderSend={this._renderSend}
+        onLongPress={this._onLongPress}
 
         textInputProps={{
           editable: this.props.enabled

@@ -37,9 +37,21 @@ export default class S5Header extends Component {
   };
 
   render() {
+
+    var backgroundColor = S5Colors.primary;
+    var iconColor = S5Colors.primaryText;
+
+    if( this.props.style !== undefined && this.props.style.backgroundColor){
+        backgroundColor = this.props.style.backgroundColor;
+    }
+
+    if( this.props.iconColor ){
+      iconColor = this.props.iconColor;
+    }
+
     return (
       <NavigationBar
-        style={styles.toolbar}
+        style={[styles.toolbar,{backgroundColor:backgroundColor}]}
         title={{
           title: this.props.title.toUpperCase() || 'STALK',
           style: styles.title
@@ -47,12 +59,14 @@ export default class S5Header extends Component {
         leftButton={
           <NavBarButton
             style={{ marginLeft: 15 }}
+            color={iconColor}
             onPress={ this.props.onPress }
             actions={ this.props.leftItem } />
         }
         rightButton={
           <NavBarButton
             style={{ marginRight: 15 }}
+            color={iconColor}
             onPress={ this.props.onPress }
             actions={ this.props.rightItem } />
         }
