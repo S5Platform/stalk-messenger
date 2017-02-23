@@ -42,6 +42,7 @@ export default class S5ChatBox extends Component {
   static defaultProps = {
     enabled:      false,
     messages:     [],
+    images: [],
     loadEarlier:  false,
     reconnecting: false,
   };
@@ -51,8 +52,6 @@ export default class S5ChatBox extends Component {
   };
 
   append = (beforeMessages, messages) => {
-
-    console.log(messages);
 
     return GiftedChat.append(beforeMessages, messages);
   }
@@ -75,13 +74,17 @@ export default class S5ChatBox extends Component {
   }
 
   _renderBubble = (props) => {
-
+    if( props.currentMessage.image ){
+      if( this.props.images.indexOf( props.currentMessage.image ) < 0 ){
+        this.props.images.push( props.currentMessage.image );
+      }
+    }
     if( props.currentMessage.image && this.props.onPressImage ){
 
-      console.log( '---111---' );
-      console.log( props.currentMessage.image );
+      var showIndex = this.props.images.indexOf( props.currentMessage.image );
+
       return (
-        <TouchableOpacity onPress={()=> this.props.onPressImage( props.currentMessage.image ) } style={{zIndex:30}}>
+        <TouchableOpacity onPress={()=> this.props.onPressImage( this.props.images, (showIndex > -1 ? showIndex:0) ) } style={{zIndex:30}}>
           <Bubble {...props}
             wrapperStyle={{
               left: {

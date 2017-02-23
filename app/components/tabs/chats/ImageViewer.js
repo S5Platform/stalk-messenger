@@ -96,7 +96,7 @@ export default class ImageViewer extends Component {
     this.state = {
       imgList: this.props.images,
       showViewer: true,
-      showIndex: 0
+      showIndex: this.props.showIndex || 0
     }
     this.viewerPressHandle = this.viewerPressHandle.bind(this)
     this.thumbPressHandle = this.thumbPressHandle.bind(this)

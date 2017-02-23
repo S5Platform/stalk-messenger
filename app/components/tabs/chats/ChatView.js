@@ -313,8 +313,6 @@ class ChatView extends Component {
 
   sendMesage = (message) => {
 
-    console.log(message);
-
     message.createdAt = Date.now();
 
     if( this.socket ) {
@@ -358,10 +356,8 @@ class ChatView extends Component {
 
   }
 
-  _onPressImage =(image) => {
-    console.log( '---555555555----' );
-    console.log( image );
-    this.props.navigator.push({name: 'ImageViewer', images:[image]});
+  _onPressImage =(images, showIndex) => {
+    this.props.navigator.push({name: 'ImageViewer', images:images, showIndex:showIndex});
   }
 
   render() {
