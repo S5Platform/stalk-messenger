@@ -21,7 +21,7 @@ export default class S5Button extends Component {
     if (this.props.type === 'primary' || this.props.type === undefined) {
       content = (
         <LinearGradient
-          start={[0.5, 1]} end={[1, 1]}
+          start={{x: 0.5, y: 1.0}} end={{x: 1.0, y: 1.0}}
           colors={['#6A6AD5', '#6F86D9']}
           style={[styles.button, styles.primaryButton]}>
           {icon}

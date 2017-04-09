@@ -6,7 +6,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { Platform, PushNotificationIOS } from 'react-native';
 import Parse from 'parse/react-native';
 import { ANDROID_GCM_SENDER_ID } from '../../env.js';
 
@@ -40,7 +40,7 @@ export default class PushController extends Component {
               }
               installation.set("channels", []);
               installation.set("deviceToken", token);
-              installation.set("deviceType", "ios");
+              installation.set("deviceType", Platform.OS);
               installation.set("installationId", id);
               return installation.save()
             })
