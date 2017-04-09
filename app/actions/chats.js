@@ -52,6 +52,7 @@ function loadChatsAsync () {
     new Parse.Query(Chats)
       .equalTo('user', currentUser)
       .include('channel.users')
+      .include('channel.createdBy')
       .descending("updatedAt")
       .find()
       .then(

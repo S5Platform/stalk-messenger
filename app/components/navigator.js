@@ -100,6 +100,8 @@ class AppNavigator extends Component {
       if(route.name == 'SignupView') {
         return <SignupView navigator={navigator} />;
       }
+      //init route name when logout
+      route.name = "";
       return <LoginScreen navigator={navigator} />;
     }
 

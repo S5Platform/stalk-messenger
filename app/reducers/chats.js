@@ -98,6 +98,9 @@ function _parseObjToJSON(object){
 
   var channel = object.get("channel");
   var users = channel.get("users");
+  if(  channel.get("createdBy") ){
+    users.push( channel.get("createdBy") );
+  }
   var names = [];
 
   users.reduceRight(function(acc, user, index, object) {
@@ -129,7 +132,7 @@ function _parseObjToJSON(object){
           nickName: user.nickName,
           avatar: user.avatar,
           statusMessage: user.statusMessage,
-        };        
+        };
       }
 
       names.push(user.nickName);
