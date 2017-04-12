@@ -365,7 +365,7 @@ class ChatView extends Component {
       <View style={styles.container}>
       <S5Drawer
         type="overlay"
-        content={<ControlPanel closeDrawer={this._closeControlPanel} users={this.state.chat.users} navigator={this.props.navigator} />}
+        content={<ControlPanel closeDrawer={this._closeControlPanel} users={this.state.chat.users} currentUser={this.props.user} navigator={this.props.navigator} />}
         ref={(ref) => this._drawer = ref}
         tapToClose={true}
         openDrawerOffset={0.2} // 20% gap on the right side of drawer

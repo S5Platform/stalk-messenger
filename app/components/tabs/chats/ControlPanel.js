@@ -23,12 +23,23 @@ export default class ControlPanel extends Component {
     users: PropTypes.any.isRequired
   };
 
-  state = {
-    users: this.props.users,
-    dataSource: new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
-    })
-  };
+  constructor(props) {
+    super(props);
+
+    var users = [];
+    users.push( this.props.currentUser );
+
+    for ( var inx in this.props.users ){
+      users.push( this.props.users[inx] );
+    }
+
+    this.state = {
+      users: users,
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2
+      })
+    };
+  }
 
   getDataSource(users: Array<any>): ListView.DataSource {
     return this.state.dataSource.cloneWithRows(users);
@@ -39,7 +50,14 @@ export default class ControlPanel extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.setState({dataSource:this.getDataSource(nextProps.users)});
+    var users = [];
+    users.push( this.props.currentUser );
+
+    for ( var inx in nextProps.users ){
+      users.push( nextProps.users[inx] );
+    }
+
+    this.setState({dataSource:this.getDataSource(users)});
   }
 
   _openAddUserView = () => {
@@ -57,6 +75,7 @@ export default class ControlPanel extends Component {
           name={user.nickName}
           avatar={user.avatar}
           size={40}
+          type={ ( this.props.currentUser.id == user.id ) ? "me":null }
           style={styles.profileImage}
         />
         <Text style={styles.itemText}>
