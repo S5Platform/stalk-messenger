@@ -9,9 +9,16 @@ export const SIGNED_UP  = 'SIGNED_UP';
 export const LOGGED_IN  = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
 export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATED_TOKEN     = 'UPDATED_TOKEN';
 
 const InteractionManager  = require('InteractionManager');
 const constants           = require('./_constants');
+
+export function updateDeviceToken(deviceToken) {
+  return async (dispatch) => {
+    dispatch({ type: UPDATED_TOKEN, deviceToken:deviceToken});
+  }
+}
 
 /**
  * sign up

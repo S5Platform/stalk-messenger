@@ -11,7 +11,8 @@ const initialState = {
   email: null,
   nickName: null,
   avatar: null,
-  statusMessage:null
+  statusMessage:null,
+  deviceToken:null
 };
 
 function user(state = initialState, action) {
@@ -42,6 +43,10 @@ function user(state = initialState, action) {
     state[key] = value;
 
     return { ...state };
+  }
+
+  if (action.type === UPDATED_TOKEN) {
+    return { ...state, deviceToken: action.deviceToken };
   }
 
   return state;

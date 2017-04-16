@@ -72,7 +72,7 @@ export default class PushController extends Component {
 
       // - Specified if permissions (ios) and token (android and ios) will requested or not,
       // - if not, you must call PushNotificationsHandler.requestPermissions() later
-      requestPermissions: true, // default: true
+      requestPermissions: false, // default: true
     });
 
     PushNotification.checkPermissions((result) => {
