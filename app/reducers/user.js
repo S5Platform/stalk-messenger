@@ -2,7 +2,7 @@
  * User Reducer.
  */
 
-import { LOGGED_IN, LOGGED_OUT, SIGNED_UP, UPDATE_USER} from 's5-action';
+import { LOGGED_IN, LOGGED_OUT, SIGNED_UP, UPDATE_USER, UPDATED_TOKEN } from 's5-action';
 
 const initialState = {
   isLoggedIn: false,

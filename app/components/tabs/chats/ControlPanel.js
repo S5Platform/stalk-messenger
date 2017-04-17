@@ -71,13 +71,15 @@ export default class ControlPanel extends Component {
   _renderRow = (user) => {
     return (
       <View key={user.username} style={styles.item}>
-        <S5ProfilePicture
-          name={user.nickName}
-          avatar={user.avatar}
-          size={40}
-          type={ ( this.props.currentUser.id == user.id ) ? "me":null }
-          style={styles.profileImage}
-        />
+        <View style={{margin:10}}>
+          <S5ProfilePicture
+            name={user.nickName}
+            avatar={user.avatar}
+            size={40}
+            type={ ( this.props.currentUser.id == user.id ) ? "me":null }
+            style={styles.profileImage}
+          />
+        </View>
         <Text style={styles.itemText}>
           {user.nickName}
         </Text>
@@ -156,7 +158,6 @@ const styles = StyleSheet.create({
     paddingLeft:10
   },
   profileImage: {
-    margin:10,
     width:40,
     height:40
   },
