@@ -28,11 +28,14 @@ export function signup(data, callback) {
 
   return (dispatch) => {
 
+    const installation = await currentInstallation();
+
     var user = new Parse.User();
     user.set("username", data.username);
     user.set("password", data.password);
     user.set("email", data.email);
     user.set("nickName", data.username);
+    user.addUnique("devices", installation.id);
 
     user.signUp(null, {
       success: function(user) {
@@ -100,17 +103,20 @@ export function logOut() {
   };
 }
 
-export async function updateUser(key, value) {
+export async function updateUser(data) {
 
   let user = await Parse.User.currentAsync();
 
-  var data = value;
-  if( key == 'profileFile' ){
-    let imgBase64 = 'data:image/jpeg;base64,' + value;
-    data = new Parse.File(user.id, { base64: imgBase64 });
+  for( var key in data ){
+    if( key == 'profileFile' ){
+      let imgBase64 = 'data:image/jpeg;base64,' + data[key];
+      var value = new Parse.File(user.id, { base64: imgBase64 });
+      user.set(key, value);
+    } else {
+      user.set(key, data[key]);
+    }
   }
 
-  user.set(key, data);
   await user.save();
 
   await InteractionManager.runAfterInteractions();

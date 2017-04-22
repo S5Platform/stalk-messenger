@@ -76,7 +76,9 @@ class ProfileForm extends Component {
   }
 
   saveProfile = () => {
-    this.props.dispatch(updateUser(this.state.key, this.state.value));
+    var data = {};
+    data[this.state.key] = this.state.value;
+    this.props.dispatch(updateUser(data));
     this.props.navigator.pop();
   }
 
