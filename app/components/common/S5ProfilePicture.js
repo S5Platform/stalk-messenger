@@ -64,6 +64,16 @@ export default class S5ProfilePicture extends Component {
     }
   }
 
+  renderMe(){
+    const {size} = this.props;
+    if( this.props.type == 'me' ){
+
+      return (
+        <Text style={{textAlign:'center', backgroundColor:'transparent', width:size/2, lineHeight:size/2, position:'absolute', top:size/4, left:size/4, color:'white'}}>me</Text>
+      )
+    }
+  }
+
   renderProfileCircle(){
 
     const {size} = this.props;
@@ -75,14 +85,17 @@ export default class S5ProfilePicture extends Component {
 
     if( uri ){
       return (
-        <S5Image
-          source={{uri}}
-          style={[{
-            width: size,
-            height: size,
-            borderRadius: size / 2,
-          },this.props.style]}
-        />
+        <View>
+          <S5Image
+            source={{uri}}
+            style={[{
+              width: size,
+              height: size,
+              borderRadius: size / 2,
+            },this.props.style]}
+          />
+          {this.renderMe()}
+        </View>
       );
     }else{
 
