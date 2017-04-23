@@ -10,45 +10,28 @@ import { Platform, PushNotificationIOS } from 'react-native';
 import Parse from 'parse/react-native';
 import { ANDROID_GCM_SENDER_ID } from '../../env.js';
 
+import { connect }    from 'react-redux';
+
+import { updateInstallation, updateDeviceToken } from 's5-action';
+
 import PushNotification from 'react-native-push-notification';
 
 export default class PushController extends Component {
 
   componentDidMount() {
+    var self = this;
 
     PushNotification.configure({
 
       // Called when Token is generated (iOS and Android)
-      onRegister: function(token) {
+      onRegister: function(res) {
 
-        console.log('TOKEN for push notification => ', token);
+        console.log('TOKEN for push notification => ', res);
 
-        Parse._getInstallationId().then(function(id) {
-
-          var Installation = Parse.Object.extend("_Installation");
-          var query = new Parse.Query(Installation);
-          query.equalTo("installationId", id);
-          query.find()
-            .then((installations) => {
-              var installation;
-              if (installations.length == 0) {
-                // No previous installation object, create new one.
-                installation = new Installation();
-              } else {
-                // Found previous one, update.
-                installation = installations[0];
-              }
-              installation.set("channels", []);
-              installation.set("deviceToken", token);
-              installation.set("deviceType", Platform.OS);
-              installation.set("installationId", id);
-              return installation.save()
-            })
-            .catch((error) => {
-              console.log("Error:", error);
-            });
-
-        });
+        if( res ){
+          updateInstallation({deviceToken:res.token,deviceType:res.os});
+          self.props.updateDeviceToken( res.token );
+        }
 
       },
 
@@ -81,12 +64,12 @@ export default class PushController extends Component {
         if( !result.alert && !result.badge && !result.sound ){
           // TODO implements logics once permissions canceled.
           console.warn(' TODO implements logics once permissions canceled. ', result);
-        }
-      } else {
-        console.warn(' TODO implements logics once permissions canceled. ', result);
-      }
 
-    });
+          // TODO call once 
+          PushNotification.requestPermissions();
+        }
+      }
+    })
 
   }
 
@@ -94,3 +77,17 @@ export default class PushController extends Component {
     return null;
   }
 }
+
+function select(store) {
+  return {
+    user: store.user
+  };
+}
+
+function actions(dispatch) {
+  return {
+    updateDeviceToken: (deviceToken)  => dispatch(updateDeviceToken(deviceToken))
+  };
+}
+
+module.exports = connect(select, actions)(PushController);

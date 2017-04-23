@@ -16,7 +16,14 @@ const constants           = require('./_constants');
 
 export function updateDeviceToken(deviceToken) {
   return async (dispatch) => {
+
+    const installationId = await Parse._getInstallationId();
+    let user = await Parse.User.currentAsync();
+    user.addUnique("devices", installationId );
+    await user.save();
+
     dispatch({ type: UPDATED_TOKEN, deviceToken:deviceToken});
+
   }
 }
 
@@ -28,14 +35,10 @@ export function signup(data, callback) {
 
   return (dispatch) => {
 
-    const installation = await currentInstallation();
-
     var user = new Parse.User();
     user.set("username", data.username);
     user.set("password", data.password);
     user.set("email", data.email);
-    user.set("nickName", data.username);
-    user.addUnique("devices", installation.id);
 
     user.signUp(null, {
       success: function(user) {
