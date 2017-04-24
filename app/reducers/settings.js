@@ -3,7 +3,8 @@ import { UPDATE_SETTINGS, RESET_SETTINGS, LOGGED_OUT } from 's5-action';
 const initialState = {
 	preview:true,
 	imagePreview:true,
-	imageQuality:'O'
+	imageQuality:'O',
+	useNotification:undefined
 };
 
 function settings(state = initialState, action) {

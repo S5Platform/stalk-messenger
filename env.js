@@ -6,7 +6,7 @@
 
 // for local test !
 // HAVE TO MODIFY YOUR ENV.
-var stalk_session_server_url = 'http://192.168.0.10:8080';
+var stalk_session_server_url = 'http://localhost:8080';
 try {
   var RN = require('react-native');
   var DeviceInfo = require('react-native-device-info');

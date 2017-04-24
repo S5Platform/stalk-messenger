@@ -12,11 +12,17 @@ import { ANDROID_GCM_SENDER_ID } from '../../env.js';
 
 import { connect }    from 'react-redux';
 
-import { updateInstallation, updateDeviceToken } from 's5-action';
+import { updateInstallation, updateDeviceToken, updateSetting } from 's5-action';
 
 import PushNotification from 'react-native-push-notification';
 
 export default class PushController extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.useNotification;
+  }
 
   componentDidMount() {
     var self = this;
@@ -26,9 +32,8 @@ export default class PushController extends Component {
       // Called when Token is generated (iOS and Android)
       onRegister: function(res) {
 
-        console.log('TOKEN for push notification => ', res);
-
-        if( res ){
+        if( self.useNotification && res ){
+          self.props.updateSetting('useNotification',self.useNotification);
           updateInstallation({deviceToken:res.token,deviceType:res.os});
           self.props.updateDeviceToken( res.token );
         }
@@ -58,18 +63,23 @@ export default class PushController extends Component {
       requestPermissions: false, // default: true
     });
 
+    if( this.props.settings.useNotification == undefined ){
+      PushNotification.requestPermissions().then(function(res){
+        self.useNotification = res.alert;
+      });
+    }
+
+    /**
     PushNotification.checkPermissions((result) => {
 
       if ( Platform.OS === 'ios' ) {
         if( !result.alert && !result.badge && !result.sound ){
           // TODO implements logics once permissions canceled.
-          console.warn(' TODO implements logics once permissions canceled. ', result);
-
-          // TODO call once 
-          PushNotification.requestPermissions();
+          console.log(' TODO implements logics once permissions canceled. ', result);
         }
       }
     })
+    */
 
   }
 
@@ -80,13 +90,15 @@ export default class PushController extends Component {
 
 function select(store) {
   return {
-    user: store.user
+    user: store.user,
+    settings: store.settings
   };
 }
 
 function actions(dispatch) {
   return {
-    updateDeviceToken: (deviceToken)  => dispatch(updateDeviceToken(deviceToken))
+    updateDeviceToken: (deviceToken)  => dispatch(updateDeviceToken(deviceToken)),
+    updateSetting:(key,value) => dispatch(updateSetting(key,value)),
   };
 }
 
