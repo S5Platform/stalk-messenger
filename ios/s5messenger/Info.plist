@@ -68,7 +68,9 @@
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Select image</string>
+    <string>${PRODUCT_NAME} Photo Usage</string>
+    <key>NSCameraUsageDescription</key>
+    <string>${PRODUCT_NAME} Camera Usage</string>
     <key>UIBackgroundModes</key>
   	<array>
   		<string>remote-notification</string>
