@@ -152,7 +152,7 @@ class TabsView extends Component {
           <TabViewAnimated
             style={styles.container}
             navigationState={this.state}
-            configureTransition={() => null}
+            animationEnabled={false}
             renderPager={this._renderPager}
             renderScene={this._renderScene}
             renderHeader={this._renderHeader}
@@ -164,7 +164,7 @@ class TabsView extends Component {
           <TabViewAnimated
             style={styles.container}
             navigationState={this.state}
-            configureTransition={() => null}
+            animationEnabled={false}
             renderPager={this._renderPager}
             renderScene={this._renderScene}
             renderFooter={this._renderFooter}

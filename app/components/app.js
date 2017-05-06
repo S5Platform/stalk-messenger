@@ -163,7 +163,7 @@ class App extends Component {
           self.bg_socket.connect();
 
         }else{
-          console.console.warn(responseJson);
+          console.warn(responseJson);
         }
 
       })

@@ -37,6 +37,7 @@ export function signup(data, callback) {
 
     var user = new Parse.User();
     user.set("username", data.username);
+    user.set("nickName", data.username);
     user.set("password", data.password);
     user.set("email", data.email);
 
