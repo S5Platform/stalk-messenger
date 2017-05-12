@@ -113,7 +113,7 @@ class App extends Component {
           });
 
           self.bg_socket.on('error', () => { // SOCKET CONNECTION EVENT
-            this.setState({ connected: false });
+            self.setState({ connected: false });
           });
 
           self.bg_socket.on('connect_error', (err) => { // XPUSH CONNECT ERROR EVENT
@@ -121,43 +121,7 @@ class App extends Component {
           });
 
           self.bg_socket.on('backgound-message', (message) => { // MESSAGED RECEIVED
-            if(message && message.length > 0) {
-
-              var channel = message[0].DT.C;
-
-              if( this.props.settings.preview ){
-                PushNotification.localNotification({
-                  message: message[0].DT.user.nickName + ' : ' + message[0].DT.text
-                });
-
-                if( message[0].DT.user.nickName && message[0].DT.text ){
-                  self.refs['alert'].alert('custom', message[0].DT.user.nickName,  message[0].DT.text, message[0].DT.user.avatar );
-                }
-              }
-
-              var chat;
-              for( var inx in self.props.chats.list ){
-                var obj = self.props.chats.list[inx];
-                if( obj.channelId == channel ) {
-                  chat = obj;
-                }
-              }
-
-              if( chat ){
-                self.props.setLatestMessage( channel, message[0].DT.text );
-                self.props.setUnreadCount( channel, 1);   
-              } else {
-                this.props.loadChats().then(
-                  (result) => {
-                    self.props.setLatestMessage( channel, message[0].DT.text );
-                    self.props.setUnreadCount( channel, 1);  
-                  },
-                  (error)=> {
-                  }
-                );      
-              }
-
-            }
+            self._onReceiveMessage( message );
           });
 
           self.bg_socket.connect();
@@ -198,7 +162,62 @@ class App extends Component {
     }
   }
 
+  _onReceiveMessage = (message)=> {
+    var self = this;
+    if(message && message.length > 0) {
+
+      var channel = message[0].DT.C;
+
+      if( this.props.settings.preview ){
+        PushNotification.localNotification({
+          message: message[0].DT.user.nickName + ' : ' + message[0].DT.text
+        });
+
+        if( message[0].DT.user.nickName && message[0].DT.text ){
+          self.refs['alert'].alert('custom', message[0].DT.user.nickName,  message[0].DT.text, message[0].DT.user.avatar );
+        }
+      }
+
+      var chat;
+      for( var inx in self.props.chats.list ){
+        var obj = self.props.chats.list[inx];
+        if( obj.channelId == channel ) {
+          chat = obj;
+        }
+      }
+
+      if( chat ){
+        self.props.setLatestMessage( channel, message[0].DT.text );
+        self.props.setUnreadCount( channel, 1);
+      } else {
+        this.props.loadChats().then(
+          (result) => {
+            self.props.setLatestMessage( channel, message[0].DT.text );
+            self.props.setUnreadCount( channel, 1);
+          },
+          (error)=> {
+          }
+        );
+      }
+
+    }
+  }
+
+  _onNotificationCallback = (notification)=> {
+    var self = this;
+    self._onReceiveMessage(notification.payload);
+
+    // reconnect
+    if( notification.payload ){
+      if( this.bg_socket && this.bg_socket.isConnected ) {
+      } else {
+        this.connectBGSocket();
+      }
+    }
+  }
+
   render() {
+    var self = this;
 
     return (
       <View style={styles.container}>
@@ -207,7 +226,7 @@ class App extends Component {
 
         <AppNavigator />
 
-        { this.props.user.isLoggedIn ? <PushController /> : null }
+        { this.props.user.isLoggedIn ? <PushController onNotificationCallback={self._onNotificationCallback}/> : null }
 
         <S5Alert ref={'alert'} imageStyle={{width:36, height:36, borderRadius:18,marginTop:10}}/>
 
@@ -237,7 +256,7 @@ function actions(dispatch) {
     loadConfig: () => dispatch(loadConfig()),
     setLatestMessage: (channelId, text) =>  dispatch(setLatestMessage(channelId, text)),
     setUnreadCount: (channelId, count) =>  dispatch(setUnreadCount(channelId, count)),
-    loadChats: () => dispatch(loadChats()), 
+    loadChats: () => dispatch(loadChats()),
   };
 }
 

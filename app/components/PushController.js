@@ -43,6 +43,10 @@ export default class PushController extends Component {
       // (required) Called when a remote or local notification is opened or received
       onNotification: function(notification) {
           console.log( 'NOTIFICATION:', notification );
+
+          if( this.onNotificationCallback ){
+            this.onNotificationCallback( notification.payload );
+          }
       },
 
       // ANDROID ONLY: (optional) GCM Sender ID.
