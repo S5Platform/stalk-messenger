@@ -1,9 +1,6 @@
-'use strict';
-
 import React, { Component } from 'React';
 import {
   View,
-  Image,
   Text,
   TouchableHighlight,
   StyleSheet
@@ -29,7 +26,7 @@ export default class ProfileCell extends Component {
           style={styles.container}
           underlayColor='transparent'>
           <View style={styles.wrap}>
-            <Text style={styles.itemLabel}>
+            <Text style={styles.label}>
               {this.props.label}
             </Text>
             <Text style={styles.text}>

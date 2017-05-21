@@ -30,6 +30,7 @@
     "react-native-photo-view": "^1.2.0",
     "react-native-push-notification": "^2.2.0",
     "react-native-socketio": "github:s5platform/react-native-socketio",
+    "react-native-swipeout": "^2.1.1",
     "react-native-swiper": "^1.5.4",
     "react-native-tab-view": "0.0.62",
     "react-native-vector-icons": "^4.0.0",
