@@ -4,7 +4,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import { TabViewAnimated, TabViewPagerPan, TabBar, TabBarTop } from 'react-native-tab-view';
 
 import { connect }    from 'react-redux';
@@ -33,14 +33,8 @@ class TabsView extends Component {
     actions: [],
   };
 
-  constructor(props) {
-    super(props);
-    this.initialPage = props.tab;
-    this.totalUnreadCount = props.totalUnreadCount;
-  }
-
   componentWillMount() {
-    this._handleChangeTab(this.initialPage);
+    this._handleChangeTab(this.props.tab);
   }
 
   _handleChangeTab = (index) => {
@@ -64,20 +58,6 @@ class TabsView extends Component {
       );
 
     }else{
-      var self = this;
-      var renderBadge = function(){
-        if( route.key =='chats' && self.props.totalUnreadCount > 0 ){
-          return (
-            <View style={styles.unreadCountWrap}>
-              <Text style={styles.unreadCount}>
-              {self.props.totalUnreadCount}
-              </Text>
-            </View> 
-          );
-        } else {
-          return null;
-        }
-      };
 
       return (
         <View>
@@ -85,7 +65,13 @@ class TabsView extends Component {
           name={route.icon}
           color={navigationState.index === index ? S5Colors.highlightText : S5Colors.secondaryText}
         />
-        {renderBadge()}
+        { route.key =='chats' && this.props.totalUnreadCount > 0 ? (
+            <View style={styles.unreadCountWrap}>
+              <Text style={styles.unreadCount}>
+              {this.props.totalUnreadCount}
+              </Text>
+            </View>
+          ) : null  }
         </View>
       );
     }
@@ -129,7 +115,7 @@ class TabsView extends Component {
   };
 
   _renderPager = (props) => {
-    return <TabViewPagerPan {...props} swipeEnabled={(Platform.OS == 'android'?true:false)} />;
+    return <TabViewPagerPan {...props} swipeEnabled={(Platform.OS == 'android' ? true : false)} />;
   };
 
   _onPressHeader = (name) => {
@@ -139,7 +125,7 @@ class TabsView extends Component {
   render() {
 
     return (
-      <View style={{ flex: 1, backgroundColor: S5Colors.background, }}>
+      <View style={styles.container}>
 
         <S5Header
           title={Platform.OS == 'android'? 'STALK' : this.state.title}
@@ -191,15 +177,6 @@ const styles = StyleSheet.create({
   },
   indicator: {
     backgroundColor: '#ffeb3b',
-  },
-  page: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  toolbar: {
-    backgroundColor: S5Colors.primary,
-    height: 52,
   },
   unreadCountWrap:{
     position:'absolute',

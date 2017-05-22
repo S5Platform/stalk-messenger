@@ -88,36 +88,30 @@ class App extends Component {
       .then((responseJson) => {
         if( responseJson.status == 'ok' ) {
 
-          console.log('** Connect Bacground Server ** \n', responseJson.result.server.url, {
+          var connectOptions = {
             nsp: '/background',
             forceWebsockets: true,
             forceNew: true,
             connectParams: {
               U: self.props.user.id
             }
-          });
-
-          self.bg_socket = new SocketIO(responseJson.result.server.url, {
-            nsp: '/background',
-            forceWebsockets: true,
-            forceNew: true,
-            connectParams: {
-              U: self.props.user.id
-            }
-          });
+          };
+console.log(responseJson.result.server.url, connectOptions)
+          self.bg_socket = new SocketIO(responseJson.result.server.url, connectOptions);
 
           self.bg_socket.on('connect', () => { // SOCKET CONNECTION EVENT
             self.setState({ connected: true }, () => {
-              console.log('[BACKGROUND] CONNECTED');
+              console.log('[BACKGROUND] CONNECTED', connectOptions);
             });
           });
 
-          self.bg_socket.on('error', () => { // SOCKET CONNECTION EVENT
+          self.bg_socket.on('error', (err) => { // SOCKET CONNECTION EVENT
             self.setState({ connected: false });
+            console.warn('[BACKGROUND] ERROR', err);
           });
 
           self.bg_socket.on('connect_error', (err) => { // XPUSH CONNECT ERROR EVENT
-            console.warn(err);
+            console.warn('[BACKGROUND] CONNECT ERROR', err);
           });
 
           self.bg_socket.on('backgound-message', (message) => { // MESSAGED RECEIVED

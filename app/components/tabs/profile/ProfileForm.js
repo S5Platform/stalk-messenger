@@ -1,13 +1,7 @@
-/**
- *
- * Folder 를 생성/수정하는 Form
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  TouchableHighlight,
   Text,
   Image
 } from 'react-native';
@@ -46,7 +40,6 @@ class ProfileForm extends Component {
   componentDidMount() {
     this.refs['textinput'].focus();
   }
-
 
   _onChangeText = (text) => {
     if( this.props.validLength && text.length > this.props.validLength ){

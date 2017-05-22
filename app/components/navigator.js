@@ -93,7 +93,7 @@ class AppNavigator extends Component {
     return false;
   }
 
-  renderScene (route, navigator) {
+  _renderScene = (route, navigator) => {
 
     if (!this.props.isLoggedIn) {
       dismissKeyboard();
@@ -134,33 +134,33 @@ class AppNavigator extends Component {
 
   }
 
+  _configureScene = (route) => {
+    if (Platform.OS === 'android') {
+      return Navigator.SceneConfigs.FloatFromBottomAndroid;
+    }
+
+    switch (route.name) {
+      case 'SearchUserView':
+      case 'SelectUserView':
+      case 'ProfileForm':
+        return Navigator.SceneConfigs.FloatFromBottom;
+      case 'UserView':
+        return Navigator.SceneConfigs.FloatFromLeft;
+      case 'ChatView':
+        return Navigator.SceneConfigs.FloatFromRight;
+      default:
+        return Navigator.SceneConfigs.FloatFromRight;
+    }
+  }
+
   render() {
     return (
       <Navigator
         ref="navigator"
         style={styles.container}
-        configureScene={(route) => {
-
-          if (Platform.OS === 'android') {
-            return Navigator.SceneConfigs.FloatFromBottomAndroid;
-          }
-
-          switch (route.name) {
-            case 'SearchUserView':
-            case 'SelectUserView':
-            case 'ProfileForm':
-              return Navigator.SceneConfigs.FloatFromBottom;
-            case 'UserView':
-              return Navigator.SceneConfigs.FloatFromLeft;
-            case 'ChatView':
-              return Navigator.SceneConfigs.FloatFromRight;
-            default:
-              return Navigator.SceneConfigs.FloatFromRight;
-          }
-
-        }}
         initialRoute={{}}
-        renderScene={this.renderScene.bind(this)}
+        configureScene={this._configureScene}
+        renderScene={this._renderScene}
       />
     );
   }
@@ -177,7 +177,7 @@ var styles = StyleSheet.create({
 function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn,
-    tab: store.navigation.tab,
+    tab:        store.navigation.tab,
   };
 }
 

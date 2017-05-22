@@ -19,15 +19,6 @@ import ProfileCell from './ProfileCell';
 
 var ImagePicker = require('react-native-image-picker');
 
-var options = {
-  title: 'Select Avatar',
-  quality: 0.5,
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
-};
-
 class ProfileMain extends Component {
 
   static propTypes = {
@@ -36,12 +27,15 @@ class ProfileMain extends Component {
     user: React.PropTypes.object.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   selectImage(){
-    ImagePicker.showImagePicker(options, (response) => {
+    ImagePicker.showImagePicker({
+      title: 'Select Avatar',
+      quality: 0.5,
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    }, (response) => {
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -105,12 +99,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  button: {
-    marginTop: 20,
-    marginBottom: 20,
-    marginHorizontal: 20,
-    alignSelf: 'stretch',
   },
   profileImage: {
     marginTop: 20,
