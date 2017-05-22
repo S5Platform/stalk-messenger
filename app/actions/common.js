@@ -15,6 +15,21 @@ import {
 
 import Parse from 'parse/react-native';
 
+import I18n from 'react-native-i18n';
+const deviceLocale = I18n.locale;
+
+I18n.fallbacks = true;
+I18n.locale = deviceLanguage;
+
+I18n.translations = {
+  en: {
+    greeting: 'Hi!'
+  },
+  fr: {
+    greeting: 'Bonjour!'
+  }
+}
+
 export const LOADED_CONFIG = 'LOADED_CONFIG';
 export const SWITCH_TAB = 'SWITCH_TAB';
 
@@ -56,4 +71,24 @@ export async function updateInstallation(updates) {
 
 export function dismissKeyboard() {
   TextInputState.blurTextInput(TextInputState.currentlyFocusedField());
+}
+
+const REXR_I18n = /<@[a-zA-Z0-9]+>/g;
+
+export function I18N( key, ...params ) {
+
+  let result = I18n.t( key );
+  if(!params || params.length == 0) return result;
+
+  let _p = result.match(REXR_I18n);
+  if (_p) _p.forEach((value, i) => {
+
+    if( !params[i] && params[i] !== 0 ){
+      result = result.replace(value, '');
+    } else {
+      result = result.replace(value, params[i]);
+    };
+  });
+
+  return result;
 }

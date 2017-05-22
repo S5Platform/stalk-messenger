@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  ListView,
   ScrollView,
   Switch
 } from 'react-native';
