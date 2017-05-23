@@ -19,7 +19,7 @@ import I18n from 'react-native-i18n';
 const deviceLocale = I18n.locale;
 
 I18n.fallbacks = true;
-I18n.locale = deviceLanguage;
+I18n.locale = deviceLocale;
 
 I18n.translations = {
   en: {
