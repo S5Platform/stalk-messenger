@@ -13,7 +13,7 @@ import {
 
 import FollowCell from './FollowCell';
 
-import { loadFollows, removeFollow } from 's5-action';
+import { loadFollows, removeFollow, I18N } from 's5-action';
 import { S5Icon, S5Header, S5SwipeListView, S5TextInput, S5Colors } from 's5-components';
 import { connect } from 'react-redux';
 
@@ -72,7 +72,7 @@ class FollowsMain extends Component {
     return (
       <View style={styles.container}>
         <S5TextInput
-          placeholder={' Search...'}
+          placeholder={I18N('search')}
           value={this.state.filter}
           autoCapitalize="none"
           onChangeText={ text => this.setState({filter: text}) }

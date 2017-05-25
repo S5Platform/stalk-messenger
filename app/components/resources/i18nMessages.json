@@ -1,0 +1,10 @@
+ {
+  "en": {
+    "greeting": "Hi!",
+    "search": "Search"
+  },
+  "ko": {
+    "greeting": "안녕",
+    "search": "찾기",
+  }
+}

@@ -18,17 +18,12 @@ import Parse from 'parse/react-native';
 import I18n from 'react-native-i18n';
 const deviceLocale = I18n.locale;
 
+import Translations from '@resources/i18nMessages';
+
 I18n.fallbacks = true;
 I18n.locale = deviceLocale;
 
-I18n.translations = {
-  en: {
-    greeting: 'Hi!'
-  },
-  fr: {
-    greeting: 'Bonjour!'
-  }
-}
+I18n.translations = Translations;
 
 export const LOADED_CONFIG = 'LOADED_CONFIG';
 export const SWITCH_TAB = 'SWITCH_TAB';
