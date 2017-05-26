@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { updateUser } from 's5-action';
+import { updateUser, I18N } from 's5-action';
 
 import { S5Header, S5ProfilePicture } from 's5-components';
 
@@ -78,13 +78,13 @@ class ProfileMain extends Component {
         </View>
 
         <ProfileCell
-          label="Nickname"
+          label={I18N('txtNickname')}
           text={this.props.user.nickName}
           onPress={() => this.onPressNickName()}
         />
 
         <ProfileCell
-          label="Status Message"
+          label={I18N('txtStatusMessage')}
           text={this.props.user.statusMessage}
           onPress={() => this.onPressStatusMessage()}
         />

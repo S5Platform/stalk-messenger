@@ -72,7 +72,7 @@ class FollowsMain extends Component {
     return (
       <View style={styles.container}>
         <S5TextInput
-          placeholder={I18N('search')}
+          placeholder={I18N('txtSearch')}
           value={this.state.filter}
           autoCapitalize="none"
           onChangeText={ text => this.setState({filter: text}) }
@@ -86,7 +86,7 @@ class FollowsMain extends Component {
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
             <Text style={{ color: S5Colors.accent, fontSize: 17, textAlign: 'center', margin: 10 }}>
               {'You can search your friends, simple tap on the '}
-              <S5Icon name={'search'} size={20} color={S5Colors.accent} />
+              <S5Icon name={'person-add'} size={20} color={S5Colors.accent} />
               {' icon in the top right corner.'}
             </Text>
           </View>
@@ -100,7 +100,7 @@ class FollowsMain extends Component {
           renderHiddenRow={ (data, secId, rowId, rowMap) => (
             <View style={styles.rowBack}>
               <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this._deleteRow(secId, rowId, rowMap) }>
-                <Text style={styles.backTextWhite}>Delete</Text>
+                <Text style={styles.backTextWhite}>I18N('btnDelete')</Text>
               </TouchableOpacity>
             </View>
           )}

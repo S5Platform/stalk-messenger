@@ -1,10 +1,22 @@
  {
   "en": {
     "greeting": "Hi!",
-    "search": "Search"
+    "txtSearch": "Search",
+    "btnDelete": "Delete",
+    "txtFriends":"FRIENDS",
+    "txtChat":"CHAT",
+    "txtProfile":"PROFILE",
+    "txtNickname":"Nickname",
+    "txtStatusMessage":"Status Message",
   },
   "ko": {
     "greeting": "안녕",
-    "search": "찾기",
+    "txtSearch": "찾기",
+    "btnDelete": "삭제",
+    "txtFriends":"친구",
+    "txtChat":"채팅",
+    "txtProfile":"프로필",
+    "txtNickname":"별명",
+    "txtStatusMessage":"상태메시지",
   }
 }

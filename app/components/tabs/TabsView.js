@@ -8,7 +8,7 @@ import { View, Text, StyleSheet, Platform } from 'react-native';
 import { TabViewAnimated, TabViewPagerPan, TabBar, TabBarTop } from 'react-native-tab-view';
 
 import { connect }    from 'react-redux';
-import { switchTab }  from 's5-action';
+import { switchTab, I18N }  from 's5-action';
 import { S5Colors, S5Header, S5Icon } from 's5-components';
 
 import FollowsView    from './follows';
@@ -26,9 +26,9 @@ class TabsView extends Component {
   state = {
     index: 0,
     routes: [
-      { key: 'follows', icon: 'people',       title: 'FRIENDS', actions: [{ key: 'SearchUserView',  icon: 'person-add' }] },
-      { key: 'chats',   icon: 'chatbubbles',  title: 'CHAT'  ,  actions: [{ key: 'SelectUserView',  icon: 'add' }] },
-      { key: 'profile', icon: 'person',       title: 'PROFILE', actions: [{ key: 'SettingView',     icon: 'settings'}] },
+      { key: 'follows', icon: 'people',       title: I18N('txtFriends'), actions: [{ key: 'SearchUserView',  icon: 'person-add' }] },
+      { key: 'chats',   icon: 'chatbubbles',  title: I18N('txtChat')  ,  actions: [{ key: 'SelectUserView',  icon: 'add' }] },
+      { key: 'profile', icon: 'person',       title: I18N('txtProfile'), actions: [{ key: 'SettingView',     icon: 'settings'}] },
     ],
     actions: [],
   };
