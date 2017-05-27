@@ -14,7 +14,7 @@ import {
 
 import { connect } from 'react-redux';
 import { S5Header } from 's5-components';
-import { logOut, resetSetting, clearChats } from 's5-action';
+import { logOut, resetSetting, clearChats, I18N } from 's5-action';
 
 import DeviceInfo from 'react-native-device-info';
 
@@ -71,7 +71,7 @@ class SettingView extends Component {
       <View style={styles.container}>
 
         <S5Header
-          title={'SETTINGS'}
+          title={I18N('setting.title')}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
           onPress={ (name) => this.props.navigator.pop() }

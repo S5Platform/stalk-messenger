@@ -78,13 +78,13 @@ class ProfileMain extends Component {
         </View>
 
         <ProfileCell
-          label={I18N('txtNickname')}
+          label={I18N('profile.txtNickname')}
           text={this.props.user.nickName}
           onPress={() => this.onPressNickName()}
         />
 
         <ProfileCell
-          label={I18N('txtStatusMessage')}
+          label={I18N('profile.txtStatusMessage')}
           text={this.props.user.statusMessage}
           onPress={() => this.onPressStatusMessage()}
         />

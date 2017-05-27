@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { searchUsersByPage, createFollow } from 's5-action';
+import { searchUsersByPage, createFollow, I18N } from 's5-action';
 import { S5Colors, S5Header, S5TextInput, S5Button, S5ListView } from 's5-components';
 
 import FollowCell from './FollowCell';
@@ -95,7 +95,7 @@ class SearchUserView  extends Component {
     return (
       <View style={styles.container}>
         <S5Header
-          title="Search User"
+          title={I18N('searchUser.title')}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
           onPress={ (name) => {
@@ -103,7 +103,7 @@ class SearchUserView  extends Component {
           }}
         />
         <S5TextInput
-          placeholder={' Search...'}
+          placeholder={I18N('searchUser.txtSearch')}
           value={this.state.filter}
           autoCapitalize="none"
           clearButtonMode="always"

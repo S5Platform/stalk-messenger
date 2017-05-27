@@ -13,7 +13,7 @@ import {
 
 import ChatCell from './ChatCell';
 
-import { loadChats, leaveChat } from 's5-action';
+import { loadChats, leaveChat, I18N } from 's5-action';
 import { S5Icon, S5Colors, S5Header, S5SwipeListView } from 's5-components';
 import { connect } from 'react-redux';
 
@@ -73,9 +73,9 @@ class ChatsMain extends Component {
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF' }}>
           <Text style={{ color: S5Colors.accent, fontSize: 17, textAlign: 'center', margin: 10 }}>
-            {'To begin a new chat, simple tap on the '}
-            <S5Icon name={'add'} size={20} color={S5Colors.accent} />
-            {' icon in the top right corner.'}
+            {I18N('chat.txtInfo1')}
+            <S5Icon name={'add'} size={24} color={S5Colors.accent} />
+            {I18N('chat.txtInfo2')}
           </Text>
         </View>
 

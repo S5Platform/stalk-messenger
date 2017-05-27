@@ -1,22 +1,63 @@
  {
   "en": {
-    "greeting": "Hi!",
-    "txtSearch": "Search",
-    "btnDelete": "Delete",
-    "txtFriends":"FRIENDS",
-    "txtChat":"CHAT",
-    "txtProfile":"PROFILE",
-    "txtNickname":"Nickname",
-    "txtStatusMessage":"Status Message",
+    "friend":{
+      "title":"FRIENDS",
+      "txtSearch": "Search",
+      "btnDelete": "Delete",
+      "txtInfo1":"You can search your friends, simple tap on the ",
+      "txtInfo2":"icon in the top right corner."
+    },
+    "searchUser":{
+      "title":"Search User",
+      "txtSearch":"Search...",
+    },
+    "selectUser":{
+      "title":"Search User",
+      "txtSearch":"Search...",
+      "txtNoContent":""
+    },
+    "chat":{
+      "title":"CHAT",
+      "txtInfo1":"To begin a new chat, simple tap on the ",
+      "txtInfo2":"icon in the top right corner."
+    },
+    "profile":{
+      "title":"PROFILE",
+      "txtNickname":"Nickname",
+      "txtStatusMessage":"Status Message",
+    },
+    "setting":{
+      "title":"SETTING"
+    }
   },
   "ko": {
-    "greeting": "안녕",
-    "txtSearch": "찾기",
-    "btnDelete": "삭제",
-    "txtFriends":"친구",
-    "txtChat":"채팅",
-    "txtProfile":"프로필",
-    "txtNickname":"별명",
-    "txtStatusMessage":"상태메시지",
+    "friend":{
+      "title":"친구",
+      "txtSearch": "찾기",
+      "btnDelete": "삭제",
+      "txtInfo1":"우측 상단의 ",
+      "txtInfo2":" 아이콘을 눌러서 친구를 검색해보세요."
+    },
+    "searchUser":{
+      "title":"친구 찾기",
+      "txtSearch":"검색...",
+    },
+    "selectUser":{
+      "title":"친구 선택",
+      "txtSearch":"Search...",
+    },
+    "chat":{
+      "title":"채팅",
+      "txtInfo1":"우측 상단의 ",
+      "txtInfo2":"아이콘을 눌러서 새로운 채팅을 시작해보세요."
+    },
+    "profile":{
+      "title":"프로필",
+      "txtNickname":"별명",
+      "txtStatusMessage":"상태메시지",
+    },
+    "setting":{
+      "title":"세팅"     
+    }
   }
 }

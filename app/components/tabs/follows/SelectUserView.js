@@ -14,7 +14,7 @@ import {
 
 import FollowCell from './FollowCell';
 
-import { loadFollows, addUsers } from 's5-action';
+import { loadFollows, addUsers, I18N } from 's5-action';
 import { S5Header, S5SwipeListView } from 's5-components';
 import { connect } from 'react-redux';
 
@@ -135,7 +135,7 @@ class SelectUserView extends Component {
     return(
       <View style={styles.container}>
         <S5Header
-          title="Select User"
+          title={I18N('selectUser.title')}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
           rightItem={[ {icon: 'checkmark-circle-outline'} ]}
