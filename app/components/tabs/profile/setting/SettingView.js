@@ -31,7 +31,7 @@ class SettingView extends Component {
   _logout = () => {
     Alert.alert(
       'Alert',
-      'Do you want to logout?',
+      I18N('setting.msgConfirmLogout'),
       [
         {text: 'Logout', onPress: () => this.props.dispatch(logOut())  },
         {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
@@ -42,7 +42,7 @@ class SettingView extends Component {
   _clearData = () => {
     Alert.alert(
       'Alert',
-      'Do you want to clear chattings?',
+      I18N('setting.msgConfirmClearChat'),
       [
         {text: 'Clear', onPress: () => this.props.dispatch(clearChats())  },
         {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
@@ -53,7 +53,7 @@ class SettingView extends Component {
   _resetSettings = () => {
     Alert.alert(
       'Alert',
-      'Do you want to set configuration to default?',
+      I18N('setting.msgConfirmReset'),
       [
         {text: 'Logout', onPress: () => this.props.dispatch(resetSetting())  },
         {text: 'Cancel',  onPress: () => console.log('Cancel Pressed!') },
@@ -79,26 +79,26 @@ class SettingView extends Component {
         <ScrollView
           style={styles.contentContainer} >
 
-         <TouchableItemGroup style={styles.groupStyle} title='SETTINGS'>
-           <TouchableItem text='Language' showArrow onPress={() => console.log("Edit Profile")}/>
-           <TouchableItem leftIcon={'notifications'} text='Push Notification Settings' showArrow onPress={() => this._navPage('PushNotificationView')} />
-           <TouchableItem leftIcon={'image'} text='Image Quality on Sending' showArrow onPress={() => this._navPage('ImageQualityView')} />
+         <TouchableItemGroup style={styles.groupStyle} title={I18N('setting.title')}>
+           <TouchableItem text={I18N('setting.txtLanguage')} showArrow onPress={() => console.log("Edit Profile")}/>
+           <TouchableItem leftIcon={'notifications'} text={I18N('setting.txtNotification')} showArrow onPress={() => this._navPage('PushNotificationView')} />
+           <TouchableItem leftIcon={'image'} text={I18N('setting.txtImageQuality')} showArrow onPress={() => this._navPage('ImageQualityView')} />
          </TouchableItemGroup>
 
-         <TouchableItemGroup style={styles.groupStyle} title='SUPPORT'>
-           <TouchableItem leftIcon={'help-circle'}  text='Help Center' showArrow onPress={() => console.log("Help Center")}/>
-           <TouchableItem leftIcon={'bug'} text='Report a Problem' showArrow onPress={() => console.log("Report a Problem")}/>
+         <TouchableItemGroup style={styles.groupStyle} title={I18N('setting.txtSupport')}>
+           <TouchableItem leftIcon={'help-circle'}  text={I18N('setting.txtHelpCenter')} showArrow onPress={() => console.log("Help Center")}/>
+           <TouchableItem leftIcon={'bug'} text={I18N('setting.report')} showArrow onPress={() => console.log("Report a Problem")}/>
          </TouchableItemGroup>
 
-          <TouchableItemGroup style={styles.groupStyle} title='ABOUT'>
-            <TouchableItem text='Privacy Policy' showArrow onPress={() => this._navPage('PrivacyPolicyView')}/>
-            <TouchableItem text='Terms' showArrow onPress={() => console.log("Terms")}/>
-            <TouchableItem text='License Information' showArrow onPress={() => this._navPage('LicenseView')}/>
+          <TouchableItemGroup style={styles.groupStyle} title={I18N('setting.txtAbout')}>
+            <TouchableItem text={I18N('setting.txtPolicy')} showArrow onPress={() => this._navPage('PrivacyPolicyView')}/>
+            <TouchableItem text={I18N('setting.txtTerms')} showArrow onPress={() => console.log("Terms")}/>
+            <TouchableItem text={I18N('setting.txtLicense')} showArrow onPress={() => this._navPage('LicenseView')}/>
           </TouchableItemGroup>
 
           <TouchableItemGroup style={styles.groupStyle}>
-            <TouchableItem text='Clear Chat History' onPress={this._clearData}/>
-            <TouchableItem text='Log Out' onPress={ this._logout }/>
+            <TouchableItem text={I18N('setting.txtClearHistory')} onPress={this._clearData}/>
+            <TouchableItem text={I18N('setting.txtLogOut')} onPress={ this._logout }/>
           </TouchableItemGroup>
 
           <Text style={styles.version}>Version {DeviceInfo.getReadableVersion()}</Text>

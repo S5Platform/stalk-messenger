@@ -27,7 +27,22 @@
       "txtStatusMessage":"Status Message",
     },
     "setting":{
-      "title":"SETTING"
+      "title":"SETTING",
+      "txtLanguage":"Language",
+      "txtNotification":"Push Notification Settings",
+      "txtImageQuality":"Image Quality on Sending",
+      "txtSupport":"SUPPORT",
+      "txtHelpCenter":"Help Center",
+      "report":"Report a Problem",
+      "txtAbout":"ABOUT",
+      "txtPolicy":"Privacy Policy",
+      "txtTerms":"Terms",
+      "txtLicense":"License Information",
+      "txtClearHistory":"Clear Chat History",
+      "txtLogOut":"Log Out",
+      "msgConfirmLogout":"Do you want to logout?",
+      "msgConfirmClearChat":"Do you want to clear chattings?",
+      "msgConfirmReset":"Do you want to set configuration to default?"
     }
   },
   "ko": {
@@ -57,7 +72,22 @@
       "txtStatusMessage":"상태메시지",
     },
     "setting":{
-      "title":"세팅"     
+      "title":"세팅",
+      "txtLanguage":"언어",
+      "txtNotification":"알림 설정",
+      "txtImageQuality":"이미지 품질 설정",
+      "txtSupport":"SUPPORT",
+      "txtHelpCenter":"Help Center",
+      "report":"신고하기",
+      "txtAbout":"ABOUT",
+      "txtPolicy":"개인 정보 정책",
+      "txtTerms":"Terms",
+      "txtLicense":"라이센스 정보",
+      "txtClearHistory":"채팅 이력 삭제",
+      "txtLogOut":"로그아웃",
+      "msgConfirmLogout":"정말로 로그아웃 하시겠습니까?",
+      "msgConfirmClearChat":"채팅 이력을 삭제하시겠습니까?",
+      "msgConfirmReset":"Do you want to set configuration to default?"  
     }
   }
 }
