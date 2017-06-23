@@ -79,12 +79,13 @@ export default class S5ChatBox extends Component {
         this.props.images.push( props.currentMessage.image );
       }
     }
+
     if( props.currentMessage.image && this.props.onPressImage ){
 
       var showIndex = this.props.images.indexOf( props.currentMessage.image );
 
       return (
-        <TouchableOpacity onPress={()=> this.props.onPressImage( this.props.images, (showIndex > -1 ? showIndex:0) ) } style={{zIndex:30}}>
+        <TouchableOpacity onPress={()=> this.props.onPressImage( this.props.images, (showIndex > -1 ? showIndex:0) ) } style={{zIndex:100}}>
           <Bubble {...props}
             wrapperStyle={{
               left: {

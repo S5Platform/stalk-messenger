@@ -79,7 +79,7 @@ function chats(state = initialState, action) {
 
       for( var inx = 0; rowId < 0 && inx < newData.length ; inx++ ){
         if( newData[inx].id == action.chatId ){
-          newData[idx].loadedAt = action.chat.loadedAt;
+          newData[idx].loadedAt = action.loadedAt;
           break;
         }
       }

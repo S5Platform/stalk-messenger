@@ -280,11 +280,11 @@ export function updateLoadedAt(chatId) {
 
  return async (dispatch, getState) => {
 
-    var result = await updateLoadedAtAsync(chatId);
+    //var result = await updateLoadedAtAsync(chatId);
 
     dispatch({
       type: UPDATED_LOADEDAT,
-      chat: result,
+      loadedAt: new Date(),
       chatId
     });
 
