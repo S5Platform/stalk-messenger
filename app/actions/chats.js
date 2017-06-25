@@ -87,19 +87,15 @@ function loadChatByIdAsync (id) {
 function updateLoadedAtAsync (id) {
   return new Promise( (resolve, reject) => {
 
-    var chats = new Chats();
-    chats.id = id;
-    chats.set("loadedAt", new Date());
-    chats.save(null, {
-      success: function(chat) {
+    Parse.Cloud.run('chats-update', { chatId: id }, {
+      success: (chat) => {
         resolve(chat);
       },
-      error: function(chat, error) {
+      error: (error) => {
         console.error(error);
         reject(error);
       }
     });
-
   });
 }
 
@@ -280,11 +276,14 @@ export function updateLoadedAt(chatId) {
 
  return async (dispatch, getState) => {
 
-    //var result = await updateLoadedAtAsync(chatId);
+    var result = await updateLoadedAtAsync(chatId);
+
+    console.log( '22222' );
+    console.log( result );
 
     dispatch({
       type: UPDATED_LOADEDAT,
-      loadedAt: new Date(),
+      loadedAt: result.get("loadedAt"),
       chatId
     });
 
