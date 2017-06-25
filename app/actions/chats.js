@@ -278,9 +278,6 @@ export function updateLoadedAt(chatId) {
 
     var result = await updateLoadedAtAsync(chatId);
 
-    console.log( '22222' );
-    console.log( result );
-
     dispatch({
       type: UPDATED_LOADEDAT,
       loadedAt: result.get("loadedAt"),
