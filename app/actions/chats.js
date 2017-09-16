@@ -87,7 +87,7 @@ function loadChatByIdAsync (id) {
 function updateLoadedAtAsync (id) {
   return new Promise( (resolve, reject) => {
 
-    Parse.Cloud.run('chats-update', { chatId: id }, {
+    Parse.Cloud.run('chats-loaded', { chatId: id }, {
       success: (chat) => {
         resolve(chat);
       },
