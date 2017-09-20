@@ -11,10 +11,9 @@ import { persistStore, autoRehydrate }            from 'redux-persist';
 import { AsyncStorage }                           from 'react-native';
 
 import thunk        from 'redux-thunk';   // (https://github.com/gaearon/redux-thunk)
-import createLogger from 'redux-logger';  // (https://github.com/theaqua/redux-logger)
+import { createLogger } from 'redux-logger';  // (https://github.com/theaqua/redux-logger)
 import promise      from './middleware/promise';
 import array        from './middleware/array';
-
 import reducers     from '../reducers';
 
 import { composeWithDevTools }     from 'remote-redux-devtools'; // (http://remotedev.io/local/)

@@ -5,7 +5,7 @@
 
 import { AppRegistry } from 'react-native';
 import Parse from 'parse/react-native';
-import messenger from './app';
+import messenger from './app/index';
 import {SERVER_URL, APP_ID} from './env';
 
 console.disableYellowBox = true;

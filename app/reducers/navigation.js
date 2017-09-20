@@ -13,10 +13,6 @@ function navigation(state = initialState, action) {
     return {...state, tab: action.tab};
   }
   if (action.type === LOGGED_OUT) {
-
-    console.log( 'bbbbb' );
-
-    console.log( initialState );
     return initialState;
   }
   return state;

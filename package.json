@@ -17,10 +17,11 @@
     }
   ],
   "dependencies": {
-    "moment": "^2.15.2",
+    "moment": "^2.18.1",
     "parse": "github:s5platform/Parse-SDK-JS",
-    "react": "16.0.0-alpha.6",
-    "react-native": "0.43.4",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.48.2",
+    "react-native-deprecated-custom-components": "^0.1.1",
     "react-native-device-info": "^0.9.6",
     "react-native-gifted-chat": "0.0.10",
     "react-native-gifted-listview": "github:s5platform/react-native-gifted-listview",
@@ -36,10 +37,10 @@
     "react-native-tab-view": "0.0.62",
     "react-native-vector-icons": "^4.0.0",
     "react-redux": "^5.0.1",
-    "redux": "^3.6.0",
-    "redux-logger": "^2.7.4",
-    "redux-persist": "^4.0.1",
-    "redux-thunk": "^2.1.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^4.8.2",
+    "redux-thunk": "^2.2.0",
     "tween-functions": "^1.2.0",
     "whatwg-fetch": "^1.1.1"
   },
@@ -48,12 +49,12 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-jest": "17.0.0",
-    "babel-preset-react-native": "1.9.0",
+    "babel-jest": "21.0.2",
+    "babel-preset-react-native": "^3.0.2",
     "faker": "^3.1.0",
     "jest": "17.0.0",
     "jest-react-native": "17.0.0",
-    "react-test-renderer": "15.3.2",
+    "react-test-renderer": "16.0.0-alpha.12",
     "remote-redux-devtools": "^0.5.3"
   }
 }

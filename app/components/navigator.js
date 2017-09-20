@@ -7,9 +7,10 @@ import React, { Component } from 'react';
 import {
   Platform,
   BackAndroid,
-  Navigator,
   StyleSheet,
 } from 'react-native';
+
+import { Navigator } from 'react-native-deprecated-custom-components'
 
 import { connect }    from 'react-redux';
 import { switchTab, dismissKeyboard }  from 's5-action';
