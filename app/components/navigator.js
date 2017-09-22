@@ -175,17 +175,13 @@ var styles = StyleSheet.create({
   },
 });
 
-function select(store) {
-  return {
-    isLoggedIn: store.user.isLoggedIn,
-    tab:        store.navigation.tab,
-  };
-}
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
+  tab: state.navigation.tab,
+});
 
-function actions(dispatch) {
-  return {
-    switchTab: (tab) => dispatch(switchTab(tab)),
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  switchTab: (tab) => dispatch(switchTab(tab))
+});
 
-module.exports = connect(select, actions)(AppNavigator);
+export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator);

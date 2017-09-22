@@ -36,6 +36,7 @@
     "react-native-swiper": "^1.5.4",
     "react-native-tab-view": "0.0.62",
     "react-native-vector-icons": "^4.0.0",
+    "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
