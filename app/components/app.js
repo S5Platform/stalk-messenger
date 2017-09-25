@@ -96,7 +96,7 @@ class App extends Component {
               U: self.props.user.id
             }
           };
-console.log(responseJson.result.server.url, connectOptions)
+          console.log(responseJson.result.server.url, connectOptions)
           self.bg_socket = new SocketIO(responseJson.result.server.url, connectOptions);
 
           self.bg_socket.on('connect', () => { // SOCKET CONNECTION EVENT

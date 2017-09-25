@@ -41,7 +41,19 @@ import { addNavigationHelpers, StackNavigator } from "react-navigation";
 
 export const AppNavigator = StackNavigator(
   {
-    Login: { screen: LoginScreen }
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: ({navigation}) => ({
+        header:null
+      }),
+    },
+    SignupView:  { screen: SignupView },
+    SettingView:  { screen: SettingView },
+    LicenseView:  { screen: LicenseView },
+    PrivacyPolicyView:  { screen: PrivacyPolicyView },
+    PushNotificationView:  { screen: PushNotificationView },
+    ImageQualityView:  { screen: ImageQualityView },
+    TabsView:  { screen: TabsView }
   },
   {
     mode: "card",
@@ -60,7 +72,7 @@ AppWithNavigationState.propTypes = {
 const mapStateToProps = state => ({
   isLoggedIn: state.user.isLoggedIn,
   tab: state.navigation.tab,
-  nav: state.navigation
+  nav: state.nav
 });
 
 const mapDispatchToProps = dispatch => ({
