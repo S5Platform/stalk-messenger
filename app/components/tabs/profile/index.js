@@ -22,7 +22,6 @@ var ImagePicker = require('react-native-image-picker');
 class ProfileMain extends Component {
 
   static propTypes = {
-    navigator: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     user: React.PropTypes.object.isRequired,
   };

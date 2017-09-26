@@ -20,6 +20,7 @@ import { S5Colors, S5Alert } from 's5-components';
 import { SERVER_URL, APP_ID, VERSION } from '../../env.js';
 
 import AppNavigator from './navigator';
+//import AppNavigator from './navigatorV2';
 import PushController from './PushController';
 
 import PushNotification from 'react-native-push-notification';

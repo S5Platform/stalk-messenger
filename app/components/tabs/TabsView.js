@@ -19,8 +19,7 @@ class TabsView extends Component {
 
   static propTypes = {
     tab: React.PropTypes.number,
-    switchTab: React.PropTypes.func.isRequired,
-    navigator: React.PropTypes.object.isRequired,
+    switchTab: React.PropTypes.func.isRequired
   };
 
   state = {
@@ -38,6 +37,7 @@ class TabsView extends Component {
   }
 
   _handleChangeTab = (index) => {
+
     this.props.switchTab(index);
     this.setState({
       index,

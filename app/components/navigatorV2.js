@@ -64,11 +64,6 @@ export const AppNavigator = StackNavigator(
 const AppWithNavigationState = ({ dispatch, nav }) =>
   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />;
 
-AppWithNavigationState.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  nav: PropTypes.object.isRequired
-};
-
 const mapStateToProps = state => ({
   isLoggedIn: state.user.isLoggedIn,
   tab: state.navigation.tab,

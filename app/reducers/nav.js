@@ -11,7 +11,7 @@ import { AppNavigator } from "../components/navigatorV2";
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams("Login"));
 
-function navigation(state = initialState, action) {
+function nav(state = initialState, action) {
   if(action.type === LOGGED_IN) {
     var nextState = AppNavigator.router.getStateForAction(
       NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: "TabsView" })] }),
@@ -30,4 +30,4 @@ function navigation(state = initialState, action) {
   return state;
 }
 
-module.exports = navigation;
+module.exports = nav;

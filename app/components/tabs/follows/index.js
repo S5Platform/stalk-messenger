@@ -20,7 +20,6 @@ import { connect } from 'react-redux';
 class FollowsMain extends Component {
 
   static propTypes = {
-    navigator: React.PropTypes.object.isRequired,
     follows:  React.PropTypes.object.isRequired,
     removeFollow: React.PropTypes.func.isRequired, // dispatch from actions
   };
@@ -68,7 +67,7 @@ class FollowsMain extends Component {
     const filterText = this.state.filter || '';
     const filterRegex = new RegExp(String(filterText), 'i');
     const filter = (user) => filterRegex.test(user.nickName);
-    
+
     return (
       <View style={styles.container}>
         <S5TextInput
