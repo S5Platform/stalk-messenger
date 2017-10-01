@@ -102,13 +102,14 @@ class TabsView extends Component {
   };
 
   _renderScene = ({ route }) => {
+
     switch (route.key) {
       case 'follows':
-        return <FollowsView navigator={this.props.navigator} />;
+        return <FollowsView navigator={this.props.navigator} navigation={this.props.navigation} />;
       case 'chats':
-        return <ChatsView   navigator={this.props.navigator} />;
+        return <ChatsView   navigator={this.props.navigator} navigation={this.props.navigation}/>;
       case 'profile':
-        return <ProfileView navigator={this.props.navigator} />;
+        return <ProfileView navigator={this.props.navigator} navigation={this.props.navigation} />;
       default:
         return null;
     }

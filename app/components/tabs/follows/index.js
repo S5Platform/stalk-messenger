@@ -51,13 +51,31 @@ class FollowsMain extends Component {
     this.props.removeFollow(rowId);
 	}
 
+  _onRowPress =(type, user) => {
+
+    var {navigate} = this.props.navigation;
+    var route = {};
+
+    if( type == 'ChatView' ){
+      route = { name: 'ChatView', users: [user] };
+    } else {
+      route = { name: 'UserView', user };
+    }
+
+    if( navigate ){
+      navigate(route);
+    } else {
+      this.props.navigator.push(route);
+    }
+  }
+
   _renderRow = (user) => {
     return (
       <FollowCell
         key={user.id}
         user={user}
-        onPress={() => this.props.navigator.push({ name: 'ChatView', users: [user] }) }
-        onProfilePress={() => this.props.navigator.push({ name: 'UserView', user }) }
+        onPress={() => this._onRowPress('ChatView', user) }
+        onProfilePress={() => this._onRowPress('UserView', user) }
       />
     );
   }

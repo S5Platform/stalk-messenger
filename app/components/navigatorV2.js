@@ -57,7 +57,7 @@ export const AppNavigator = StackNavigator(
   },
   {
     mode: "card",
-    headerMode: "screen"
+    headerMode: "none"
   }
 );
 
@@ -74,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
   switchTab: (tab) => dispatch(switchTab(tab))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppWithNavigationState);
+export default connect(mapStateToProps)(AppWithNavigationState);
