@@ -53,17 +53,25 @@ class FollowsMain extends Component {
 
   _onRowPress =(type, user) => {
 
-    var {navigate} = this.props.navigation;
+    var navigate;
+    var routeKey = 'name';
+    if( this.props.navigation ){
+      navigate = this.props.navigation.navigate;
+      routeKey = 'routeName';
+    }
     var route = {};
+    var  key
 
     if( type == 'ChatView' ){
-      route = { name: 'ChatView', users: [user] };
+      route = { users: [user] };
     } else {
-      route = { name: 'UserView', user };
+      route = { user };
     }
 
+    route[routeKey] = type;
+
     if( navigate ){
-      navigate(route);
+      navigate(type,route);
     } else {
       this.props.navigator.push(route);
     }

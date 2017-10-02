@@ -12,22 +12,27 @@ import { AppNavigator } from "../components/navigatorV2";
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams("Login"));
 
 function nav(state = initialState, action) {
-  if(action.type === LOGGED_IN) {
-    var nextState = AppNavigator.router.getStateForAction(
-      NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: "TabsView" })] }),
-      state
-    );
 
-    return nextState;
+  let nextState;
+  switch (action.type) {
+    case LOGGED_IN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: "TabsView" })] }),
+        state
+      );
+      break;
+    case SWITCH_TAB:
+      nextState = {...state, tab: action.tab};
+      break;
+    case LOGGED_OUT:
+      nextState = initialState;
+      break;
+    default:
+      nextState = AppNavigator.router.getStateForAction(action, state);
+      break;
   }
-
-  if (action.type === SWITCH_TAB) {
-    return {...state, tab: action.tab};
-  }
-  if (action.type === LOGGED_OUT) {
-    return initialState;
-  }
-  return state;
+  
+  return nextState || state;
 }
 
 module.exports = nav;

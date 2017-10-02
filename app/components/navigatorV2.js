@@ -53,7 +53,8 @@ export const AppNavigator = StackNavigator(
     PrivacyPolicyView:  { screen: PrivacyPolicyView },
     PushNotificationView:  { screen: PushNotificationView },
     ImageQualityView:  { screen: ImageQualityView },
-    TabsView:  { screen: TabsView }
+    TabsView:  { screen: TabsView },
+    ChatView:  { screen: ChatView }
   },
   {
     mode: "card",
