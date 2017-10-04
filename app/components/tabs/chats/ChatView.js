@@ -22,6 +22,8 @@ import SocketIO from 'react-native-socketio';
 
 import { leaveChat } from 's5-action';
 
+import { NavigationActions } from "react-navigation";
+
 class ChatView extends Component {
 
   static propTypes = {
@@ -271,17 +273,26 @@ class ChatView extends Component {
 
   leaveChat = (chatId) => {
     this.props.leaveChat(chatId).then(() => {
-      this.props.navigator.pop();
+      if( this.props.navigation ){
+        this.props.navigation.goBack(null);
+      } else {
+        this.props.navigator.pop();
+      }
     });
   }
 
   _addUserCallback = (type, data) => {
     if( type =='A' ){
       this.setState( {chat:data} );
-      this.props.navigator.pop();
+
+      if( this.props.navigation ){
+        this.props.navigation.goBack(null);
+      } else {
+        this.props.navigator.pop();
+      }
+
     } else if ( type =='C' ){
       // 신규생성
-      this.props.navigator.pop();
       this.props.navigator.replace({ name: 'ChatView', users:data });
     }
   }
@@ -384,9 +395,15 @@ class ChatView extends Component {
             leftItem={[ {icon: 'arrow-back'} ]}
             rightItem={[ {icon: 'menu'} ]}
             onPress={ (name) => {
-              if( name == 'menu') return this._drawer.open();
+              if( name == 'menu') {
+                return this._drawer.open();
+              }
               this.props.switchTab();
-              return this.props.navigator.pop();
+              if(  this.props.navigation ){
+                return this.props.navigation.goBack(null);
+              } else {
+                return this.props.navigator.pop();
+              }
             }}
           />
 

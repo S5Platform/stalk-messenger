@@ -54,7 +54,9 @@ export const AppNavigator = StackNavigator(
     PushNotificationView:  { screen: PushNotificationView },
     ImageQualityView:  { screen: ImageQualityView },
     TabsView:  { screen: TabsView },
-    ChatView:  { screen: ChatView }
+    ChatView:  { screen: ChatView },
+    SearchUserView: { screen: SearchUserView },
+    SelectUserView: { screen: SelectUserView },
   },
   {
     mode: "card",

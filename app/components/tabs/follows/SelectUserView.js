@@ -147,7 +147,11 @@ class SelectUserView extends Component {
                 return this.createChat();
               }
             } else {
+              if(  this.props.navigation ){
+                return this.props.navigation.goBack(null);
+              } else {
                 return this.props.navigator.pop();
+              }
             }
           }}
         />

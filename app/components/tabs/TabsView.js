@@ -120,7 +120,20 @@ class TabsView extends Component {
   };
 
   _onPressHeader = (name) => {
-    this.props.navigator.push({name});
+
+    var navigate;
+    if( this.props.navigation ){
+      navigate = this.props.navigation.navigate;
+    }
+    var route = {};
+
+    if( navigate ){
+      console.log( '-----11111-----' );
+      console.log( name );
+      navigate(name);
+    } else {
+      this.props.navigator.push({name});
+    }
   }
 
   render() {
