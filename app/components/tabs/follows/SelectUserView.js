@@ -94,7 +94,11 @@ class SelectUserView extends Component {
           console.log('ERROR....>', error);
         });
     } else {
-      this.props.navigator.pop();
+      if( this.props.navigation ){
+        this.props.navigation.goBack(null);
+      } else {
+        this.props.navigator.pop();
+      }
     }
   }
 
@@ -147,7 +151,7 @@ class SelectUserView extends Component {
                 return this.createChat();
               }
             } else {
-              if(  this.props.navigation ){
+              if( this.props.navigation ){
                 return this.props.navigation.goBack(null);
               } else {
                 return this.props.navigator.pop();

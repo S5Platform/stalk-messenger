@@ -53,6 +53,21 @@ class ChatsMain extends Component {
     });
   }
 
+  _onRowPress =(type, chat) => {
+
+    var navigate;
+    if( this.props.navigation ){
+      navigate = this.props.navigation.navigate;
+    }
+    var route = { name: type, chat:chat };
+
+    if( navigate ){
+      navigate(type,route);
+    } else {
+      this.props.navigator.push(route);
+    }
+  }
+
   _renderRow = (chat) => {
     return (
       <ChatCell
@@ -60,7 +75,7 @@ class ChatsMain extends Component {
         chat={chat}
         message={this.props.messages.latest[chat.channelId]}
         unreadCount={this.props.messages.unreadCount[chat.channelId]}
-        onPress={() => this.props.navigator.push({name: 'ChatView', chat}) }
+        onPress={() => this._onRowPress('ChatView', chat) }
       />
     )
   }

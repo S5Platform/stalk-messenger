@@ -135,7 +135,11 @@ export default class ImageViewer extends Component {
         leftItem={[ {icon: 'arrow-back'} ]}
         iconColor={'white'}
         onPress={ (name) => {
-          return this.props.navigator.pop();
+          if( this.props.navigation ){
+            return this.props.navigation.goBack(null);
+          } else {
+            return this.props.navigator.pop();
+          }
         }}
       />
       </View>

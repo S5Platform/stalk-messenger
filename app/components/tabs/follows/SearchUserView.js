@@ -99,7 +99,11 @@ class SearchUserView  extends Component {
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
           onPress={ (name) => {
-            return this.props.navigator.pop()
+            if( this.props.navigation ){
+              return this.props.navigation.goBack(null);
+            } else {
+              return this.props.navigator.pop();
+            }
           }}
         />
         <S5TextInput
