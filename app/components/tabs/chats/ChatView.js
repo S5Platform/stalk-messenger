@@ -29,8 +29,6 @@ class ChatView extends Component {
   static propTypes = {
     chat: React.PropTypes.object,
     user: React.PropTypes.object.isRequired,
-    users: React.PropTypes.array,
-    navigator: React.PropTypes.object.isRequired,
     setLatestMessage: React.PropTypes.func.isRequired,
     loadMessages: React.PropTypes.func.isRequired,
     switchTab: React.PropTypes.func.isRequired,
@@ -58,21 +56,30 @@ class ChatView extends Component {
     var chat = {};
 
     // 1명과 1:1 시도인 경우, 이미 Chat List 에 있는지 확인해야 함 !
-    if(!this.props.chat && this.props.users && this.props.users.length == 1) {
-      chat = { users: this.props.users };
 
-      for(var i=0, l = this.props.chats.list.length; i < l; i++){
-        var obj = this.props.chats.list[i];
-        if(obj.uid && obj.uid == this.props.users[0].id){
-          chat = obj;
-          break;
+    if( this.props.navigator ){
+
+      if(!this.props.chat && this.props.users && this.props.users.length == 1) {
+        chat = { users: this.props.users };
+
+        for(var i=0, l = this.props.chats.list.length; i < l; i++){
+          var obj = this.props.chats.list[i];
+          if(obj.uid && obj.uid == this.props.users[0].id){
+            chat = obj;
+            break;
+          }
         }
+
+      } else {
+        chat = this.props.chat ? this.props.chat : { users: this.props.users };
       }
 
-    } else {
-      chat = this.props.chat ? this.props.chat : { users: this.props.users };
-    }
+    } else if( this.props.navigation ){
+      if( this.props.navigation.state.params ) {
+        chat = this.props.navigation.state.params.chat ? this.props.navigation.state.params.chat : { users: this.props.navigation.state.params.users };
+      }
 
+    }
     this.setState({ chat });
   }
 

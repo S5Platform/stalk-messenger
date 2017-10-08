@@ -23,7 +23,6 @@ class ChatsMain extends Component {
     chats: React.PropTypes.object.isRequired,
     messages: React.PropTypes.object.isRequired,
     user: React.PropTypes.object,
-    navigator: React.PropTypes.object.isRequired,
     leaveChat: React.PropTypes.func.isRequired,
   };
 
