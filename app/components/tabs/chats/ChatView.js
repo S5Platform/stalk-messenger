@@ -238,7 +238,14 @@ class ChatView extends Component {
     this._drawer.close();
     if( action ){
       if( action.openSelectUserView){
-        this.props.navigator.push({name: 'SelectUserView', chat:this.state.chat, callback:this._addUserCallback});
+
+        var route = {name: 'SelectUserView', chat:this.state.chat, callback:this._addUserCallback};
+
+        if( this.props.navigation ){
+          this.props.navigation.navigate( route.name, route );
+        } else {
+          this.props.navigator.push(route);
+        }
 
       } else if( action.leaveChat && self.state.chat && self.state.chat.id ){
 
@@ -299,8 +306,14 @@ class ChatView extends Component {
       }
 
     } else if ( type =='C' ){
+
+      var route = { name: 'ChatView', users:data };
       // 신규생성
-      this.props.navigator.replace({ name: 'ChatView', users:data });
+      if( this.props.navigation ){
+        this.props.navigation.navigate('ChatView', route);
+      } else {
+        this.props.navigator.replace(route);
+      }
     }
   }
 

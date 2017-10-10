@@ -19,25 +19,30 @@ import { S5Header, S5SwipeListView } from 's5-components';
 import { connect } from 'react-redux';
 
 class SelectUserView extends Component {
-
-  state = {
-    dataSource: new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (prev, next) => prev !== next
-    }),
-    listViewData: this.props.follows.list,
-    filter: '',
-  };
-
   constructor(props) {
     super(props);
 
     this.checkedUsers = {};
     this.existUserIds = [];
 
-    if( this.props.chat && this.props.chat.users ){
-      for( var inx = 0 ; inx < this.props.chat.users.length;inx++ ){
-        this.existUserIds.push( this.props.chat.users[inx].username );
+    var chat = this.props.chat;
+    if( this.props.navigation ){
+      chat = this.props.navigation.state.params.chat;
+    }
+
+    this.state = {
+      chat:chat,
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+        sectionHeaderHasChanged: (prev, next) => prev !== next
+      }),
+      listViewData: this.props.follows.list,
+      filter: '',
+    };
+
+    if( this.state.chat && this.state.chat.users ){
+      for( var inx = 0 ; inx < this.state.chat.users.length;inx++ ){
+        this.existUserIds.push( this.state.chat.users[inx].username );
       }
     }
   }
@@ -48,9 +53,9 @@ class SelectUserView extends Component {
 
     // channelId 가 생성되기 전 상태일때( 첫번째 메시지 발송 전 )
     var useCallback = false;
-    if( this.props.chat && this.props.chat.users ){
-      for( var inx in this.props.chat.users ){
-        users.push( this.props.chat.users[inx] );
+    if( this.state.chat && this.state.chat.users ){
+      for( var inx in this.state.chat.users ){
+        users.push( this.state.chat.users[inx] );
       }
       if( self.props.callback ){
         useCallback = true;
@@ -83,7 +88,7 @@ class SelectUserView extends Component {
     }
 
     if( users.length > 0 ){
-      this.props.addUsers(this.props.chat.id, this.props.chat.channelId, users).then(
+      this.props.addUsers(this.state.chat.id, this.state.chat.channelId, users).then(
         (updatedChat) => {
           console.log('Add users', updatedChat );
           if( self.props.callback ){
@@ -145,7 +150,7 @@ class SelectUserView extends Component {
           rightItem={[ {icon: 'checkmark-circle-outline'} ]}
           onPress={ (name) => {
             if( name == 'checkmark-circle-outline' ) {
-              if( this.props.chat && this.props.chat.channelId ){ // "channelId" existed
+              if( this.state.chat && this.state.chat.channelId ){ // "channelId" existed
                 return this.addUsers();
               } else {
                 return this.createChat();
