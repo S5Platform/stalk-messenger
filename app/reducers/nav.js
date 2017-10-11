@@ -9,7 +9,9 @@ import { LOGGED_IN, SWITCH_TAB, LOGGED_OUT} from 's5-action';
 import { NavigationActions } from "react-navigation";
 import { AppNavigator } from "../components/navigatorV2";
 
-const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams("Login"));
+const initialState = AppNavigator.router.getStateForAction(
+  NavigationActions.init()
+);
 
 function nav(state = initialState, action) {
 
@@ -31,7 +33,7 @@ function nav(state = initialState, action) {
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }
-  
+
   return nextState || state;
 }
 
