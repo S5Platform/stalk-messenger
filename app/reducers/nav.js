@@ -13,7 +13,7 @@ const initialState = AppNavigator.router.getStateForAction(
   NavigationActions.init()
 );
 
-function nav(state = initialState, action) {
+function nav(state = null, action) {
 
   let nextState;
   switch (action.type) {

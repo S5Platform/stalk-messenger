@@ -12,26 +12,19 @@ import { updateUser } from 's5-action';
 
 class ProfileForm extends Component {
 
-  static propTypes = {
-    navigator: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    user: React.PropTypes.object.isRequired,
-    field: React.PropTypes.string,
-    title: React.PropTypes.string,
-    validLength: React.PropTypes.number,
-  };
 
   constructor(props) {
     super(props);
 
-    this.state = {};
+    var params = this.props.navigation.state.params || this.props;
 
-    if( this.props.field ){
+    if( params ){
       this.state = {
-        key : this.props.field,
-        value : this.props.user[this.props.field],
-        title : this.props.title,
-        placeholder: 'Please input ' + this.props.title,
+        key : params.field,
+        value : this.props.user[params.field],
+        title : params.title,
+        placeholder: 'Please input ' + params.title,
+        validLength: params.validLength
       }
     }
 
@@ -42,7 +35,7 @@ class ProfileForm extends Component {
   }
 
   _onChangeText = (text) => {
-    if( this.props.validLength && text.length > this.props.validLength ){
+    if( this.state.validLength && text.length > this.state.validLength ){
       return;
     }
     this.setState({value: text});
@@ -59,10 +52,10 @@ class ProfileForm extends Component {
   }
 
   _renderValidation = () => {
-    if( this.props.validLength && this.props.validLength > 0 ){
+    if( this.state.validLength && this.state.validLength > 0 ){
       return(
         <Text style={styles.helper}>
-          {this.state.value.length}/{this.props.validLength}
+          {this.state.value.length}/{this.state.validLength}
         </Text>
       )
     }
@@ -90,7 +83,11 @@ class ProfileForm extends Component {
           rightItem={[ {icon: 'checkmark-circle-outline'} ]}
           onPress={ (name) => {
             if( name == 'checkmark-circle-outline') return this.saveProfile();
-            return this.props.navigator.pop();
+            if( this.props.navigation ){
+              return this.props.navigation.goBack(null);
+            } else {
+              return this.props.navigator.pop();
+            }
           }}
         />
 

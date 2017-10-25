@@ -50,11 +50,25 @@ class ProfileMain extends Component {
   }
 
   onPressNickName(){
-    this.props.navigator.push({name: 'ProfileForm', field:'nickName', title:'Nickname', validLength:20});
+
+    var route = {name: 'ProfileForm', field:'nickName', title:'Nickname', validLength:20};
+
+    if( this.props.navigation ){
+      this.props.navigation.navigate( 'ProfileForm', route );
+    } else {
+      this.props.navigator.push(route)
+    }
   }
 
   onPressStatusMessage(){
-    this.props.navigator.push({name: 'ProfileForm', field:'statusMessage', title:'Status message'});
+
+    var route = {name: 'ProfileForm', field:'statusMessage', title:'Status message'}
+
+    if( this.props.navigation ){
+      this.props.navigation.navigate( 'ProfileForm', route );
+    } else {
+      this.props.navigator.push(route)
+    }
   }
 
   render() {

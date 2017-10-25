@@ -44,17 +44,16 @@ import { addNavigationHelpers, StackNavigator, TabNavigator } from "react-naviga
 
 export const FollowsStack = StackNavigator({
   ChatsView: {
-    screen: ChatsView,
+    screen: FollowsView,
     navigationOptions: {
-      title: I18N('chat.title'),
+      title: I18N('friend.title'),
     },
   },
   SelectUserView:{
     screen: SelectUserView
   }
 }, {
-  mode: 'card',
-  headerMode: 'none',
+  mode: 'card'
 });
 
 export const ChatsStack = StackNavigator({
@@ -74,8 +73,7 @@ export const ChatsStack = StackNavigator({
     screen: SelectUserView
   }
 }, {
-  mode: 'card',
-  headerMode: 'none',
+  mode: 'card'
 });
 
 export const ProfileStack = StackNavigator({
@@ -100,33 +98,39 @@ export const ProfileStack = StackNavigator({
   PrivacyPolicyView: {
     screen: PrivacyPolicyView
   },
+  ProfileForm:{
+    screen: ProfileForm
+  }
+
 }, {
-  mode: 'card',
-  headerMode: 'none',
+  mode: 'card'
 });
 
 export const Tabs = TabNavigator({
-  Follow:{
+  followTab:{
     screen: FollowsStack,
     navigationOptions: {
       tabBarLabel: I18N('friend.title'),
       tabBarIcon: ({ tintColor }) => <S5Icon name={'people'} color={tintColor} />
     },
   },
-  Chat: {
+  chatTab: {
     screen: ChatsStack,
     navigationOptions: {
       tabBarLabel: I18N('chat.title'),
       tabBarIcon: ({ tintColor }) => <S5Icon name={'chatbubbles'} color={tintColor} />
     },
   },
-  Profile:{
+  profileTab:{
     screen: ProfileStack,
     navigationOptions: {
       tabBarLabel: I18N('profile.title'),
       tabBarIcon: ({ tintColor }) => <S5Icon name={'person'} color={tintColor} />
     }, 
   }
+},
+{
+  initialRouteName: 'followTab'  
 });
 
 export const AppNavigator = StackNavigator({
