@@ -128,8 +128,6 @@ class TabsView extends Component {
     var route = {};
 
     if( navigate ){
-      console.log( '-----11111-----' );
-      console.log( name );
       navigate(name);
     } else {
       this.props.navigator.push({name});

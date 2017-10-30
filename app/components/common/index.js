@@ -20,6 +20,7 @@ import S5Paragraph      from './S5Paragraph';
 import S5TextInput      from './S5TextInput';
 import S5ChatBox        from './S5ChatBox';
 import S5Radio          from './S5Radio'
+import S5NavBarButton          from './S5NavBarButton'
 
 export {
   S5Alert,
@@ -39,5 +40,6 @@ export {
   S5Icon,
   S5ListView,
   S5ChatBox,
-  S5Radio
+  S5Radio,
+  S5NavBarButton
 };

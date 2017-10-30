@@ -43,7 +43,7 @@ import ProfileView    from './tabs/profile/index';
 import { addNavigationHelpers, StackNavigator, TabNavigator } from "react-navigation";
 
 export const FollowsStack = StackNavigator({
-  ChatsView: {
+  FollowsView: {
     screen: FollowsView,
     navigationOptions: {
       title: I18N('friend.title'),

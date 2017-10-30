@@ -17,6 +17,7 @@ import {
 import NavigationBar from 'react-native-navbar';
 import S5Colors from './S5Colors';
 import S5Icon   from './S5Icon';
+import S5NavBarButton from './S5NavBarButton';
 
 export default class S5Header extends Component {
 
@@ -57,14 +58,14 @@ export default class S5Header extends Component {
           style: styles.title
         }}
         leftButton={
-          <NavBarButton
+          <S5NavBarButton
             style={{ marginLeft: 15 }}
             color={iconColor}
             onPress={ this.props.onPress }
             actions={ this.props.leftItem } />
         }
         rightButton={
-          <NavBarButton
+          <S5NavBarButton
             style={{ marginRight: 15 }}
             color={iconColor}
             onPress={ this.props.onPress }
@@ -79,63 +80,6 @@ export default class S5Header extends Component {
     );
   }
 
-}
-
-class NavBarButton extends Component {
-
-  static propTypes = {
-    actions: PropTypes.arrayOf(PropTypes.shape({
-      icon: PropTypes.string.isRequired,
-    })),
-    onPress: PropTypes.func,
-    size: PropTypes.number,
-    color: PropTypes.string,
-    style: PropTypes.any,
-  };
-
-  static defaultProps = {
-    size: 28,
-    color: S5Colors.primaryText,
-    actions: [],
-  };
-
-  _updateIconSources = (props) => {
-
-    Promise.all((props.actions || []).map((action) => {
-      if (action.icon) {
-        return (
-            <TouchableOpacity onPress={() => props.onPress(action.key || action.icon)} key={action.key || action.icon} style={styles.btnContent}>
-              <S5Icon key={action.key || action.icon} name={action.icon} size={props.size} color={props.color} style={[ props.style, {} ]} />
-            </TouchableOpacity>
-          );
-      }
-      return Promise.resolve(action);
-    })).then(actions => { this.setState({ actions }) } );
-
-  }
-
-	constructor(props) {
-		super(props);
-    this.state = {actions: []};
-	}
-
-  componentWillMount() {
-    this._updateIconSources(this.props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(this.props.actions != nextProps.actions) {
-      this._updateIconSources(nextProps);
-    }
-  }
-
-  render() {
-    return (
-      <View style={{flexDirection: 'row'}}>
-        {this.state.actions}
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({

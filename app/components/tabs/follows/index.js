@@ -14,7 +14,7 @@ import {
 import FollowCell from './FollowCell';
 
 import { loadFollows, removeFollow, I18N } from 's5-action';
-import { S5Icon, S5Header, S5SwipeListView, S5TextInput, S5Colors } from 's5-components';
+import { S5Icon, S5Header, S5SwipeListView, S5TextInput, S5Colors, S5NavBarButton } from 's5-components';
 import { connect } from 'react-redux';
 
 class FollowsMain extends Component {
@@ -24,10 +24,34 @@ class FollowsMain extends Component {
     removeFollow: React.PropTypes.func.isRequired, // dispatch from actions
   };
 
+  static navigationOptions = {
+    title: I18N('friend.title'),
+    headerRight:
+      <S5NavBarButton
+        style={{ flex:1, marginRight: 15 }}
+        color={S5Colors.primaryText}
+        onPress={ this._onPressHeader } />
+  }
+
   state = {
     listViewData: this.props.follows.list || [],
     filter: '',
   };
+
+  _onPressHeader = (name) => {
+
+    var navigate;
+    if( this.props.navigation ){
+      navigate = this.props.navigation.navigate;
+    }
+    var route = {};
+
+    if( navigate ){
+      navigate(name);
+    } else {
+      this.props.navigator.push({name});
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
 
