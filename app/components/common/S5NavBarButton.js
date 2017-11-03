@@ -68,7 +68,7 @@ export default class S5NavBarButton extends Component {
 
   render() {
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flex:1, flexDirection: 'row'}}>
         {this.state.actions}
       </View>
     );

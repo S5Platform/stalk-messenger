@@ -24,19 +24,27 @@ class FollowsMain extends Component {
     removeFollow: React.PropTypes.func.isRequired, // dispatch from actions
   };
 
-  static navigationOptions = {
-    title: I18N('friend.title'),
-    headerRight:
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    let headerRight = (
       <S5NavBarButton
         style={{ flex:1, marginRight: 15 }}
         color={S5Colors.primaryText}
-        onPress={ this._onPressHeader } />
-  }
+        actions={[{ key: 'SearchUserView',  icon: 'person-add' }]}
+        onPress={params.handlePress ? params.handlePress : () => null} />
+    );
+    return { headerRight };
+  };
 
   state = {
     listViewData: this.props.follows.list || [],
     filter: '',
   };
+
+  componentDidMount() {
+    // We can only set the function after the component has been initialized
+    this.props.navigation.setParams({ handlePress: this._onPressHeader });
+  }
 
   _onPressHeader = (name) => {
 

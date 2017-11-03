@@ -14,7 +14,7 @@ import {
 import ChatCell from './ChatCell';
 
 import { loadChats, leaveChat, I18N } from 's5-action';
-import { S5Icon, S5Colors, S5Header, S5SwipeListView } from 's5-components';
+import { S5Icon, S5Colors, S5Header, S5SwipeListView, S5NavBarButton } from 's5-components';
 import { connect } from 'react-redux';
 
 class ChatsMain extends Component {
@@ -25,6 +25,15 @@ class ChatsMain extends Component {
     user: React.PropTypes.object,
     leaveChat: React.PropTypes.func.isRequired,
   };
+
+  static navigationOptions = {
+    title: I18N('chat.title'),
+    headerRight:
+      <S5NavBarButton
+        style={{ flex:1, marginRight: 15 }}
+        color={S5Colors.primaryText}
+        onPress={ this._onPressHeader } />
+  }
 
   state = {
     listViewData: []
