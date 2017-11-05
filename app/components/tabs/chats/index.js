@@ -26,14 +26,17 @@ class ChatsMain extends Component {
     leaveChat: React.PropTypes.func.isRequired,
   };
 
-  static navigationOptions = {
-    title: I18N('chat.title'),
-    headerRight:
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    let headerRight = (
       <S5NavBarButton
         style={{ flex:1, marginRight: 15 }}
         color={S5Colors.primaryText}
-        onPress={ this._onPressHeader } />
-  }
+        actions={[{ key: 'SelectUserView',  icon: 'add' }]}
+        onPress={params.handlePress ? params.handlePress : () => null} />
+    );
+    return { headerRight };
+  };
 
   state = {
     listViewData: []
