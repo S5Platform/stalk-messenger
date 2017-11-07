@@ -26,6 +26,18 @@ class ProfileMain extends Component {
     user: React.PropTypes.object.isRequired,
   };
 
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    let headerRight = (
+      <S5NavBarButton
+        style={{ flex:1, marginRight: 15 }}
+        color={S5Colors.primaryText}
+        actions={[{ key: 'SettingView',  icon: 'settings' }]}
+        onPress={params.handlePress ? params.handlePress : () => null} />
+    );
+    return { headerRight };
+  };
+
   selectImage(){
     ImagePicker.showImagePicker({
       title: 'Select Avatar',
