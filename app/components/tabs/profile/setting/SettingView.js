@@ -62,7 +62,22 @@ class SettingView extends Component {
   }
 
   _navPage(name){
-    this.props.navigator.push({name});
+
+    var route = {name: name};
+
+    if( this.props.navigation ){
+      this.props.navigation.navigate( route.name, route );
+    } else {
+      this.props.navigator.push(route);
+    }
+  }
+
+  _onPress = ()=>{
+    if( this.props.navigation ){
+      return this.props.navigation.goBack(null);
+    } else {
+      return this.props.navigator.pop();
+    }    
   }
 
   render() {
@@ -74,7 +89,7 @@ class SettingView extends Component {
           title={I18N('setting.title')}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
-          onPress={ (name) => this.props.navigator.pop() }
+          onPress={ (name) => this._onPress() }
         />
         <ScrollView
           style={styles.contentContainer} >

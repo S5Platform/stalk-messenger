@@ -73,18 +73,6 @@ export default class PushController extends Component {
       });
     }
 
-    /**
-    PushNotification.checkPermissions((result) => {
-
-      if ( Platform.OS === 'ios' ) {
-        if( !result.alert && !result.badge && !result.sound ){
-          // TODO implements logics once permissions canceled.
-          console.log(' TODO implements logics once permissions canceled. ', result);
-        }
-      }
-    })
-    */
-
   }
 
   render() {
