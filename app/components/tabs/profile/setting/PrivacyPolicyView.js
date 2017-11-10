@@ -38,6 +38,14 @@ export default class PrivacyPolicyView extends Component {
     )
   }
 
+  _onPress = ()=>{
+    if( this.props.navigation ){
+      return this.props.navigation.goBack(null);
+    } else {
+      return this.props.navigator.pop();
+    }    
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -46,7 +54,7 @@ export default class PrivacyPolicyView extends Component {
           title={'PRIVACY POLICY'}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
-          onPress={ (name) => this.props.navigator.pop() }
+          onPress={ (name) => this._onPress() }
         />
 
         <ListView

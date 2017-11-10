@@ -34,6 +34,14 @@ class PushNotificationView extends Component {
     this.props.dispatch(updateSetting(key,value));
   }
 
+  _onPress = ()=>{
+    if( this.props.navigation ){
+      return this.props.navigation.goBack(null);
+    } else {
+      return this.props.navigator.pop();
+    }    
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -42,7 +50,7 @@ class PushNotificationView extends Component {
           title={'Push Notification'}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
-          onPress={ (name) => this.props.navigator.pop() }
+          onPress={ (name) => this._onPress() }
         />
         <ScrollView
           style={styles.contentContainer} >
