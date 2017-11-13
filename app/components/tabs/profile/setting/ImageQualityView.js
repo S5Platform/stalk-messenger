@@ -36,6 +36,14 @@ class ImageQualityView extends Component {
     this.props.dispatch(updateSetting('imageQuality',optionValues[index]));
   }
 
+  _onPress = ()=>{
+    if( this.props.navigation ){
+      return this.props.navigation.goBack(null);
+    } else {
+      return this.props.navigator.pop();
+    }    
+  }
+
   render() {
 
     var self = this;
@@ -51,7 +59,7 @@ class ImageQualityView extends Component {
           title={'Image Quality'}
           style={{backgroundColor: '#224488'}}
           leftItem={[ {icon: 'arrow-back'} ]}
-          onPress={ (name) => this.props.navigator.pop() }
+          onPress={ (name) => this._onPress() }
         />
         <ScrollView
           style={styles.contentContainer} >
