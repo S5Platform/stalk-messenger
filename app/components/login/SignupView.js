@@ -20,11 +20,6 @@ import KeyboardSpacer from './KeyboardSpacer';
 
 class SignupView extends Component {
 
-  static propTypes = {
-    signup: React.PropTypes.func.isRequired, // dispatch from actions
-    navigator: React.PropTypes.any.isRequired,
-  };
-
   state = {
     email: '',
     username: '',
@@ -78,13 +73,21 @@ class SignupView extends Component {
 
   }
 
+  _onPress = ()=>{
+    if( this.props.navigation ){
+      return this.props.navigation.goBack(null);
+    } else {
+      return this.props.navigator.pop();
+    }    
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
 
         <TouchableHighlight
-          onPress={() => this.props.navigator.pop()}
+          onPress={() => this._onPress()}
           style={{
             marginRight:10,
             marginTop:10
@@ -167,7 +170,7 @@ class SignupView extends Component {
         <S5Button
           type="secondary"
           caption="ALREADY HAVE AN ACCOUNT ?"
-          onPress={() => this.props.navigator.pop()}
+          onPress={() => this._onPress()}
         />
 
       <KeyboardSpacer height={this.state.bottomHeight} style={{backgroundColor: '#FFFFFF'}}/>
