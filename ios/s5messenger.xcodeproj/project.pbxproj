@@ -570,6 +570,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1A0BB9E31FC56CAA00F491AD /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				230194AE01CF4D829085B270 /* libRNDeviceInfo.a */,
+				762B705A93BA4823A9CBD893 /* libRNImagePicker.a */,
+				AB54A57B44F94142B46186EE /* libBVLinearGradient.a */,
+				55F8318252EF40508AB2C96A /* libRNVectorIcons.a */,
+				40BDB15334934E16A2AA826D /* libReact.a */,
+				610C8F99D5C6413CA65CFE3A /* libyoga.a */,
+				1A1A0C30341841E28DA974E9 /* libcxxreact.a */,
+				104C912C14B046F7A827FAC2 /* libjschelpers.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		1A12D99A1ED329E6001196A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +736,7 @@
 				00E356EF1AD99517003FC87E /* s5messengerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				9A0809C9A993409580B1FD8B /* Resources */,
+				1A0BB9E31FC56CAA00F491AD /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

@@ -99,8 +99,7 @@ class SignupView extends Component {
         </TouchableHighlight>
 
         <View style={styles.form}>
-
-          {/* "Cannot read property 'displayName of undefined" when I pass an empty string RN0.35 */}
+        
           <Text style={styles.message}> {this.state.message}</Text>
 
           <S5TextInput

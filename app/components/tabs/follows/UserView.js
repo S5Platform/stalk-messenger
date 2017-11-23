@@ -30,6 +30,14 @@ class UserView extends Component {
     });
   }
 
+  _onPress = ()=>{
+    if( this.props.navigation ){
+      return this.props.navigation.goBack(null);
+    } else {
+      return this.props.navigator.pop();
+    }    
+  }
+
   render() {
 
     return (
@@ -56,7 +64,7 @@ class UserView extends Component {
           </View>
         </View>
         <View style={styles.closeButton}>
-          <S5Icon name={'close'} color={'grey'} onPress={() => this.props.navigator.pop()}  />
+          <S5Icon name={'close'} color={'grey'} onPress={() => this._onPress()}  />
         </View>
       </View>
     );
