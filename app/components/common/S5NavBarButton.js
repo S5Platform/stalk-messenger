@@ -77,7 +77,9 @@ export default class S5NavBarButton extends Component {
 
 const styles = StyleSheet.create({
   btnContent: {
-    justifyContent:'center'
+    justifyContent:'center',
+    width:40,
+    height:40
   },
   toolbar: {
     backgroundColor: S5Colors.primary,

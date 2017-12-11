@@ -43,7 +43,9 @@ class FollowsMain extends Component {
 
   componentDidMount() {
     // We can only set the function after the component has been initialized
-    this.props.navigation.setParams({ handlePress: this._onPressHeader });
+    if( this.props.navigation ){
+      this.props.navigation.setParams({ handlePress: this._onPressHeader });
+    }
   }
 
   _onPressHeader = (name) => {

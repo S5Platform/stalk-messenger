@@ -16,7 +16,7 @@ class ProfileForm extends Component {
   constructor(props) {
     super(props);
 
-    var params = this.props.navigation.state.params || this.props;
+    var params = this.props.navigation && this.props.navigation.state.params || this.props;
 
     if( params ){
       this.state = {
